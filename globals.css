@@ -5,6 +5,159 @@
 /* you can read more about why following the above link, or searching for */
 /* "css normalize" or "css reset" in your favorite search engine ;) */
 
+
+/* Colors */
+.background_color{
+  background-color: #EEE5DF;
+}
+
+.blue_primary {
+  color: #4B4665;
+}
+
+.blue_light{
+  color: #756F92;
+}
+
+.accent{
+  color: #B55700;
+}
+
+.green_secondery{
+  color: #5D6354;
+}
+
+.text_color{
+  color: #696480
+}
+
+/* Div screen */
+.screen{
+  background-color: var(--background_color, #EEE5DF); /* Set your desired background color */
+  min-height: 100vh; /* Ensure the background covers the whole viewport height */
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+}
+
+/* Texts */
+
+/* Headlines */
+h1{
+  color: var(--primary-color, #4B4665);
+font-family: Poppins;
+font-size: 32px;
+font-style: normal;
+font-weight: 700;
+line-height: 130%; /* 41.6px */
+letter-spacing: -0.32px;
+}
+
+
+/* Subtitles */
+h2{
+  color: var(--primary-color, #4B4665);
+  font-family: Poppins;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+h3{
+  color:#696480;
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 130%;
+}
+
+
+
+/* Positions and grid */
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.text_center{
+  text-align: center;
+}
+
+.padding-left{
+  padding-left: 10px;
+}
+
+.padding-top {
+  padding-top: 10px;
+}
+
+.padding-bottom {
+  padding-bottom: 20px;
+}
+
+.top {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 100%;
+  z-index: 999; /* Ensure it appears above other content */
+}
+
+/* Buttons */
+.main_button{
+  background: var(--secondary-color, #5D6354);
+  display: flex;
+  width: 353px;
+  height: 56px;
+  padding: 17px 152px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  color: var(--background, #EEE5DF);
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  white-space: nowrap;
+  font-weight: 600;
+  line-height: 125%; /* 20px */
+}
+
+
+.second_button{
+  background-color: var(--background_color, #EEE5DF);
+  display: inline-block;
+  white-space: nowrap;
+  width: 353px;
+  height: 56px;
+  padding: 17px 152px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid var(--secondary-color, #5D6354);
+  color: var(--secondary-color, #5D6354);
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%; /* 20px */
+}
+
+
+
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
