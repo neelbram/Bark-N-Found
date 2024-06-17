@@ -1,4 +1,4 @@
-import WebsiteScreen from '@/lib/components/website-screen';
+import WebsiteScreen from '@/app/components/website-screen';
 import type { ReactNode } from 'react';
 
 interface Props {

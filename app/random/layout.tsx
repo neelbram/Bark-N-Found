@@ -1,4 +1,4 @@
-import AppScreen from '@/lib/components/app-screen';
+import AppScreen from '@/app/components/app-screen';
 import { Noto_Sans_Hebrew, Noto_Serif_Hebrew } from 'next/font/google';
 import type { ReactNode } from 'react';
 

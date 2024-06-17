@@ -1,6 +1,6 @@
 import '@/globals.css';
-import Footer from '@/lib/components/footer';
-import Navbar from '@/lib/components/navbar';
+import Footer from '@/app/components/footer';
+import Navbar from '@/app/components/navbar';
 import type { ReactNode } from 'react';
 
 interface Props {
