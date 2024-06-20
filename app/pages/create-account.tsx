@@ -1,7 +1,7 @@
 
-'use client'
+'use client'; 
+
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
 import TopBar from '../components/top-bar'; 
 import GingerDog from '../images/ginger_dog.jsx';
 
