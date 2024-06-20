@@ -1,14 +1,50 @@
-import LoginScreen from '@/app/pages/open-screen';
-import CreateAccount from '@/app/pages/create-account';
-import { COURSE_WELCOME_TEXT } from '@/lib/config';
-import Image from 'next/image';
-import Link from 'next/link';
+'use client';
 
-export default function Home() {
+import React from 'react';
+import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
+import dynamic from 'next/dynamic';
+
+const DynamicLoginScreen = dynamic(() => import('./pages/open-screen'), { ssr: false });
+const DynamicCreateAccount = dynamic(() => import('./pages/create-account'), { ssr: false });
+const DynamicSigninPage = dynamic(() => import('./pages/signin'), { ssr: false });
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <DynamicLoginScreen />,
+  },
+  {
+    path: "/create-account",
+    element: <DynamicCreateAccount />,
+  },
+  {
+    path: "/signin",
+    element: <DynamicSigninPage />,
+  },
+]);
+
+const App = () => {
   return (
-    <div>   
-        {/* <LoginScreen></LoginScreen> */}
-        <CreateAccount></CreateAccount>
-    </div>
-  )
-}
+    <RouterProvider router={router} />
+  );
+};
+
+export default App;
+
+
+// const rootElement = document.getElementById('root');
+// if (rootElement) {
+//   const root = ReactDOM.createRoot(rootElement);
+//   root.render(<App />);
+// } else {
+//   console.error("Root element not found.");
+// }
+
+//  export default function Home() {
+//    return (
+//      <div>
+//          <LoginScreen/>
+//          <CreateAccount/>
+//      </div>
+//    )
+// }
