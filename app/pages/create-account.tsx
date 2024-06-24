@@ -4,6 +4,8 @@ import TopBar from '../components/top-bar';
 import GingerDog from '../images/ginger_dog.jsx';
 
 const CreateAccount: React.FC = () => {
+    const bcrypt = require('bcryptjs');
+    const saltRounds = 10;
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [passwordConfirm, setPasswordConfirm] = useState<string>('');
@@ -37,11 +39,19 @@ const CreateAccount: React.FC = () => {
         setPassword('');
         setPasswordConfirm('');
     };
+    // const hashPassword = async (password) => {
+    //     try {
+    //         const hashedPassword = await bcrypt.hash(password, saltRounds);
+    //         return hashedPassword;
+    //     } catch (error) {
+    //         console.error('Error hashing password:', error);
+    //         throw error;
+    //     }
+    // };
 
     return (
         <div className='screen'>
             <div className='top'>
-                {/* Assuming TopBar is another component */}
                 <TopBar />
             </div>
             <div className="container background_color">

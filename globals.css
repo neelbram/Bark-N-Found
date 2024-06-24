@@ -125,7 +125,8 @@ h3{
 .main_button{
   background: var(--secondary-color, #5D6354);
   display: flex;
-  width: 353px;
+  width: 100%; 
+  max-width: 353px; 
   height: 56px;
   padding: 17px 152px;
   justify-content: center;
@@ -144,31 +145,31 @@ h3{
 }
 
 
-.second_button{
-  background-color: var(--background_color, #EEE5DF);
-  display: inline-block;
-  white-space: nowrap;
-  width: 353px;
-  height: 56px;
-  /* padding: 17px 152px; */
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  border: 1px solid var(--secondary-color, #5D6354);
-  color: var(--secondary-color, #5D6354);
-  text-align: center;
-  font-family: var(--primary-font);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 125%; 
-}
+.second_button {
+    background-color: var(--background_color, #EEE5DF);
+    display: inline-block;
+    white-space: nowrap;
+    width: 100%; 
+    max-width: 353px; 
+    height: 56px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 1px solid var(--secondary-color, #5D6354);
+    color: var(--secondary-color, #5D6354);
+    text-align: center;
+    font-family: var(--primary-font);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 125%; 
+  }
+  
 
   input, textarea, select, button, a.button {
     border: 1px solid var(--gray);
-    padding: 0.25rem;
   }
   button, a.button {
     font-size: 1.125rem;
@@ -182,5 +183,9 @@ h3{
     justify-content: center;
     align-items: center;
     position: relative;
+  }
+
+  #logo{
+    cursor: pointer;
   }
   

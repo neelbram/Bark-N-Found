@@ -1,4 +1,4 @@
-export const APP_NAME = 'Starter Kit';
+export const APP_NAME = 'Bark N Found';
 export const COURSE_GITHUB = 'https://github.com/digital-product-jam-2024';
 export const COURSE_WELCOME_TEXT = 'Hey there, and welcome! Read the source code, and navigate to the demos.';
 export const COURSE_CREDITS = 'Digital Product Jam 2023-2024';

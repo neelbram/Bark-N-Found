@@ -30,21 +30,3 @@ const App = () => {
 };
 
 export default App;
-
-
-// const rootElement = document.getElementById('root');
-// if (rootElement) {
-//   const root = ReactDOM.createRoot(rootElement);
-//   root.render(<App />);
-// } else {
-//   console.error("Root element not found.");
-// }
-
-//  export default function Home() {
-//    return (
-//      <div>
-//          <LoginScreen/>
-//          <CreateAccount/>
-//      </div>
-//    )
-// }
