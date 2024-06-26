@@ -1,11 +1,23 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import App from './app/page';
 
-const container = document.getElementById('root');
-if (container) {
-  const root = createRoot(container);
+// const rootElement = document.getElementById('root');
+// if (rootElement) {
+//   const root = ReactDOM.createRoot(rootElement);
+//   root.render(<App />);
+// } else {
+//   console.error('Root element not found.');
+// }
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './app/page';
+
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  const root = ReactDOM.createRoot(rootElement);
   root.render(<App />);
 } else {
-  console.error("Root element not found.");
+  console.error('Root element not found.');
 }
