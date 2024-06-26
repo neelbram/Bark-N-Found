@@ -1,39 +1,10 @@
-
-// import React from 'react';
-// import { MapContainer, TileLayer } from 'react-leaflet';
-// import 'leaflet/dist/leaflet.css';
-// import TopBar from '@/app/components/top-bar';
-// import Pin from '@/app/components/pin'; // Import Pin component
-// import './map-style.css';
-
-// const MapPage: React.FC = () => {
-//   return (
-//     <div className='screen'>
-//       <div className='top'>
-//         <TopBar />
-//       </div>
-//       <div className="container background_color">
-//         <MapContainer center={[31.8, 34.7]} zoom={13} style={{ height: '100vh', width: '100%' }}>
-//           <TileLayer
-//             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-//             attribution='&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-//           />
-//           {/* Example of using Pin component */}
-//           <Pin initialPosition={[31.8, 34.7]} />
-//         </MapContainer>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default MapPage;
-
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, useMapEvents, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import dynamic from 'next/dynamic';
 import './map-style.css'; // Ensure this file is created and contains necessary styles
+import BottomPanel from '../components/bottom-panel';
 
 const PinForm = dynamic(() => import('@/app/components/pin-form'), { ssr: false });
 
@@ -100,6 +71,8 @@ const MapPage: React.FC = () => {
   };
 
   return (
+    <div className='screen'>
+    <BottomPanel></BottomPanel>
     <div style={{ position: 'relative' }}>
       <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: '100vh', width: '100%' }}>
         <TileLayer
@@ -147,6 +120,7 @@ const MapPage: React.FC = () => {
           />
         </div>
       )}
+    </div>
     </div>
   );
 };

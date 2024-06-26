@@ -23,8 +23,7 @@
     --blue_light: #756F92;
     --secondary:#5D6354;
     --text: #696480;
-    --link: #B55700;
-    /* --primary-font: 'Arial'; */
+    /* --link: #B55700; */
     --primary-font: 'Poppins', sans-serif;
   }
 
@@ -205,3 +204,24 @@ h3{
     padding-left: 75px;
   }
   
+  .bottom-panel{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    height: 72px;
+    flex-shrink: 0;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1); /* Example shadow */
+  }
+
+  .bottom-panel button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 30px;
+  }
