@@ -1,15 +1,3 @@
-// import React from 'react';
-
-// const SigninPage: React.FC = () => {
-//     return (
-//         <div>
-//             <h1>Signin</h1>
-//             {/* Add your signin form here */}
-//         </div>
-//     );
-// };
-
-// export default SigninPage;
 import TopBar from '../components/top-bar'; 
 import React, { useState } from 'react';
 import bcrypt from 'bcryptjs'; // Import bcryptjs in your React component
@@ -60,6 +48,7 @@ const Login: React.FC = () => {
             </div>
             <div className="container background_color">
                 <h1 className='center'>Login</h1>
+                <img src="/images/curly_dog.png" alt="Curly Dog" id="dogImage" className="center" />
                 <div>
                     <label htmlFor="emailInput">Email address</label>
                     <input

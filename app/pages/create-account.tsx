@@ -1,7 +1,7 @@
 'use client'; 
 import React, { useState } from 'react';
 import TopBar from '../components/top-bar'; 
-import GingerDog from '../images/ginger_dog.jsx';
+import GingerDogImage from '../images/ginger_dog.png'; 
 
 const CreateAccount: React.FC = () => {
     const bcrypt = require('bcryptjs');
@@ -56,7 +56,10 @@ const CreateAccount: React.FC = () => {
             </div>
             <div className="container background_color">
                 <h1 className='center'>Create an account</h1>
+                <img src="/images/ginger_dog.png" alt="Ginger Dog" id="dogImage" className="center" />
+
                 <div>
+
                     <label htmlFor="emailAddressInput">Email address</label>
                     <input
                         type="text"
