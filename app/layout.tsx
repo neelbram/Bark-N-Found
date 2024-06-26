@@ -13,14 +13,16 @@ const ubuntu = Ubuntu({
 });
 
 export const metadata: Metadata = {
-  title: 'Digital Product Jam Starter Kit',
-  description: 'A starter kit for wiritng code in the Digital Product Jam course.',
+  title: 'Bark N Found',
+  description: 'An app that will help you find your lost',
 }
 
 export default function RootLayout({ children } : { children: ReactNode }) {
   const bodyClassNames = `${ubuntu.variable} ${process.env.CSS_DEBUG}`
   return (
     <html>
+      <link rel="icon" href="/favicon.ico" />
+
       <body className={bodyClassNames}>
         <div id="page-grid">
           {children}

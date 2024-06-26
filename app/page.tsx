@@ -65,38 +65,3 @@ export default App;
 //      </div>
 //    )
 // }
-
-
-// 'use client';
-
-// import React from 'react';
-// import ReactDOM from 'react-dom/client';
-// import dynamic from 'next/dynamic';
-// import MapPage from '@/app/pages/map-page'; 
-
-// const DynamicLoginScreen = dynamic(() => import('./pages/open-screen'), { ssr: false });
-// const DynamicCreateAccount = dynamic(() => import('./pages/create-account'), { ssr: false });
-// const DynamicSigninPage = dynamic(() => import('./pages/signin'), { ssr: false });
-// const DynamicMapPage = dynamic(() => import('./pages/map-page'), { ssr: false });
-
-
-// const App = () => {
-//   return (
-//     <MapPage />
-//     // Uncomment the following line if you want to use the router
-//     // <RouterProvider router={router} />
-//   );
-// };
-
-// const Home = () => {
-//   return (
-//     <div>
-//       <DynamicLoginScreen />
-//       <DynamicCreateAccount />
-//       <DynamicSigninPage />
-//     </div>
-//   );
-// };
-
-
-// export default App;
