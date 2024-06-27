@@ -72,7 +72,7 @@ const MapPage: React.FC = () => {
 
   return (
     <div className='screen'>
-    <BottomPanel></BottomPanel>
+    {/* <BottomPanel></BottomPanel> */}
     <div style={{ position: 'relative' }}>
       <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: '100vh', width: '100%' }}>
         <TileLayer
