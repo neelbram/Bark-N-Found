@@ -71,11 +71,11 @@ const MapPage: React.FC = () => {
   };
 
   return (
-    <div className='screen'>
-    {/* <BottomPanel></BottomPanel> */}
+    // <div className='screen'>
     <div style={{ position: 'relative' }}>
       <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: '100vh', width: '100%' }}>
-        <TileLayer
+      <BottomPanel></BottomPanel>
+      <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
         />
@@ -103,6 +103,7 @@ const MapPage: React.FC = () => {
                 <p>{pin.details.contactPhone}</p>
               </div>
             </Popup>
+
           </Marker>
         ))}
         <LocationMarker />
@@ -121,7 +122,7 @@ const MapPage: React.FC = () => {
         </div>
       )}
     </div>
-    </div>
+    // </div>
   );
 };
 
