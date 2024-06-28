@@ -1,10 +1,13 @@
 import TopBar from '../components/top-bar'; 
 import React, { useState } from 'react';
 import bcrypt from 'bcryptjs'; // Import bcryptjs in your React component
+import { useNavigate } from 'react-router-dom';
+
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const navigate = useNavigate();
 
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
@@ -18,7 +21,7 @@ const Login: React.FC = () => {
         // Retrieve stored email and hashedPassword from localStorage
         const storedEmail = localStorage.getItem('storedEmail');
         const storedHashedPassword = localStorage.getItem('storedHashedPassword');
-
+        
         // Check if storedEmail and storedHashedPassword exist
         if (storedEmail && storedHashedPassword) {
             // Example: Hash entered password and compare with stored hashed password
@@ -38,6 +41,9 @@ const Login: React.FC = () => {
         } else {
             console.log('No stored credentials found.');
         }
+        navigate('/map-page')
+
+        
     };
 
     return (
