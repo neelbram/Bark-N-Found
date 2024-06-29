@@ -1,0 +1,56 @@
+{
+  "pets": [
+      {
+          "key": "1",
+          "name": "Yossi",
+          "type": "Dog",
+          "status": "Lost",
+          "location": {
+              "lost_at": "Thornridge, Chicago",
+              "distance": "5km"
+          },
+          "description": {
+              "breed": "Mix",
+              "color": "Brown",
+              "size": "Medium",
+              "sex": "Male",
+              "chip_number": "987421",
+              "collar": {
+                  "color": "Blue"
+              },
+              "additional_info": "Yossi is a soft and calm dog. He also responds to the name Shoosh! He has a small scar next to his front leg."
+          },
+          "contact": {
+              "name": "Sophia",
+              "phone_number": "054-9448553"
+          },
+          "img": "/images/yossi_profile.jpeg"
+      },
+      {
+          "key": "2",
+          "name": "Bella",
+          "type": "Cat",
+          "status": "Lost",
+          "location": {
+              "lost_at": "Downtown, Chicago",
+              "distance": "2km"
+          },
+          "description": {
+              "breed": "Siamese",
+              "color": "White",
+              "size": "Small",
+              "sex": "Female",
+              "chip_number": "123456",
+              "collar": {
+                  "color": "Red"
+              },
+              "additional_info": "Bella is very friendly and loves to be around people. She has a blue collar with a small bell."
+          },
+          "contact": {
+              "name": "John",
+              "phone_number": "054-9448554"
+          },
+          "img": "/images/bella.png"
+      }
+  ]
+}
