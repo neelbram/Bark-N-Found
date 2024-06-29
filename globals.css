@@ -227,9 +227,22 @@ h3{
     padding: 30px;
   }
 
-/* .add-pin button {
-  position: absolute;
-  bottom: 10px;
-  right : 10px;
-  z-index: 1000;
-} */
+  select {
+    max-width: 100%;
+  }
+  
+  select option {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  button, .button {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .submit_button {
+    background-color: #5D6354;
+    color: white;
+  }
+  
