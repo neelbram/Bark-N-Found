@@ -12,7 +12,7 @@
           "description": {
               "breed": "Mix",
               "color": "Brown",
-              "size": "Medium-Large",
+              "size": "Medium",
               "sex": "Male",
               "chip_number": "987421",
               "collar": {
@@ -24,7 +24,7 @@
               "name": "Sophia",
               "phone_number": "054-9448553"
           },
-          "img": "/images/yossi.png"
+          "img": "/images/yossi_profile.jpeg"
       },
       {
           "key": "2",
