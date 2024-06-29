@@ -8,7 +8,7 @@ import BottomPanel from '../components/bottom-panel';
 const LostProfile = () => {
     const [data, setData] = useState<PetsData | null>(null);
     // TODO: get id from location click.
-    const key = "2";
+    const key = "1";
     const pet: Pet|null = data?.pets.find((obj => obj.key === key)) || null;
 
     useEffect(() => {
