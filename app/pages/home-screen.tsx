@@ -14,6 +14,7 @@ const HomeScreen: React.FC = () => {
     const navigate = useNavigate();
     const [lostPets, setLostPets] = useState<Pet[]>([]);
     const [foundPets, setFoundPets] = useState<Pet[]>([]);
+    const [currentPage, setCurrentPage] = useState('home-screen');
 
     useEffect(() => {
         // Simulating fetching data from JSON (replace with actual fetch or data loading)
@@ -32,7 +33,6 @@ const HomeScreen: React.FC = () => {
             </div>
             <div className='home-container background_color'>
                 <h1 className='home-center'>Bark N Found</h1>
-
                 {/* Lost section */}
                 <div className='home-section'>
                     <h2 className='lost-title'>Lost</h2>
@@ -41,7 +41,7 @@ const HomeScreen: React.FC = () => {
                             <div className='home-scrollable-bar'>
                                 {/* Yossi's card */}
                                 {lostPets.map((pet) => (
-                                    <button key={pet.key} className='home-card' onClick={() => handleCardClick(pet.key)}>
+                                    <button key={pet.key} className='home-card' onClick={() => navigate('/profile-lost')}>
                                         <img src={pet.img} alt={pet.name} />
                                         <div className='card-content'>
                                             <p className='pet-name'>{pet.name}</p>
@@ -74,8 +74,7 @@ const HomeScreen: React.FC = () => {
                         </div>
                     </div>
                 </div>
-
-                <BottomPanel />
+                <BottomPanel currentPage={currentPage}></BottomPanel>
             </div>
             <BottomPanel />
         </div>

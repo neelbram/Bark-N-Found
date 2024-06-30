@@ -14,7 +14,7 @@ const BottomPanel: React.FC<BottomPanelProps> = ({ currentPage }: BottomPanelPro
             homeButton = '#4B4665';
             mapButton = '#B55700';
           break;
-        case 'home-page':
+        case 'home-screen':
             homeButton = '#B55700';
             mapButton = '#4B4665';
           break;
@@ -42,7 +42,6 @@ const BottomPanel: React.FC<BottomPanelProps> = ({ currentPage }: BottomPanelPro
                 fill={mapButton}/>
                 </svg>
             </button>
-            {/* onClick={() => navigate('/profile-lost')} */}
         </div>
     );
 };
