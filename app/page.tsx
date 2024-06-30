@@ -10,6 +10,7 @@ const DynamicCreateAccount = dynamic(() => import('./pages/create-account'), { s
 const DynamicSigninPage = dynamic(() => import('./pages/signin'), { ssr: false });
 const DynamicMapPage = dynamic(() => import('./pages/map-page'), { ssr: false });
 const DynamicProfileLost = dynamic(() => import('./pages/profile-lost'), { ssr: false });
+const DynamicHomeScreen = dynamic(() => import('./pages/home-screen'), { ssr: false });
 
 
 const router = createBrowserRouter([
@@ -31,7 +32,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/profile-lost", 
-    element: <DynamicProfileLost />}
+    element: <DynamicProfileLost />},
+  {
+    path: "/home-screen",
+    element: <DynamicHomeScreen />,
+  },
 ]);
 
 const App = () => {
