@@ -1,4 +1,3 @@
-import BottomPanel from '../components/bottom-panel';
 import React, { useEffect, useState } from 'react';
 import TopBar from '../components/top-bar';
 import { useNavigate } from 'react-router-dom';
@@ -22,8 +21,8 @@ const HomeScreen: React.FC = () => {
         setFoundPets(petsData.found);
     }, []);
 
-    const handleCardClick = (petId: number) => {
-        navigate(`/pet-details/${petId}`); // Example navigation to pet details page
+    const handleCardClick = (petId: string) => {
+        navigate(`/pet-details/${petId}`);
     };
 
     return (
@@ -31,34 +30,52 @@ const HomeScreen: React.FC = () => {
             <div className='top'>
                 <TopBar />
             </div>
-            <div className='container background_color'>
-                <h1 className='center'>Bark N Found</h1>
-                <div className='scrollable-container'>
+            <div className='home-container background_color'>
+                <h1 className='home-center'>Bark N Found</h1>
+
+                {/* Lost section */}
+                <div className='home-section'>
                     <h2 className='lost-title'>Lost</h2>
-                    <div className='scrollable-content'>
-                        <div className='scrollable-bar'>
-                            {lostPets.map((pet) => (
-                                <div key={pet.id} className='card' onClick={() => handleCardClick(pet.id)}>
-                                    <img src={pet.image} alt={pet.name} />
-                                    <p>{pet.details}</p>
-                                </div>
-                            ))}
+                    <div className='home-scrollable-container'>
+                        <div className='home-scrollable-content'>
+                            <div className='home-scrollable-bar'>
+                                {/* Yossi's card */}
+                                {lostPets.map((pet) => (
+                                    <button key={pet.key} className='home-card' onClick={() => handleCardClick(pet.key)}>
+                                        <img src={pet.img} alt={pet.name} />
+                                        <div className='card-content'>
+                                            <p className='pet-name'>{pet.name}</p>
+                                            <p className='pet-date'>{pet.date}</p>
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className='scrollable-container'>
+
+                {/* Found section */}
+                <div className='home-section'>
                     <h2 className='found-title'>Found</h2>
-                    <div className='scrollable-content'>
-                        <div className='scrollable-bar'>
-                            {foundPets.map((pet) => (
-                                <div key={pet.id} className='card' onClick={() => handleCardClick(pet.id)}>
-                                    <img src={pet.image} alt={pet.name} />
-                                    <p>{pet.details}</p>
-                                </div>
-                            ))}
+                    <div className='home-scrollable-container'>
+                        <div className='home-scrollable-content'>
+                            <div className='home-scrollable-bar'>
+                                {/* Found pets */}
+                                {foundPets.map((pet) => (
+                                    <button key={pet.key} className='home-card' onClick={() => handleCardClick(pet.key)}>
+                                        <img src={pet.img} alt={pet.name} />
+                                        <div className='card-content'>
+                                            <p className='pet-name'>{pet.name}</p>
+                                            <p className='pet-date'>{pet.date}</p>
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <BottomPanel />
             </div>
             <BottomPanel />
         </div>
