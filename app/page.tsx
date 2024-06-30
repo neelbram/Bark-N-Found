@@ -1,6 +1,6 @@
 'use client';
-
-import React from 'react';
+import React, { useState } from 'react';
+import BottomPanel from '../app/components/bottom-panel';
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
 import dynamic from 'next/dynamic';
 import ReactDOM from 'react-dom';
@@ -35,10 +35,11 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return (
-    <RouterProvider router={router} />
-  );
-};
+    const [currentPage, setCurrentPage] = useState('map-page');
+    return (
+        <RouterProvider router={router} />
+    );
+    };
 
 // const rootElement = document.getElementById('root');
 // if (rootElement) {
