@@ -227,3 +227,33 @@ h3{
     padding: 30px;
   }
 
+
+.lost-title {
+  color: white; /* Text color */
+  padding: 10px 20px; /* Adjust padding for better appearance */
+  margin-left: 0;
+  width: fit-content;
+  font-family: var(--primary-font);
+  background-color: #5D6354; /* Background color for lost */
+  border-radius: 0 60px 40px 0; /* Straight end on the left, rounded end on the right */
+  display: inline-block; /* Ensure inline block to minimize space */
+
+
+}
+
+.found-title {
+  color: white; /* Text color */
+  padding: 10px 20px; /* Adjust padding for better appearance */
+  margin-left: 0;
+  width: fit-content;
+  font-family: var(--primary-font);
+  background-color: #756F92; /* Background color for found */
+  border-radius: 0 60px 40px 0; /* Straight end on the left, rounded end on the right */
+  display: inline-block; /* Ensure inline block to minimize space */
+
+
+}
+
+.scrollable-container {
+  margin-left: 0;
+}

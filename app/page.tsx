@@ -8,6 +8,7 @@ const DynamicLoginScreen = dynamic(() => import('./pages/open-screen'), { ssr: f
 const DynamicCreateAccount = dynamic(() => import('./pages/create-account'), { ssr: false });
 const DynamicSigninPage = dynamic(() => import('./pages/signin'), { ssr: false });
 const DynamicMapPage = dynamic(() => import('./pages/map-page'), { ssr: false });
+const DynamicHomeScreen = dynamic(() => import('./pages/home-screen'), { ssr: false });
 
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/map-page",
     element: <DynamicMapPage />,
+  },
+  {
+    path: "/home-screen",
+    element: <DynamicHomeScreen />,
   },
 ]);
 
