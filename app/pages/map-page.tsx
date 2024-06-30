@@ -1,129 +1,76 @@
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, useMapEvents, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMapEvents, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import TopBar from '../components/top-bar'; 
 import L from 'leaflet';
-import dynamic from 'next/dynamic';
-import './map-style.css'; // Ensure this file is created and contains necessary styles
 import BottomPanel from '../components/bottom-panel';
+import AddButton from '../components/add-button';
 
-const PinForm = dynamic(() => import('@/app/components/pin-form'), { ssr: false });
+const DefaultIcon = L.icon({
+  iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png'
+});
 
-interface Pin {
-  lat: number;
-  lng: number;
-  type: 'lost' | 'found';
-  details: {
-    animalKind: string;
-    name: string;
-    breed: string;
-    sex: string;
-    color: string;
-    chipNumber: string;
-    size: string;
-    extraDetails: string;
-    contactName: string;
-    contactPhone: string;
-  };
-}
+L.Marker.prototype.options.icon = DefaultIcon;
+
+const LocationMarker = () => {
+  const map = useMapEvents({
+    locationfound(e) {
+      const radius = e.accuracy / 2;
+      const marker = L.marker(e.latlng)
+        .addTo(map)
+        .on('dblclick', () => {
+          alert(marker.getLatLng());
+        })
+        .bindPopup(`You are within ${radius} meters from this point`)
+        .openPopup();
+      L.circle(e.latlng, { radius }).addTo(map);
+    },
+    locationerror(e) {
+      alert(e.message);
+    }
+  });
+
+  useEffect(() => {
+    map.locate({ setView: true, maxZoom: 16 });
+  }, [map]);
+
+  return null;
+};
 
 const MapPage: React.FC = () => {
-  const [pins, setPins] = useState<Pin[]>([]);
-  const [newPin, setNewPin] = useState<{ lat: number; lng: number } | null>(null);
-  const [showForm, setShowForm] = useState(false);
+  const [map, setMap] = useState<L.Map | null>(null);
+  const [addingMarker, setAddingMarker] = useState(false);
 
-  const handleMapClick = (e: L.LeafletMouseEvent) => {
-    setNewPin({ lat: e.latlng.lat, lng: e.latlng.lng });
-    setShowForm(true);
-  };
-
-  const handleAddPin = (pin: Pin) => {
-    setPins([...pins, pin]);
-    setNewPin(null);
-    setShowForm(false);
-  };
-
-  const LocationMarker = () => {
-    const map = useMapEvents({
-      click(e) {
-        handleMapClick(e);
-      },
-    });
-
-    useEffect(() => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords;
-            map.setView([latitude, longitude], 13);
-
-            L.marker([latitude, longitude]).addTo(map)
-              .bindPopup('You are here!')
-              .openPopup();
-          },
-          () => {
-            console.error('Unable to retrieve your location');
-          }
-        );
-      }
-    }, [map]);
-
+  const MapEvents = () => {
+    const map = useMap();
+    setMap(map);
     return null;
   };
 
   return (
-    // <div className='screen'>
-    <div style={{ position: 'relative' }}>
-      <MapContainer center={[51.505, -0.09]} zoom={13} style={{ height: '100vh', width: '100%' }}>
-      <BottomPanel></BottomPanel>
-      <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-        />
-        {pins.map((pin, index) => (
-          <Marker
-            key={index}
-            position={[pin.lat, pin.lng]}
-            icon={L.icon({
-              iconUrl: pin.type === 'lost' ? 'purple-marker-icon.png' : 'orange-marker-icon.png',
-              iconSize: [25, 41],
-              iconAnchor: [12, 41],
-            })}
-          >
-            <Popup>
-              <div>
-                <h3>{pin.details.name}</h3>
-                <p>{pin.details.animalKind}</p>
-                <p>{pin.details.breed}</p>
-                <p>{pin.details.sex}</p>
-                <p>{pin.details.color}</p>
-                <p>{pin.details.chipNumber}</p>
-                <p>{pin.details.size}</p>
-                <p>{pin.details.extraDetails}</p>
-                <p>{pin.details.contactName}</p>
-                <p>{pin.details.contactPhone}</p>
-              </div>
-            </Popup>
-
-          </Marker>
-        ))}
-        <LocationMarker />
-      </MapContainer>
-      {showForm && newPin && (
-        <div style={{ position: 'absolute', top: 10, left: 10 }}>
-          <PinForm
-            lat={newPin.lat}
-            lng={newPin.lng}
-            onSave={handleAddPin}
-            onCancel={() => {
-              setShowForm(false);
-              setNewPin(null);
-            }}
+    <div className='screen'>
+      <div className='top'>
+        <BottomPanel></BottomPanel>
+        <TopBar />
+      </div>
+      <div className="container background_color">
+        <MapContainer center={[31.8, 34.7]} zoom={13} style={{ height: '100vh', width: '100%' }}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
           />
-        </div>
-      )}
+          <Marker position={[31.8, 34.7]} />
+          <LocationMarker />
+          <MapEvents />
+        </MapContainer>
+        <AddButton map={map} setAddingMarker={setAddingMarker} />
+      </div>
     </div>
-    // </div>
   );
 };
 
 export default MapPage;
+
+
+

@@ -1,14 +1,25 @@
-import BottomPanel from '../components/bottom-panel';
 import React, { useEffect, useState } from 'react';
-import TopBar from '../components/top-bar';
 import { useNavigate } from 'react-router-dom';
-import petsData from '../data/pets.json'; // Import your JSON data
+import TopBar from '../components/top-bar'; // Adjust the path as per your project structure
+import BottomPanel from '../components/bottom-panel'; // Adjust the path as per your project structure
+import petsData from '../data/profile.json';
 
+// Define the structure of the pet data
 interface Pet {
-    id: number;
+    key: string;
     name: string;
-    image: string;
-    details: string;
+    img: string;
+    date: string;
+    location: {
+        lost_at?: string; // Update to allow for both lost_at and found_at
+        found_at?: string;
+    };
+    status: string;
+}
+
+// Define the structure of the entire JSON data
+interface PetsData {
+    pets: Pet[];
 }
 
 const HomeScreen: React.FC = () => {
@@ -17,13 +28,17 @@ const HomeScreen: React.FC = () => {
     const [foundPets, setFoundPets] = useState<Pet[]>([]);
 
     useEffect(() => {
-        // Simulating fetching data from JSON (replace with actual fetch or data loading)
-        setLostPets(petsData.lost);
-        setFoundPets(petsData.found);
+        const data = petsData as PetsData;
+        const lost = data.pets.filter((pet: Pet) => pet.status === 'Lost');
+        const found = data.pets.filter((pet: Pet) => pet.status === 'Found');
+
+        // Limit to 3 pets per section
+        setLostPets(lost.slice(0, 3));
+        setFoundPets(found.slice(0, 3));
     }, []);
 
-    const handleCardClick = (petId: number) => {
-        navigate(`/pet-details/${petId}`); // Example navigation to pet details page
+    const handleCardClick = (petId: string) => {
+        navigate(`/pet-details/${petId}`);
     };
 
     return (
@@ -31,36 +46,53 @@ const HomeScreen: React.FC = () => {
             <div className='top'>
                 <TopBar />
             </div>
-            <div className='container background_color'>
-                <h1 className='center'>Bark N Found</h1>
-                <div className='scrollable-container'>
+            <div className='home-container background_color'>
+                <h1 className='home-center'>Bark N Found</h1>
+
+                {/* Lost section */}
+                <div className='home-section'>
                     <h2 className='lost-title'>Lost</h2>
-                    <div className='scrollable-content'>
-                        <div className='scrollable-bar'>
-                            {lostPets.map((pet) => (
-                                <div key={pet.id} className='card' onClick={() => handleCardClick(pet.id)}>
-                                    <img src={pet.image} alt={pet.name} />
-                                    <p>{pet.details}</p>
-                                </div>
-                            ))}
+                    <div className='home-scrollable-container'>
+                        <div className='home-scrollable-content'>
+                            <div className='home-scrollable-bar'>
+                                {/* Yossi's card */}
+                                {lostPets.map((pet) => (
+                                    <button key={pet.key} className='home-card' onClick={() => handleCardClick(pet.key)}>
+                                        <img src={pet.img} alt={pet.name} />
+                                        <div className='card-content'>
+                                            <p className='pet-name'>{pet.name}</p>
+                                            <p className='pet-date'>{pet.date}</p>
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className='scrollable-container'>
+
+                {/* Found section */}
+                <div className='home-section'>
                     <h2 className='found-title'>Found</h2>
-                    <div className='scrollable-content'>
-                        <div className='scrollable-bar'>
-                            {foundPets.map((pet) => (
-                                <div key={pet.id} className='card' onClick={() => handleCardClick(pet.id)}>
-                                    <img src={pet.image} alt={pet.name} />
-                                    <p>{pet.details}</p>
-                                </div>
-                            ))}
+                    <div className='home-scrollable-container'>
+                        <div className='home-scrollable-content'>
+                            <div className='home-scrollable-bar'>
+                                {/* Found pets */}
+                                {foundPets.map((pet) => (
+                                    <button key={pet.key} className='home-card' onClick={() => handleCardClick(pet.key)}>
+                                        <img src={pet.img} alt={pet.name} />
+                                        <div className='card-content'>
+                                            <p className='pet-name'>{pet.name}</p>
+                                            <p className='pet-date'>{pet.date}</p>
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <BottomPanel />
             </div>
-            <BottomPanel />
         </div>
     );
 };
