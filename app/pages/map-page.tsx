@@ -41,6 +41,7 @@ const LocationMarker = () => {
 const MapPage: React.FC = () => {
   const [map, setMap] = useState<L.Map | null>(null);
   const [addingMarker, setAddingMarker] = useState(false);
+  const [currentPage, setCurrentPage] = useState('map-page');
 
   const MapEvents = () => {
     const map = useMap();
@@ -51,7 +52,7 @@ const MapPage: React.FC = () => {
   return (
     <div className='screen'>
       <div className='top'>
-        <BottomPanel></BottomPanel>
+        <BottomPanel currentPage={currentPage}></BottomPanel>
         <TopBar />
       </div>
       <div className="container background_color">
