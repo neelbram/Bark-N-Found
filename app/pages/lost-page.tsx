@@ -24,18 +24,20 @@ const LostPetsPage: React.FC = () => {
     const [lostPets, setLostPets] = useState<Pet[]>([]);
 
     useEffect(() => {
-        fetch('/profile.json')
-            .then(response => response.json())
-            .then((data: PetsData) => {
-                console.log('Fetched data:', data); // Log fetched data for debugging
-                const lost = data.pets.filter((pet: Pet) => pet.status === 'Lost');
-                console.log('Filtered lost pets:', lost); // Log filtered lost pets for debugging
-                setLostPets(lost.slice(0, 9)); // Limit to 9 pets per section
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error); // Log any fetch errors
-            });
-    }, []);
+        if (typeof window !== 'undefined') {
+            fetch('/profile.json')
+                .then(response => response.json())
+                .then((data: PetsData) => {
+                    console.log('Fetched data:', data); // Log fetched data for debugging
+                    const lost = data.pets.filter((pet: Pet) => pet.status === 'Lost');
+                    console.log('Lost pets:', lost); // Log filtered lost pets for debugging
+                    setLostPets(lost.slice(0, 6)); // Limit to 6 pets per section
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error); // Log any fetch errors
+                });
+        }
+    }, []); // Ensure the dependency array is empty to fetch data only once
 
     const handleCardClick = (petId: string) => {
         navigate(`/pet-details/${petId}`);
@@ -49,13 +51,13 @@ const LostPetsPage: React.FC = () => {
             <div className='home-container background_color'>
                 <h1 className='home-center'>Lost</h1>
 
-                {/* Lost pets section */}
+                {/* First row of pet cards */}
                 <div className='home-section'>
                     <div className='home-scrollable-container'>
                         <div className='home-scrollable-content'>
                             <div className='home-scrollable-bar'>
                                 {lostPets.length > 0 ? (
-                                    lostPets.map((pet) => (
+                                    lostPets.slice(0, 3).map((pet) => (
                                         <button key={pet.key} className='home-card' onClick={() => handleCardClick(pet.key)}>
                                             <img src={pet.img} alt={pet.name} />
                                             <div className='card-content'>
@@ -72,7 +74,28 @@ const LostPetsPage: React.FC = () => {
                     </div>
                 </div>
 
-                <BottomPanel />
+                {/* Second row of pet cards */}
+                <div className='home-section'>
+                    <div className='home-scrollable-container'>
+                        <div className='home-scrollable-content'>
+                            <div className='home-scrollable-bar'>
+                                {lostPets.length > 3 ? (
+                                    lostPets.slice(3, 6).map((pet) => (
+                                        <button key={pet.key} className='home-card' onClick={() => handleCardClick(pet.key)}>
+                                            <img src={pet.img} alt={pet.name} />
+                                            <div className='card-content'>
+                                                <p className='pet-name'>{pet.name}</p>
+                                                <p className='pet-date'>{pet.date}</p>
+                                            </div>
+                                        </button>
+                                    ))
+                                ) : null}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <BottomPanel currentPage="lost-page" />
             </div>
         </div>
     );

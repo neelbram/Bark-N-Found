@@ -1,6 +1,5 @@
 {
   "pets": [
-<<<<<<< HEAD
     {
       "key": "1",
       "name": "Yossi",
@@ -374,7 +373,7 @@
           "phone_number": "054-9448566"
         },
         "img": "/images/lost3.jpg"
-=======
+      },
       {
           "key": "1",
           "name": "Yossi",
@@ -400,7 +399,6 @@
               "phone_number": "054-9448553"
           },
           "img": "/images/found3.jpg"
->>>>>>> 2594cee96429c513f09bcf35404fb5e663dabbb8
       },
       {
           "key": "15",
