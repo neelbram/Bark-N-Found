@@ -1,5 +1,6 @@
 {
   "pets": [
+<<<<<<< HEAD
     {
       "key": "1",
       "name": "Yossi",
@@ -373,6 +374,33 @@
           "phone_number": "054-9448566"
         },
         "img": "/images/lost3.jpg"
+=======
+      {
+          "key": "1",
+          "name": "Yossi",
+          "type": "Dog",
+          "status": "Lost",
+          "location": {
+              "lost_at": "Thornridge, Chicago",
+              "distance": "5km"
+          },
+          "description": {
+              "breed": "Mix",
+              "color": "Brown",
+              "size": "Medium",
+              "sex": "Male",
+              "chip_number": "987421",
+              "collar": {
+                  "color": "Blue"
+              },
+              "additional_info": "Yossi is a soft and calm dog. He also responds to the name Shoosh! He has a small scar next to his front leg."
+          },
+          "contact": {
+              "name": "Sophia",
+              "phone_number": "054-9448553"
+          },
+          "img": "/images/found3.jpg"
+>>>>>>> 2594cee96429c513f09bcf35404fb5e663dabbb8
       },
       {
           "key": "15",

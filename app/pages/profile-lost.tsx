@@ -26,7 +26,7 @@ const LostProfile = () => {
             <div className='pet-profile'>
             {pet&&<PetProfile pet={pet} />}
             </div>
-            <BottomPanel />
+            <BottomPanel currentPage="profile-lost" />
         </div>
     );
 };
