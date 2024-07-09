@@ -9,7 +9,8 @@ const DynamicLoginScreen = dynamic(() => import('./pages/open-screen'), { ssr: f
 const DynamicCreateAccount = dynamic(() => import('./pages/create-account'), { ssr: false });
 const DynamicSigninPage = dynamic(() => import('./pages/signin'), { ssr: false });
 const DynamicMapPage = dynamic(() => import('./pages/map-page'), { ssr: false });
-const DynamicHomeScreen = dynamic(() => import('./pages/home-screen'), { ssr: false });
+const DynamicLostPage = dynamic(() => import('./pages/lost-page'), { ssr: false });
+const DynamicFoundPage = dynamic(() => import('./pages/found-page'), { ssr: false });
 const DynamicProfileLost = dynamic(() => import('./pages/profile-lost'), { ssr: false });
 
 
@@ -31,8 +32,12 @@ const router = createBrowserRouter([
     element: <DynamicMapPage />,
   },
   {
-    path: "/home-screen",
-    element: <DynamicHomeScreen />,
+    path: "/lost-page",
+    element: <DynamicLostPage />,
+  },
+  {
+    path: "/-found-page",
+    element: <DynamicFoundPage />,
   },
 
   {

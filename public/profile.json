@@ -1,56 +1,676 @@
 {
   "pets": [
-      {
-          "key": "1",
-          "name": "Yossi",
-          "type": "Dog",
-          "status": "Lost",
-          "location": {
-              "lost_at": "Thornridge, Chicago",
-              "distance": "5km"
-          },
-          "description": {
-              "breed": "Mix",
-              "color": "Brown",
-              "size": "Medium",
-              "sex": "Male",
-              "chip_number": "987421",
-              "collar": {
-                  "color": "Blue"
-              },
-              "additional_info": "Yossi is a soft and calm dog. He also responds to the name Shoosh! He has a small scar next to his front leg."
-          },
-          "contact": {
-              "name": "Sophia",
-              "phone_number": "054-9448553"
-          },
-          "img": "/images/yossi_profile.jpeg"
+    {
+      "key": "1",
+      "name": "Yossi",
+      "type": "Dog",
+      "status": "Lost",
+      "date": "29.6",
+      "location": {
+        "lost_at": "Thornridge, Chicago",
+        "distance": "5km"
+      },
+      "description": {
+        "breed": "Mix",
+        "color": "Brown",
+        "size": "Medium",
+        "sex": "Male",
+        "chip_number": "987421",
+        "collar": {
+          "color": "Blue"
+        },
+        "additional_info": "Yossi is a soft and calm dog. He also responds to the name Shoosh! He has a small scar next to his front leg."
+      },
+      "contact": {
+        "name": "Sophia",
+        "phone_number": "054-9448553"
+      },
+      "img": "/images/yossi_profile.jpeg"
+    },
+    {
+      "key": "2",
+      "name": "Bella",
+      "type": "Cat",
+      "status": "Lost",
+      "date": "28.6",
+      "location": {
+        "lost_at": "Downtown, Chicago",
+        "distance": "2km"
+      },
+      "description": {
+        "breed": "Siamese",
+        "color": "White",
+        "size": "Small",
+        "sex": "Female",
+        "chip_number": "123456",
+        "collar": {
+          "color": "Red"
+        },
+        "additional_info": "Bella is very friendly and loves to be around people. She has a blue collar with a small bell."
+      },
+      "contact": {
+        "name": "John",
+        "phone_number": "054-9448554"
+      },
+      "img": "/images/lost1.jpg"
+    },
+    {
+      "key": "3",
+      "name": "Rocky",
+      "type": "Dog",
+      "status": "Lost",
+      "date": "27.6",
+      "location": {
+        "lost_at": "Near the park, Chicago",
+        "distance": "3km"
+      },
+      "description": {
+        "breed": "Labrador",
+        "color": "Black",
+        "size": "Large",
+        "sex": "Male",
+        "chip_number": "654321",
+        "collar": {
+          "color": "Green"
+        },
+        "additional_info": "Rocky is energetic and loves to play fetch. He has a green collar and responds to his name."
+      },
+      "contact": {
+        "name": "Mike",
+        "phone_number": "054-9448555"
+      },
+      "img": "/images/lost2.jpg"
+    },
+    {
+      "key": "4",
+      "name": "Ginger",
+      "type": "Cat",
+      "status": "Lost",
+      "date": "26.6",
+      "location": {
+        "lost_at": "Near Oak Street, Chicago",
+        "distance": "4km"
+      },
+      "description": {
+        "breed": "Unknown",
+        "color": "Ginger with stripes",
+        "size": "Medium",
+        "sex": "Female",
+        "chip_number": "789123",
+        "collar": {
+          "color": "Yellow"
+        },
+        "additional_info": "Ginger is very curious and loves to explore. She has a yellow collar with a tag."
+      },
+      "contact": {
+        "name": "Laura",
+        "phone_number": "054-9448556"
+      },
+      "img": "/images/lost4.jpg"
+    },
+    {
+      "key": "5",
+      "name": "Fluffy",
+      "type": "Cat",
+      "status": "Lost",
+      "date": "25.6",
+      "location": {
+        "lost_at": "Elm Street, Chicago",
+        "distance": "1km"
+      },
+      "description": {
+        "breed": "Unknown",
+        "color": "Grey",
+        "size": "Small",
+        "sex": "Male",
+        "chip_number": "456789",
+        "collar": {
+          "color": "Red"
+        },
+        "additional_info": "Fluffy is very playful and loves to chase toys. He has a red collar with a bell."
+      },
+      "contact": {
+        "name": "Anna",
+        "phone_number": "054-9448557"
+      },
+      "img": "/images/lost5.png"
+    },
+    {
+      "key": "6",
+      "name": "Coco",
+      "type": "Dog",
+      "status": "Lost",
+      "date": "24.6",
+      "location": {
+        "lost_at": "Maple Avenue, Chicago",
+        "distance": "2km"
+      },
+      "description": {
+        "breed": "Unknown",
+        "color": "Brown",
+        "size": "Small",
+        "sex": "Female",
+        "chip_number": "321654",
+        "collar": {
+          "color": "Pink"
+        },
+        "additional_info": "Coco is very friendly and loves to be around people. She has a pink collar with a heart-shaped tag."
+      },
+      "contact": {
+        "name": "Emma",
+        "phone_number": "054-9448558"
+      },
+      "img": "/images/lost6.png"
+    },
+    {
+      "key": "7",
+      "name": "Tiger",
+      "type": "Cat",
+      "status": "Lost",
+      "date": "23.6",
+      "location": {
+        "lost_at": "Pine Street, Chicago",
+        "distance": "3km"
+      },
+      "description": {
+        "breed": "Unknown",
+        "color": "Grey with stripes",
+        "size": "Medium",
+        "sex": "Male",
+        "chip_number": "963852",
+        "collar": {
+          "color": "Blue"
+        },
+        "additional_info": "Tiger is very independent and loves to roam. He has a blue collar with a bell."
+      },
+      "contact": {
+        "name": "James",
+        "phone_number": "054-9448559"
+      },
+      "img": "/images/lost7.png"
+    },
+    {
+      "key": "8",
+      "name": "Brownie",
+      "type": "Dog",
+      "status": "Found",
+      "date": "22.6",
+      "location": {
+        "lost_at": "Cedar Road, Chicago",
+        "distance": "4km"
+      },
+      "description": {
+        "breed": "Unknown",
+        "color": "Brown",
+        "size": "Medium",
+        "sex": "Male",
+        "chip_number": "852741",
+        "collar": {
+          "color": "Green"
+        },
+        "additional_info": "Brownie is very energetic and loves to run. He has a green collar with a tag."
+      },
+      "contact": {
+        "name": "Oliver",
+        "phone_number": "054-9448560"
+      },
+      "img": "/images/lost8.png"
+    },
+    {
+      "key": "9",
+      "name": "Snowball",
+      "type": "Cat",
+      "status": "Found",
+      "date": "21.6",
+      "location": {
+        "lost_at": "Willow Street, Chicago",
+        "distance": "1km"
+      },
+      "description": {
+        "breed": "Unknown",
+        "color": "Grey and white",
+        "size": "Small",
+        "sex": "Female",
+        "chip_number": "753951",
+        "collar": {
+          "color": "Purple"
+        },
+        "additional_info": "Snowball is very gentle and loves to cuddle. She has a purple collar with a tag."
+      },
+      "contact": {
+        "name": "Sophia",
+        "phone_number": "054-9448561"
+      },
+      "img": "/images/lost9.png"
+    },
+    {
+      "key": "10",
+      "name": "Shadow",
+      "type": "Cat",
+      "status": "Found",
+      "date": "20.6",
+      "location": {
+        "lost_at": "Birch Avenue, Chicago",
+        "distance": "2km"
+      },
+      "description": {
+        "breed": "Unknown",
+        "color": "Black",
+        "size": "Medium",
+        "sex": "Male",
+        "chip_number": "159357",
+        "collar": {
+          "color": "Black"
+        },
+        "additional_info": "Shadow is very stealthy and loves to hide. He has a black collar with a tag."
+      },
+      "contact": {
+        "name": "Michael",
+        "phone_number": "054-9448562"
+      },
+      "img": "/images/lost10.png"
+    },
+    {
+      "key": "11",
+      "name": "Patches",
+      "type": "Cat",
+      "status": "Found",
+      "date": "19.6",
+      "location": {
+        "lost_at": "Oakwood Drive, Chicago",
+        "distance": "3km"
+      },
+      "description": {
+        "breed": "Unknown",
+        "color": "Tricolor",
+        "size": "Small",
+        "sex": "Female",
+        "additional_info": "Patches is small and playful. She has a tricolor fur pattern.",
+        "collar": {
+          "color": "Pink"
+        }
+      },
+      "contact": {
+        "name": "Olivia",
+        "phone_number": "054-9448563"
+      },
+      "img": "/images/found1.jpg"
+    },
+    {
+      "key": "12",
+      "name": "Max",
+      "type": "Dog",
+      "status": "Found",
+      "date": "18.6",
+      "location": {
+        "lost_at": "Chestnut Street, Chicago",
+        "distance": "2km"
+      },
+      "description": {
+        "breed": "Golden Retriever",
+        "color": "Golden",
+        "size": "Large",
+        "sex": "Male",
+        "additional_info": "Max is friendly and loves to play fetch. He has a golden fur coat.",
+        "collar": {
+          "color": "Red"
+        }
+      },
+      "contact": {
+        "name": "Sophie",
+        "phone_number": "054-9448564"
+      },
+      "img": "/images/found2.jpg"
+    },
+    {
+      "key": "13",
+      "name": "Milo",
+      "type": "Cat",
+      "status": "Found",
+      "date": "17.6",
+      "location": {
+        "lost_at": "Maple Avenue, Chicago",
+        "distance": "1km"
+      },
+      "description": {
+        "breed": "Unknown",
+        "color": "Grey",
+        "size": "Small",
+        "sex": "Male",
+        "additional_info": "Milo is shy but friendly once he gets to know you. He has a grey fur coat.",
+        "collar": {
+          "color": "Blue"
+        }
+      },
+      "contact": {
+        "name": "Daniel",
+        "phone_number": "054-9448565"
+      },
+      "img": "/images/found3.jpg"
+    },
+    {
+        "key": "14",
+        "name": "Lucy",
+        "type": "Dog",
+        "status": "Found",
+        "date": "16.6",
+        "location": {
+          "lost_at": "Elm Street, Chicago",
+          "distance": "2km"
+        },
+        "description": {
+          "breed": "Unknown",
+          "color": "White",
+          "size": "Medium",
+          "sex": "Female",
+          "additional_info": "Lucy is gentle and loves belly rubs. She has a white fur coat.",
+          "collar": {
+            "color": "Green"
+          }
+        },
+        "contact": {
+          "name": "Alex",
+          "phone_number": "054-9448566"
+        },
+        "img": "/images/lost3.jpg"
       },
       {
-          "key": "2",
-          "name": "Bella",
-          "type": "Cat",
-          "status": "Lost",
+          "key": "15",
+          "name": "Daisy",
+          "type": "Dog",
+          "status": "Found",
+          "date": "15.6",
           "location": {
-              "lost_at": "Downtown, Chicago",
-              "distance": "2km"
+            "lost_at": "Hickory Road, Chicago",
+            "distance": "2km"
           },
           "description": {
-              "breed": "Siamese",
-              "color": "White",
-              "size": "Small",
-              "sex": "Female",
-              "chip_number": "123456",
-              "collar": {
-                  "color": "Red"
-              },
-              "additional_info": "Bella is very friendly and loves to be around people. She has a blue collar with a small bell."
+            "breed": "Unknown",
+            "color": "White and brown",
+            "size": "Medium",
+            "sex": "Female",
+            "chip_number": "159753",
+            "collar": {
+              "color": "Pink"
+            },
+            "additional_info": "Daisy is very friendly and loves to play. She has a pink collar with a heart-shaped tag."
           },
           "contact": {
-              "name": "John",
-              "phone_number": "054-9448554"
+            "name": "Emily",
+            "phone_number": "054-9448567"
           },
-          "img": "/images/bella.png"
-      }
-  ]
-}
+          "img": "/images/found4.jpg"
+        },
+        {
+          "key": "16",
+          "name": "Buddy",
+          "type": "Dog",
+          "status": "Found",
+          "date": "14.6",
+          "location": {
+            "lost_at": "Poplar Avenue, Chicago",
+            "distance": "3.5km"
+          },
+          "description": {
+            "breed": "Unknown",
+            "color": "Brown",
+            "size": "Large",
+            "sex": "Male",
+            "chip_number": "951753",
+            "collar": {
+              "color": "Blue"
+            },
+            "additional_info": "Buddy is very energetic and loves to play fetch. He has a blue collar with a tag."
+          },
+          "contact": {
+            "name": "David",
+            "phone_number": "054-9448568"
+          },
+          "img": "/images/found5.png"
+        },
+        {
+          "key": "17",
+          "name": "Lucy",
+          "type": "Cat",
+          "status": "Found",
+          "date": "13.6",
+          "location": {
+            "lost_at": "Maple Street, Chicago",
+            "distance": "1km"
+          },
+          "description": {
+            "breed": "Unknown",
+            "color": "Grey and white",
+            "size": "Small",
+            "sex": "Female",
+            "chip_number": "258741",
+            "collar": {
+              "color": "Red"
+            },
+            "additional_info": "Lucy is very playful and loves to chase toys. She has a red collar with a bell."
+          },
+          "contact": {
+            "name": "Sarah",
+            "phone_number": "054-9448569"
+          },
+          "img": "/images/found6.png"
+        },
+        {
+          "key": "18",
+          "name": "Max",
+          "type": "Dog",
+          "status": "Found",
+          "date": "12.6",
+          "location": {
+            "lost_at": "Birch Lane, Chicago",
+            "distance": "2km"
+          },
+          "description": {
+            "breed": "Unknown",
+            "color": "Black",
+            "size": "Medium",
+            "sex": "Male",
+            "chip_number": "357951",
+            "collar": {
+              "color": "Green"
+            },
+            "additional_info": "Max is very friendly and loves to be around people. He has a green collar with a tag."
+          },
+          "contact": {
+            "name": "Tom",
+            "phone_number": "054-9448570"
+          },
+          "img": "/images/found7.png"
+        },
+        {
+          "key": "19",
+          "name": "Luna",
+          "type": "Cat",
+          "status": "Found",
+          "date": "11.6",
+          "location": {
+            "lost_at": "Oak Lane, Chicago",
+            "distance": "1.5km"
+          },
+          "description": {
+            "breed": "Unknown",
+            "color": "Grey",
+            "size": "Small",
+            "sex": "Female",
+            "chip_number": "456321",
+            "collar": {
+              "color": "Purple"
+            },
+            "additional_info": "Luna is very calm and loves to nap. She has a purple collar with a tag."
+          },
+          "contact": {
+            "name": "Chloe",
+            "phone_number": "054-9448571"
+          },
+          "img": "/images/found8.png"
+        },
+        {
+          "key": "20",
+          "name": "Oscar",
+          "type": "Dog",
+          "status": "Found",
+          "date": "10.6",
+          "location": {
+            "lost_at": "Pine Street, Chicago",
+            "distance": "2.5km"
+          },
+          "description": {
+            "breed": "Unknown",
+            "color": "Brown and white",
+            "size": "Large",
+            "sex": "Male",
+            "chip_number": "654159",
+            "collar": {
+              "color": "Yellow"
+            },
+            "additional_info": "Oscar is very energetic and loves to run. He has a yellow collar with a tag."
+          },
+          "contact": {
+            "name": "Liam",
+            "phone_number": "054-9448572"
+          },
+          "img": "/images/found9.png"
+        },
+        {
+          "key": "21",
+          "name": "Milo",
+          "type": "Dog",
+          "status": "Found",
+          "date": "09.6",
+          "location": {
+            "lost_at": "Walnut Street, Chicago",
+            "distance": "2km"
+          },
+          "description": {
+            "breed": "Unknown",
+            "color": "Black",
+            "size": "Medium",
+            "sex": "Male",
+            "chip_number": "753159",
+            "collar": {
+              "color": "Blue"
+            },
+            "additional_info": "Milo is very friendly and loves to play. He has a blue collar with a tag."
+          },
+          "contact": {
+            "name": "Ella",
+            "phone_number": "054-9448573"
+          },
+          "img": "/images/found10.png"
+        },
+        {
+          "key": "22",
+          "name": "Charlie",
+          "type": "Dog",
+          "status": "Found",
+          "date": "08.6",
+          "location": {
+            "lost_at": "Elm Avenue, Chicago",
+            "distance": "1km"
+          },
+          "description": {
+            "breed": "Unknown",
+            "color": "Brown",
+            "size": "Small",
+            "sex": "Male",
+            "chip_number": "159654",
+            "collar": {
+              "color": "Red"
+            },
+            "additional_info": "Charlie is very playful and loves to be around people. He has a red collar with a tag."
+          },
+          "contact": {
+            "name": "Sophia",
+            "phone_number": "054-9448574"
+          },
+          "img": "/images/found11.png"
+        },
+        {
+          "key": "23",
+          "name": "Bella",
+          "type": "Cat",
+          "status": "Found",
+          "date": "07.6",
+          "location": {
+            "lost_at": "Oakwood Street, Chicago",
+            "distance": "1.5km"
+          },
+          "description": {
+            "breed": "Unknown",
+            "color": "Grey",
+            "size": "Small",
+            "sex": "Female",
+            "chip_number": "951258",
+            "collar": {
+              "color": "Pink"
+            },
+            "additional_info": "Bella is very calm and loves to be petted. She has a pink collar with a bell."
+          },
+          "contact": {
+            "name": "Ava",
+            "phone_number": "054-9448575"
+          },
+          "img": "/images/found12.png"
+        },
+        {
+          "key": "23",
+          "name": "Mittens",
+          "type": "Cat",
+          "status": "Lost",
+          "date": "17.6",
+          "location": {
+            "lost_at": "Chestnut Street, Chicago",
+            "distance": "1.5km"
+          },
+          "description": {
+            "breed": "Unknown",
+            "color": "Tricolor",
+            "size": "Small",
+            "sex": "Female",
+            "chip_number": "789654",
+            "collar": {
+              "color": "Blue"
+            },
+            "additional_info": "Mittens is very affectionate and loves to be petted. She has a blue collar with a tag."
+          },
+          "contact": {
+            "name": "Rachel",
+            "phone_number": "054-9448565"
+          },
+          "img": "/images/lost11.png"
+        },
+        {
+          "key": "24",
+          "name": "Simba",
+          "type": "Cat",
+          "status": "Lost",
+          "date": "16.6",
+          "location": {
+            "lost_at": "Spruce Lane, Chicago",
+            "distance": "3km"
+          },
+          "description": {
+            "breed": "Unknown",
+            "color": "Black and white",
+            "size": "Large",
+            "sex": "Male",
+            "chip_number": "654987",
+            "collar": {
+              "color": "Green"
+            },
+            "additional_info": "Simba is very curious and loves to explore. He has a green collar with a bell."
+          },
+          "contact": {
+            "name": "Alex",
+            "phone_number": "054-9448566"
+          },
+          "img": "/images/lost12.png"
+        }
+      ]
+    }
+    
