@@ -31,7 +31,12 @@ const LostPetsPage: React.FC = () => {
                     console.log('Fetched data:', data); // Log fetched data for debugging
                     const lost = data.pets.filter((pet: Pet) => pet.status === 'Lost');
                     console.log('Lost pets:', lost); // Log filtered lost pets for debugging
-                    setLostPets(lost.slice(0, 6)); // Limit to 6 pets per section
+
+                    // Sort the lost pets by date in descending order
+                    const sortedLostPets = lost.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+                    // Set the sorted lost pets
+                    setLostPets(sortedLostPets);
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error); // Log any fetch errors
@@ -39,60 +44,34 @@ const LostPetsPage: React.FC = () => {
         }
     }, []); // Ensure the dependency array is empty to fetch data only once
 
-    const handleCardClick = (petId: string) => {
-        navigate(`/pet-details/${petId}`);
+    const handleCardClick = (petKey: string) => {
+        navigate(`/profile-lost/${petKey}`);
     };
 
     return (
-        <div className='screen'>
+        <div className='screen lost-pets-page'>
             <div className='top'>
                 <TopBar />
             </div>
             <div className='home-container background_color'>
                 <h1 className='home-center'>Lost</h1>
 
-                {/* First row of pet cards */}
                 <div className='home-section'>
-                    <div className='home-scrollable-container'>
-                        <div className='home-scrollable-content'>
-                            <div className='home-scrollable-bar'>
-                                {lostPets.length > 0 ? (
-                                    lostPets.slice(0, 3).map((pet) => (
-                                        <button key={pet.key} className='home-card' onClick={() => handleCardClick(pet.key)}>
-                                            <img src={pet.img} alt={pet.name} />
-                                            <div className='card-content'>
-                                                <p className='pet-name'>{pet.name}</p>
-                                                <p className='pet-date'>{pet.date}</p>
-                                            </div>
-                                        </button>
-                                    ))
-                                ) : (
-                                    <p>No lost pets found.</p>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Second row of pet cards */}
-                <div className='home-section'>
-                    <div className='home-scrollable-container'>
-                        <div className='home-scrollable-content'>
-                            <div className='home-scrollable-bar'>
-                                {lostPets.length > 3 ? (
-                                    lostPets.slice(3, 6).map((pet) => (
-                                        <button key={pet.key} className='home-card' onClick={() => handleCardClick(pet.key)}>
-                                            <img src={pet.img} alt={pet.name} />
-                                            <div className='card-content'>
-                                                <p className='pet-name'>{pet.name}</p>
-                                                <p className='pet-date'>{pet.date}</p>
-                                            </div>
-                                        </button>
-                                    ))
-                                ) : null}
-                            </div>
-                        </div>
-                    </div>
+                    {lostPets.length > 0 ? (
+                        lostPets.map((pet) => (
+                            <button key={pet.key} className='home-card' onClick={() => handleCardClick(pet.key)}>
+                                <img src={pet.img} alt={pet.name} />
+                                <div className='card-content'>
+                                    <div className='pet-details'>
+                                        <p className='pet-name'>{pet.name}</p>
+                                        <p className='pet-date'>{pet.date}</p>
+                                    </div>
+                                </div>
+                            </button>
+                        ))
+                    ) : (
+                        <p>No lost pets found.</p>
+                    )}
                 </div>
 
                 <BottomPanel currentPage="lost-page" />
