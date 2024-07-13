@@ -368,3 +368,105 @@ h3{
 }
 
 
+/* Styles specific to LostPetsPage */
+
+.lost-pets-page .home-container,
+.lost-pets-page .home-center,
+.lost-pets-page .home-card .pet-name,
+.lost-pets-page .home-card .pet-date {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Style for the home container specific to LostPetsPage */
+.lost-pets-page .home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  overflow-y: auto;  /* Enable vertical scrolling */
+  max-height: 100vh;  /* Ensure it covers the full height of the viewport */
+}
+
+/* Styling for the title specific to LostPetsPage */
+.lost-pets-page .home-center {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* Styling for the sections specific to LostPetsPage */
+.lost-pets-page .home-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Styling for the cards specific to LostPetsPage */
+.lost-pets-page .home-card {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: calc(33.333% - 10px); /* 3 cards per row with some spacing */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px;
+}
+
+.lost-pets-page .home-card img {
+  width: 100%;
+  height: 200px;  /* Increase image height */
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.lost-pets-page .card-content {
+  display: flex;
+  justify-content: space-between;  /* Space out name and date */
+  width: 100%;
+  padding: 8px 0;
+}
+
+.lost-pets-page .pet-details {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.lost-pets-page .pet-name,
+.lost-pets-page .pet-date {
+  font-size: 14px;
+  margin: 0;
+  font-weight: normal;
+}
+
+.lost-pets-page .pet-name {
+  margin-right: 8px;
+}
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
+  .lost-pets-page .home-container {
+      padding: 8px;
+  }
+
+  .lost-pets-page .home-center {
+      font-size: 20px;
+  }
+
+  .lost-pets-page .home-card {
+      width: calc(50% - 10px); /* 2 cards per row for small screens */
+  }
+
+  .lost-pets-page .home-card img {
+      height: 150px;
+  }
+
+  .lost-pets-page .pet-name,
+  .lost-pets-page .pet-date {
+      font-size: 12px;
+  }
+}

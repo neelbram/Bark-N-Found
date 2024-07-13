@@ -9,7 +9,7 @@ interface Pet {
     img: string;
     date: string;
     location: {
-        lost_at?: string; // Update to allow for both lost_at and found_at
+        lost_at?: string;
         found_at?: string;
     };
     status: string;
@@ -24,51 +24,57 @@ const FoundPetsPage: React.FC = () => {
     const [foundPets, setFoundPets] = useState<Pet[]>([]);
 
     useEffect(() => {
-        fetch('/profile.json')
-            .then(response => response.json())
-            .then((data: PetsData) => {
-                console.log('Fetched data:', data); // Log fetched data for debugging
-                const found = data.pets.filter((pet: Pet) => pet.status === 'Found');
-                console.log('Found pets:', found); // Log filtered found pets for debugging
-                setFoundPets(found.slice(0, 6)); // Limit to 6 pets per section
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error); // Log any fetch errors
-            });
+        if (typeof window !== 'undefined') {
+            fetch('/profile.json')
+                .then(response => response.json())
+                .then((data: PetsData) => {
+                    console.log('Fetched data:', data); // Log fetched data for debugging
+                    const found = data.pets.filter((pet: Pet) => pet.status === 'Found');
+                    console.log('Found pets:', found); // Log filtered found pets for debugging
+
+                    // Sort the found pets by date in descending order
+                    const sortedFoundPets = found.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+                    // Set the sorted found pets
+                    setFoundPets(sortedFoundPets);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error); // Log any fetch errors
+                });
+        }
     }, []); // Ensure the dependency array is empty to fetch data only once
 
-    const handleCardClick = (petId: string) => {
-        navigate(`/pet-details/${petId}`);
+    const handleCardClick = (petKey: string) => {
+        navigate(`/profile-found/${petKey}`);
     };
 
     return (
-        <div className='screen'>
+        <div className='screen found-pets-page'>
             <div className='top'>
                 <TopBar />
             </div>
             <div className='home-container background_color'>
                 <h1 className='home-center'>Found</h1>
 
-                {/* Found pets section */}
                 <div className='home-section'>
-                    <div className='home-scrollable-container'>
-                        <div className='home-scrollable-content'>
-                            <div className='home-scrollable-bar'>
-                                {foundPets.map((pet) => (
-                                    <button key={pet.key} className='home-card' onClick={() => handleCardClick(pet.key)}>
-                                        <img src={pet.img} alt={pet.name} />
-                                        <div className='card-content'>
-                                            <p className='pet-name'>{pet.name}</p>
-                                            <p className='pet-date'>{pet.date}</p>
-                                        </div>
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+                    {foundPets.length > 0 ? (
+                        foundPets.map((pet) => (
+                            <button key={pet.key} className='home-card' onClick={() => handleCardClick(pet.key)}>
+                                <img src={pet.img} alt={pet.name} />
+                                <div className='card-content'>
+                                    <div className='pet-details'>
+                                        <p className='pet-name'>{pet.name}</p>
+                                        <p className='pet-date'>{pet.date}</p>
+                                    </div>
+                                </div>
+                            </button>
+                        ))
+                    ) : (
+                        <p>No found pets found.</p>
+                    )}
                 </div>
 
-                <BottomPanel />
+                <BottomPanel currentPage="found-page" />
             </div>
         </div>
     );
