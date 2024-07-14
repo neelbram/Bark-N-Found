@@ -1,0 +1,28 @@
+{
+  "dogs": [
+    {
+      
+    "name": "Yossi",
+    "lost_at": {
+      "location": "Thornridge, Chicago",
+      "distance": "5km"
+    },
+    "details": {
+      "breed": "Mix",
+      "sex": "Male",
+      "color": "Brown",
+      "chip_number": "987421",
+      "size": "Medium-Large",
+      "collar": "Blue"
+    },
+    "description": "Yossi is a soft and calm dog. He also responds to the name Shoosh! He has a small scar next to his front...",
+    "contact": {
+      "name": "Sophia",
+      "methods": {
+        "chat": true,
+        "call": true
+      }
+    }
+    }
+  ]
+}

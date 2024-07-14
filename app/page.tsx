@@ -42,7 +42,7 @@ const router = createBrowserRouter([
 
   {
 
-    path: "/profile-lost", 
+    path: "profile-lost/:id", 
     element: <DynamicProfileLost />
   }
 ]);
