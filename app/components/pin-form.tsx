@@ -4,10 +4,10 @@ interface PinFormProps {
   lat: number;
   lng: number;
   onSave: (pin: any) => void;
-  onCancel: () => void;
+  // onCancel: () => void;
 }
 
-const PinForm: React.FC<PinFormProps> = ({ lat, lng, onSave, onCancel }) => {
+const PinForm: React.FC<PinFormProps> = ({ lat, lng, onSave}) => {
   const [type, setType] = useState<'lost' | 'found'>('lost');
   const [animalKind, setAnimalKind] = useState('');
   const [name, setName] = useState('');
@@ -83,7 +83,7 @@ const PinForm: React.FC<PinFormProps> = ({ lat, lng, onSave, onCancel }) => {
         <input type="text" value={contactPhone} onChange={(e) => setContactPhone(e.target.value)} />
       </label>
       <button type="submit">Save Pin</button>
-      <button type="button" onClick={onCancel}>Cancel</button>
+      <button type="button">Cancel</button>
     </form>
   );
 };

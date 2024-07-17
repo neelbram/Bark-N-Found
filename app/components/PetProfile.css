@@ -135,14 +135,43 @@
 .pet-additional-info{
     margin-bottom: 30px;
 }
+.pet-contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-.pet-contact .first-letter{
+.pet-contact .first-letter {
     padding: 15px 20px;
     border-radius: 50%;
     background-color: #818974;
+}
+
+.pet-contact .contact {
     margin-right: 15px;
 }
 
-.pet-contact .contact{
-    margin-right: 15px;
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pet-contact .contact-number {
+    font-size: 24px; /* Match the size of the name */
+}
+
+.whatsapp-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-top: -5px; /* Move the button slightly up */
+}
+
+.whatsapp-button svg {
+    width: 45px; /* Increase icon size */
+height: 45px;
 }

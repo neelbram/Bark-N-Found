@@ -194,7 +194,7 @@ const PetDetailsForm: React.FC<PetDetailsFormProps> = ({ position, onSubmit, onC
       margin: '0 auto',
     }}>
       <h2 style={{ marginBottom: '15px', fontSize: '18px' }}>Pet Details</h2>
-      <form onClick={onCancel} onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
         {createDropdown('type', ['Lost Pet', 'Found Pet'], 'Type *')}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
           {createDropdown('animalKind', animalKindOptions, 'Animal Kind *')}
@@ -212,7 +212,7 @@ const PetDetailsForm: React.FC<PetDetailsFormProps> = ({ position, onSubmit, onC
         <label htmlFor='petPicture' style={{ marginBottom: '5px', fontSize: '0.9em', color: "#4B4665"}}>Pet Picture *</label>
         <input type="file" name="petPicture" id="petPicture" onChange={handleFileChange} required style={inputStyle} />
         <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px', marginTop: '5px' }}>
-          <button type="submit" style={submitButtonStyle} onClick={onCancel} className="submit_button">Submit</button>
+          <button type="submit" style={submitButtonStyle} onClick={handleSubmit} className="submit_button">Submit</button>
           <button type="button" onClick={onCancel} style={buttonStyle}>Cancel</button>
         </div>
       </form>
