@@ -36,7 +36,7 @@ const router = createBrowserRouter([
     element: <DynamicLostPage />,
   },
   {
-    path: "/-found-page",
+    path: "/found-page",
     element: <DynamicFoundPage />,
   },
 
