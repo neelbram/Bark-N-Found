@@ -14,7 +14,6 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
         const fetchLocation = async () => {
             const { lat, lng } = pet.position; // Assuming pet.position contains lat and lng
             const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`;
-
             try {
                 const response = await fetch(url);
                 const data = await response.json();

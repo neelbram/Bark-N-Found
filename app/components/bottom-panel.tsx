@@ -66,7 +66,6 @@ const BottomPanel: React.FC<BottomPanelProps> = ({ currentPage }: BottomPanelPro
                 stroke={foundButton} stroke-width="1.8" stroke-linecap="round"/>
                 </svg>
             </button>
-
         </div>
     );
 };
