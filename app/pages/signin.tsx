@@ -41,7 +41,7 @@ const Login: React.FC = () => {
         } else {
             console.log('No stored credentials found.');
         }
-        navigate('/map-page')
+        navigate('/about-page')
 
         
     };

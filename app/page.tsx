@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom';
 const DynamicLoginScreen = dynamic(() => import('./pages/open-screen'), { ssr: false });
 const DynamicCreateAccount = dynamic(() => import('./pages/create-account'), { ssr: false });
 const DynamicSigninPage = dynamic(() => import('./pages/signin'), { ssr: false });
+const DynamicAboutPage = dynamic(() => import('./pages/about-page'), { ssr: false });
 const DynamicMapPage = dynamic(() => import('./pages/map-page'), { ssr: false });
 const DynamicLostPage = dynamic(() => import('./pages/lost-page'), { ssr: false });
 const DynamicFoundPage = dynamic(() => import('./pages/found-page'), { ssr: false });
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/signin",
     element: <DynamicSigninPage />,
+  },
+  {
+    path: "/about-page",
+    element: <DynamicAboutPage />,
   },
   {
     path: "/map-page",

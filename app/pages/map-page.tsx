@@ -5,6 +5,7 @@ import TopBar from '../components/top-bar';
 import L from 'leaflet';
 import BottomPanel from '../components/bottom-panel';
 import AddButton from '../components/add-button';
+import InfoButton from '../components/map-info-button';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase-config.js';
 
@@ -107,12 +108,12 @@ const MapPage: React.FC = () => {
 
   return (
     <div className='screen'>
-      <div className='top'>
-        <BottomPanel currentPage={currentPage}></BottomPanel>
+      <div className='top flex-line background_color'>
         <TopBar />
+        <h1 className='map-title' style={{marginLeft: "18px"}}>Pin Your Pet</h1>
       </div>
       <div className="container background_color">
-        <MapContainer center={[31.8, 34.7]} zoom={13} style={{ height: '100vh', width: '100%' }}>
+        <MapContainer center={[31.8, 34.7]} zoom={13} style={{ height: '100vh', width: '100%', marginTop: "10px" }}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
@@ -132,7 +133,9 @@ const MapPage: React.FC = () => {
           <MapEvents />
         </MapContainer>
         <AddButton map={map} setAddingMarker={setAddingMarker} />
+        <InfoButton/>
       </div>
+      <BottomPanel currentPage={currentPage}></BottomPanel>
     </div>
   );
 };

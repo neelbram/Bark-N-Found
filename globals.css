@@ -254,7 +254,7 @@ h3{
 
 
 /* Ensure the Poppins font is applied */
-.home-container, .home-center, .home-card .pet-name, .home-card .pet-date {
+.home-container, .home-center, .home-card .pet-name, .home-card .pet-date, .map-title {
   font-family: 'Poppins', sans-serif;
 }
 
