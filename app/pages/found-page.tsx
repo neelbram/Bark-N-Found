@@ -28,21 +28,18 @@ const FoundPetsPage: React.FC = () => {
             fetch('/profile.json')
                 .then(response => response.json())
                 .then((data: PetsData) => {
-                    console.log('Fetched data:', data); // Log fetched data for debugging
+                    console.log('Fetched data:', data);
                     const found = data.pets.filter((pet: Pet) => pet.status === 'Found');
-                    console.log('Found pets:', found); // Log filtered found pets for debugging
+                    console.log('Found pets:', found);
 
-                    // Sort the found pets by date in descending order
                     const sortedFoundPets = found.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-                    // Set the sorted found pets
                     setFoundPets(sortedFoundPets);
                 })
                 .catch(error => {
-                    console.error('Error fetching data:', error); // Log any fetch errors
+                    console.error('Error fetching data:', error);
                 });
         }
-    }, []); // Ensure the dependency array is empty to fetch data only once
+    }, []);
 
     const handleCardClick = (petKey: string) => {
         navigate(`/profile-found/${petKey}`);
@@ -52,10 +49,9 @@ const FoundPetsPage: React.FC = () => {
         <div className='screen found-pets-page'>
             <div className='top'>
                 <TopBar />
+                <h1 className='home-center found-title'>Found</h1>
             </div>
             <div className='home-container background_color'>
-                <h1 className='home-center'>Found</h1>
-
                 <div className='home-section'>
                     {foundPets.length > 0 ? (
                         foundPets.map((pet) => (
@@ -73,7 +69,6 @@ const FoundPetsPage: React.FC = () => {
                         <p>No found pets found.</p>
                     )}
                 </div>
-
                 <BottomPanel currentPage="found-page" />
             </div>
         </div>

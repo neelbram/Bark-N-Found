@@ -15,20 +15,19 @@
 }
 
 
-  
 /* Colors */
-  :root {
-    background-color: #EEE5DF;
-    --blue_primary: #4B4665;
-    --blue_light: #756F92;
-    --secondary:#5D6354;
-    --accent:  #B55700;
-    --text: #696480;
-    /* --link: #B55700; */
-    --primary-font: 'Poppins', sans-serif;
-  }
+:root {
+  background-color: #EEE5DF;
+  --blue_primary: #4B4665;
+  --blue_light: #756F92;
+  --secondary:#5D6354;
+  --accent:  #B55700;
+  --text: #696480;
+  /* --link: #B55700; */
+  --primary-font: 'Poppins', sans-serif;
+}
 
-.background_color{
+.background_color {
   background-color: #EEE5DF;
 }
 
@@ -36,24 +35,24 @@
   color: #4B4665;
 }
 
-.blue_light{
+.blue_light {
   color: #756F92;
 }
 
-.accent{
+.accent {
   color: #B55700;
 }
 
-.green_secondery{
+.green_secondery {
   color: #5D6354;
 }
 
-.text_color{
-  color: #696480
+.text_color {
+  color: #696480;
 }
 
 /* Div screen */
-.screen{
+.screen {
   background-color: var(--background_color, #EEE5DF); /* Set your desired background color */
   min-height: 100vh; /* Ensure the background covers the whole viewport height */
   display: flex;
@@ -65,18 +64,17 @@
 /* Texts */
 
 /* Headlines */
-h1{
-    color: var(--primary-color, #4B4665);
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 130%; /* 41.6px */
-    letter-spacing: -0.32px;
+h1 {
+  color: var(--primary-color, #4B4665);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 41.6px */
+  letter-spacing: -0.32px;
 }
 
-
 /* Subtitles */
-h2{
+h2 {
   color: var(--primary-color, #4B4665);
   font-family: var(--primary-font);
   font-size: 24px;
@@ -85,16 +83,14 @@ h2{
   line-height: normal;
 }
 
-h3{
-    color:#696480;
-    font-family: var(--primary-font);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 130%;
+h3 {
+  color: #696480;
+  font-family: var(--primary-font);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
 }
-
-
 
 /* Positions and grid */
 .center {
@@ -109,11 +105,11 @@ h3{
   padding: 0 1rem;
 }
 
-.text_center{
+.text_center {
   text-align: center;
 }
 
-.padding-left{
+.padding-left {
   padding-left: 10px;
 }
 
@@ -127,18 +123,19 @@ h3{
 
 .top {
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 0;
   width: 100%;
   z-index: 999; /* Ensure it appears above other content */
+  background-color: var(--background_color, #EEE5DF); /* Ensure it matches the page background */
+  padding-top: 10px; /* Add some padding to avoid content overlap */
 }
 
 /* Buttons */
-.main_button{
+.main_button {
   background: var(--secondary-color, #5D6354);
   display: flex;
-  width: 100%; 
-  max-width: 353px; 
+  width: 100%;
+  max-width: 353px;
   height: 56px;
   padding: 17px 152px;
   justify-content: center;
@@ -156,136 +153,89 @@ h3{
   line-height: 125%; /* 20px */
 }
 
-
 .second_button {
-    background-color: var(--background_color, #EEE5DF);
-    display: inline-block;
-    white-space: nowrap;
-    width: 100%; 
-    max-width: 353px; 
-    height: 56px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-    border-radius: 10px;
-    border: 1px solid var(--secondary-color, #5D6354);
-    color: var(--secondary-color, #5D6354);
-    text-align: center;
-    font-family: var(--primary-font);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 125%; 
-  }
-  
-
-  input, textarea, select, button, a.button {
-    border: 1px solid var(--gray);
-  }
-  button, a.button {
-    font-size: 1.125rem;
-    background-color: var(--link);
-    color: var(--light);
-    margin: 1rem 0 0 0;
-    cursor: pointer;
-  }
-  .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-
-  #logo{
-    cursor: pointer;
-  }
-
-  #dogImage{
-    padding-left: 75px;
-  }
-  
-  .bottom-panel{
-    background-color: var(--background_color, #EEE5DF);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    height: 72px;
-    flex-shrink: 0;
-    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1); /* Example shadow */
-  }
-
-  .bottom-panel button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 30px;
-  }
-
-
-/* Adjust the margin-left for .lost-title and .found-title */
-.lost-title {
-  color: white; /* Text color */
-  padding: 10px 20px; /* Adjust padding for better appearance */
-  margin-left: 20px; /* Adjust as needed */
-  width: fit-content;
+  background-color: var(--background_color, #EEE5DF);
+  display: inline-block;
+  white-space: nowrap;
+  width: 100%;
+  max-width: 353px;
+  height: 56px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid var(--secondary-color, #5D6354);
+  color: var(--secondary-color, #5D6354);
+  text-align: center;
   font-family: var(--primary-font);
-  background-color: #5D6354; /* Background color for lost */
-  border-radius: 0 60px 40px 0; /* Straight end on the left, rounded end on the right */
-  display: inline-block; /* Ensure inline block to minimize space */
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%;
 }
 
-.found-title {
-  color: white; /* Text color */
-  padding: 10px 20px; /* Adjust padding for better appearance */
-  margin-left: 20px; /* Adjust as needed */
-  width: fit-content;
-  font-family: var(--primary-font);
-  background-color: #756F92; /* Background color for found */
-  border-radius: 0 60px 40px 0; /* Straight end on the left, rounded end on the right */
-  display: inline-block; /* Ensure inline block to minimize space */
+input, textarea, select, button, a.button {
+  border: 1px solid var(--gray);
 }
 
-
-/* Ensure the Poppins font is applied */
-.home-container, .home-center, .home-card .pet-name, .home-card .pet-date {
-  font-family: 'Poppins', sans-serif;
+button, a.button {
+  font-size: 1.125rem;
+  background-color: var(--link);
+  color: var(--light);
+  margin: 1rem 0 0 0;
+  cursor: pointer;
 }
 
-/* Style for the home container */
+#logo {
+  cursor: pointer;
+}
+
+#dogImage {
+  padding-left: 75px;
+}
+
+.bottom-panel {
+  background-color: var(--background_color, #EEE5DF);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  height: 72px;
+  flex-shrink: 0;
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1); /* Example shadow */
+}
+
+.bottom-panel button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 30px;
+}
+
+/* Shared styles for both Lost and Found pages */
+
+/* Home container for scrollable content */
 .home-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 16px;
+  overflow-y: auto;  /* Enable vertical scrolling */
+  max-height: calc(100vh - 120px);  /* Ensure it covers the full height of the viewport minus the header and footer height */
 }
 
-/* Styling for the title */
-.home-center {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-
-/* Styling for the scrollable containers */
-.home-scrollable-container {
-  width: 100%;
-  overflow-x: auto;
-  margin-bottom: 16px;
-}
-
-/* Styling for the scrollable bars */
-.home-scrollable-bar {
+/* Styling for the sections */
+.home-section {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
+  width: 100%;
 }
 
 /* Styling for the cards */
@@ -294,7 +244,7 @@ h3{
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 150px;
+  width: calc(50% - 10px); /* 2 cards per row with some spacing */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -303,19 +253,25 @@ h3{
 
 .home-card img {
   width: 100%;
-  height: 150px;
+  height: 200px;  /* Adjust the height as needed */
   object-fit: cover;
   border-radius: 12px;
 }
 
 .card-content {
-  padding: 8px;
+  padding: 8px 0;
+  width: 100%;
+}
+
+.pet-details {
+  display: flex;
+  justify-content: space-between;
   width: 100%;
 }
 
 .pet-name {
   font-size: 14px;
-  margin: 4px 0;
+  margin: 0;
   font-weight: normal;
 }
 
@@ -325,351 +281,247 @@ h3{
   font-weight: normal;
 }
 
-/* Yossi button styling */
-.yossi-button {
-  background-color: #f04;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 16px;
-}
-
-.yossi-button:hover {
-  background-color: #c03;
-}
-
 /* Ensure responsiveness */
 @media (max-width: 768px) {
   .home-container {
-      padding: 8px;
+    padding: 8px;
   }
 
   .home-center {
-      font-size: 20px;
+    font-size: 20px;
   }
 
   .home-card {
-      width: 120px;
+    width: calc(50% - 10px); /* 2 cards per row for small screens */
   }
 
   .home-card img {
-      height: 120px;
+    height: 150px;
   }
 
-  .pet-name {
-      font-size: 12px;
-  }
-
+  .pet-name,
   .pet-date {
-      font-size: 10px;
+    font-size: 12px;
   }
 }
 
-
-/* Styles specific to LostPetsPage */
-
-.lost-pets-page .home-container,
-.lost-pets-page .home-center,
-.lost-pets-page .home-card .pet-name,
-.lost-pets-page .home-card .pet-date {
-  font-family: 'Poppins', sans-serif;
-}
-
-/* Style for the home container specific to LostPetsPage */
-.lost-pets-page .home-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px;
-  overflow-y: auto;  /* Enable vertical scrolling */
-  max-height: 100vh;  /* Ensure it covers the full height of the viewport */
-}
-
-/* Styling for the title specific to LostPetsPage */
-.lost-pets-page .home-center {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-/* Styling for the sections specific to LostPetsPage */
-.lost-pets-page .home-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+/* Additional CSS for top bar and titles */
+.top {
+  position: fixed;
+  top: 0;
   width: 100%;
+  z-index: 999; /* Ensure it appears above other content */
+  background-color: var(--background_color, #EEE5DF); /* Ensure it matches the page background */
+  padding-top: 10px; /* Add some padding to avoid content overlap */
 }
 
-/* Styling for the cards specific to LostPetsPage */
-.lost-pets-page .home-card {
-  background-color: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: calc(33.333% - 10px); /* 3 cards per row with some spacing */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 8px;
-}
-
-.lost-pets-page .home-card img {
-  width: 100%;
-  height: 200px;  /* Increase image height */
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-.lost-pets-page .card-content {
-  display: flex;
-  justify-content: space-between;  /* Space out name and date */
-  width: 100%;
-  padding: 8px 0;
-}
-
-.lost-pets-page .pet-details {
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.lost-pets-page .pet-name,
-.lost-pets-page .pet-date {
-  font-size: 14px;
-  margin: 0;
-  font-weight: normal;
-}
-
-.lost-pets-page .pet-name {
-  margin-right: 8px;
-}
-
-/* Ensure responsiveness */
-@media (max-width: 768px) {
-  .lost-pets-page .home-container {
-      padding: 8px;
-  }
-
-  .lost-pets-page .home-center {
-      font-size: 20px;
-  }
-
-  .lost-pets-page .home-card {
-      width: calc(50% - 10px); /* 2 cards per row for small screens */
-  }
-
-  .lost-pets-page .home-card img {
-      height: 150px;
-  }
-
-  .lost-pets-page .pet-name,
-  .lost-pets-page .pet-date {
-      font-size: 12px;
-  }
+.lost-title, .found-title {
+  background-color: var(--background_color, #EEE5DF); /* Ensure it matches the page background */
+  margin: 0; /* Reset margin */
+  padding: 10px 0; /* Add padding */
+  width: 100%; /* Full width */
+  text-align: center; /* Center the text */
 }
 
 .pet-profile {
-    font-family: Poppins;
-    color:#44493C;
-    padding-bottom: 50px;
+  font-family: Poppins;
+  color: #44493C;
+  padding-bottom: 50px;
 }
 
 .pet-profile-header {
-    text-align: center;
+  text-align: center;
 }
 
 .pet-profile-image img {
-    width: 100%;
-    border-radius: 10px;
+  width: 100%;
+  border-radius: 10px;
 }
 
 .pet-profile-details {
-    background-color: white;
-    border-radius: 50px;
-    margin-top: 16px;
-    padding: 24px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 50px;
+  margin-top: 16px;
+  padding: 24px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .pet-profile-details h3 {
-    margin: 0;
-    color: #333;
+  margin: 0;
+  color: #333;
 }
 
 .pet-type {
-    color: gray;
-    font-size: 14px;
+  color: gray;
+  font-size: 14px;
 }
 
 .pet-description p,
 .pet-location p,
 .pet-contact p,
 .pet-additional-info p {
-    margin: 5px 0;
+  margin: 5px 0;
 }
 
 .pet-description strong,
 .pet-location strong,
 .pet-contact strong,
 .pet-additional-info strong {
-    color: #555;
+  color: #555;
 }
 
 .pet-profile-details p {
-    color: #333;
+  color: #333;
 }
 
-.text-32{
-    font-size: 32px;
+.text-32 {
+  font-size: 32px;
 }
 
-.text-24{
-    font-size: 24px;
+.text-24 {
+  font-size: 24px;
 }
 
-.text-18{
-    font-size: 18px;
+.text-18 {
+  font-size: 18px;
 }
 
-.text-16{
-    font-size: 16px;
+.text-16 {
+  font-size: 16px;
 }
 
-.text-14{
-    font-size: 14px;
+.text-14 {
+  font-size: 14px;
 }
 
-.bold{
-    font-weight: bold;
+.bold {
+  font-weight: bold;
 }
 
 .pet-profile-image {
-    position: relative;
-    width: 100%; /* or a specific width */
-    padding-top: 56.25%; /* 16:9 aspect ratio (height / width * 100%) */
+  position: relative;
+  width: 100%; /* or a specific width */
+  padding-top: 56.25%; /* 16:9 aspect ratio (height / width * 100%) */
 }
 
 .pet-profile-image img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* or contain, depending on your needs */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* or contain, depending on your needs */
 }
 
-.pet-name{
-    margin-right: 12px;
+.pet-name {
+  margin-right: 12px;
 }
 
-.pet-type, .pet-location-lost-at-title{
-    color: #70717B;
+.pet-type, .pet-location-lost-at-title {
+  color: #70717B;
 }
 
-.pet-location-lost-at-title{
-    margin-left:8px;
-    margin-right: 10px;
+.pet-location-lost-at-title {
+  margin-left: 8px;
+  margin-right: 10px;
 }
 
-.pet-description{
-    background-color: #E5E5E5;
-    border-radius: 12px;
-    padding: 18px;
-    margin-bottom: 20px;
+.pet-description {
+  background-color: #E5E5E5;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 20px;
 }
 
-.flex-line{
-    display: flex;
+.flex-line {
+  display: flex;
 }
 
-.flex-line:not(:last-child){
-    margin-bottom: 18px;
+.flex-line:not(:last-child) {
+  margin-bottom: 18px;
 }
 
 .flex-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: flex-start; /* Align items to the start (left) */
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-start; /* Align items to the start (left) */
 }
 
 .flex-item .flex-item-title {
-    font-size: 14px;
-    color: #756F92;
-    margin-bottom: 5px; /* Add margin for spacing between title and sub */
-    order: 1; /* Set order to display after .flex-item-sub */
+  font-size: 14px;
+  color: #756F92;
+  margin-bottom: 5px; /* Add margin for spacing between title and sub */
+  order: 1; /* Set order to display after .flex-item-sub */
 }
 
 .flex-item .flex-item-sub {
-    font-size: 16px;
-    margin: 0;
-    order: 2; /* Set order to display before .flex-item-title */
+  font-size: 16px;
+  margin: 0;
+  order: 2; /* Set order to display before .flex-item-title */
 }
 
-input{
-    font-size: 16px;
-    background: none;
-    border: 1px solid var(--gray);
-    font-family: var(--primary-font);
-    font-style: italic;
-    width: 55px
+input {
+  font-size: 16px;
+  background: none;
+  border: 1px solid var(--gray);
+  font-family: var(--primary-font);
+  font-style: italic;
+  width: 55px
 }
 
-.pet-additional-info{
-    margin-bottom: 30px;
+.pet-additional-info {
+  margin-bottom: 30px;
 }
+
 .pet-contact p {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .pet-contact .first-letter {
-    padding: 15px 20px;
-    border-radius: 50%;
-    background-color: #818974;
+  padding: 15px 20px;
+  border-radius: 50%;
+  background-color: #818974;
 }
 
 .pet-contact .contact {
-    margin-right: 15px;
+  margin-right: 15px;
 }
 
 .contact-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .pet-contact .contact-number {
-    font-size: 24px; /* Match the size of the name */
+  font-size: 24px; /* Match the size of the name */
 }
 
 .whatsapp-button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    margin-top: -5px; /* Move the button slightly up */
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: -5px; /* Move the button slightly up */
 }
 
 .whatsapp-button svg {
-    width: 45px; /* Increase icon size */
-    height: 45px;
+  width: 45px; /* Increase icon size */
+  height: 45px;
 }
 
-.pet-profile-info-header{
-    flex: 1;
-    display: flex;
-    flex-direction: row; /* Stack items vertically */
-    align-items: flex-start;
+.pet-profile-info-header {
+  flex: 1;
+  display: flex;
+  flex-direction: row; /* Stack items vertically */
+  align-items: flex-start;
 }
 
 #edit-button {
-    margin-left: 150px;
+  margin-left: 150px;
 }
