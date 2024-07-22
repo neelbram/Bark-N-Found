@@ -13,6 +13,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './app/page';
+import Modal from 'react-modal';
+Modal.setAppElement('#root');
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
