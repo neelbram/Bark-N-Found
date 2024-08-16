@@ -48,9 +48,9 @@ function formatDate(timestamp: { seconds: number }) {
     return "";
 }
 
-function foundPetsPage() {
+function FoundPetsPage() {
     const { userLocation } = useContext(LocationContext);
-    const [foundPetsList, setfoundPetsList] = useState<Pet[]>([]);
+    const [lostPetsList, setLostPetsList] = useState<Pet[]>([]);
     const [filters, setFilters] = useState<Filters>({
         kind: '',
         sex: '',
@@ -60,52 +60,58 @@ function foundPetsPage() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const getfoundPetsList = async () => {
+        const getLostPetsList = async () => {
             try {
-                const foundPetsQuery = query(collection(db, 'profiles'), where('type', '==', 'found Pet'));
-                const data = await getDocs(foundPetsQuery);
-                let foundPetsList = data.docs.map(doc => {
-                    const petData = doc.data() as Pet;
+                const lostPetsQuery = query(collection(db, 'profiles'), where('type', '==', 'Found Pet'));
+                const data = await getDocs(lostPetsQuery);
+                let lostPetsList = data.docs.map(doc => {
+                    const petData = doc.data();
                     return {
-                        ...petData
+                        id: doc.id,  // Set the id explicitly
+                        ...(petData as Omit<Pet, 'id'>)  // Spread the rest of the petData, excluding id
                     };
                 });
-
+    
                 if (userLocation) {
                     const radius = 5000; // 5 kilometers in meters
-                    foundPetsList = foundPetsList.filter(pet => pet.position && getDistance(userLocation, pet.position) <= radius);
+                    lostPetsList = lostPetsList.filter(pet => pet.position && getDistance(userLocation, pet.position) <= radius);
                 }
-
-                foundPetsList = foundPetsList.filter(pet => (
+    
+                lostPetsList = lostPetsList.filter(pet => (
                     (filters.kind ? pet.kind === filters.kind : true) &&
                     (filters.sex ? pet.sex === filters.sex : true) &&
                     (filters.color ? pet.color === filters.color : true) &&
                     (filters.size ? pet.size === filters.size : true)
                 ));
-
-                foundPetsList.sort((a, b) => (b.date.seconds || 0) - (a.date.seconds || 0));
-
-                setfoundPetsList(foundPetsList);
+    
+                lostPetsList.sort((a, b) => (b.date.seconds || 0) - (a.date.seconds || 0));
+    
+                setLostPetsList(lostPetsList);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         };
-
-        getfoundPetsList();
+    
+        getLostPetsList();
     }, [userLocation, filters]);
+    
+    
+    const handleCardClick = (id: string) => {
+        navigate(`/profile-lost/${id}`);
+    };
 
     return (
-        <div className='screen found-pets-page'>
+        <div className='screen lost-pets-page'>
             <TopBar />
             <div className="header-container">
-                <h1 className='home-center found-title'>found</h1>
+                <h1 className='home-center lost-title'>Lost</h1>
                 <FilterButton filters={filters} setFilters={setFilters} />
             </div>
             <div className='home-container background_color'>
                 <div className='home-section'>
-                    {foundPetsList.length > 0 ? (
-                        foundPetsList.map((pet) => (
-                            <button key={pet.id} className='home-card'>
+                    {lostPetsList.length > 0 ? (
+                        lostPetsList.map((pet) => (
+                            <button key={pet.id} className='home-card' onClick={() => handleCardClick(pet.id)}>
                                 <img src={pet.petPictureUrl} alt={pet.name} />
                                 <div className='card-content'>
                                     <div className='pet-details'>
@@ -116,13 +122,13 @@ function foundPetsPage() {
                             </button>
                         ))
                     ) : (
-                        <p>No found pets found.</p>
+                        <p>No lost pets found.</p>
                     )}
                 </div>
-                <BottomPanel currentPage="found-page" />
+                <BottomPanel currentPage="lost-page" />
             </div>
         </div>
     );
 }
 
-export default foundPetsPage;
+export default FoundPetsPage;

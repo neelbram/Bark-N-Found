@@ -632,3 +632,7 @@ body {
   justify-content: flex-end;
   padding: 10px 20px; /* Adjust padding as needed */
 }
+
+.leaflet-control-attribution {
+  display: none !important;
+}
