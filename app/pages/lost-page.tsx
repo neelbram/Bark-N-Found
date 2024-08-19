@@ -6,7 +6,9 @@ import { db } from '../firebase-config';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { LocationContext } from '../pages/LocationContext';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import FilterButton from '../components/filter-button'; // Ensure the import path is correct
+import FilterButton from '../components/filter-button';
+import Image from 'next/image';
+
 
 interface Pet {
     id: string;
@@ -125,8 +127,9 @@ function LostPetsPage() {
                         <p>No lost pets found.</p>
                     )}
                 </div>
-                <BottomPanel currentPage="lost-page" />
+                
             </div>
+            <BottomPanel currentPage="lost-page" />
         </div>
     );
 }

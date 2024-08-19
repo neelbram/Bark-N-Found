@@ -51,15 +51,16 @@
   color: #696480;
 }
 
-/* Div screen */
 .screen {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* Center the content both horizontally and vertically */
   background-color: var(--background_color, #EEE5DF); /* Set your desired background color */
   min-height: 100vh; /* Ensure the background covers the whole viewport height */
-  display: flex;
-  justify-content: center; /* Center the content horizontally */
+  width: 100%; /* Ensure the div spans the full width of the viewport */
+  height: 100%; /* Ensure the div spans the full height of the viewport */
+  box-sizing: border-box;
   font-family: var(--primary-font);
 }
 
@@ -101,10 +102,17 @@ h3 {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1000px;
+  height: 100%;
   margin: 0 auto;
   width: 100%;
   padding: 0 1rem;
+  transform: scale(0.88); /* 0.95 scales the page to 95% of its original size */
+
+}
+.leaflet-container {
+  height: 100vh;
+  width: 100%;
 }
 
 .text_center {
@@ -202,7 +210,7 @@ button, a.button {
 
 .bottom-panel {
   background-color: var(--background_color, #EEE5DF);
-  position: fixed;
+  position: fixed; /* Changed from absolute to fixed */
   bottom: 0;
   left: 0;
   width: 100%;
@@ -216,6 +224,7 @@ button, a.button {
   box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1); /* Example shadow */
 }
 
+
 .bottom-panel button {
   background: none;
   border: none;
@@ -226,12 +235,13 @@ button, a.button {
 /* Home container for scrollable content */
 .home-container {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 16px;
   overflow-y: auto;  /* Enable vertical scrolling */
-  max-height: calc(100vh - 120px);  /* Ensure it covers the full height of the viewport minus the header and footer height */
+  max-height: calc(100vh - 120px); 
 }
 
 /* Styling for the sections */
@@ -320,6 +330,24 @@ button, a.button {
   padding-top: 10px; /* Add some padding to avoid content overlap */
 }
 
+#top-bar {
+  display: absolute;
+  /* flex-direction: row; */
+  align-items: center;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+#logo {
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+/* .flex-row {
+  display: flex;
+  flex-direction: row;
+} */
+
 .lost-title, .found-title {
   background-color: var(--background_color, #EEE5DF); /* Ensure it matches the page background */
   margin: 0; /* Reset margin */
@@ -365,7 +393,7 @@ button, a.button {
 .pet-location p,
 .pet-contact p,
 .pet-additional-info p {
-  margin: 5px 0;
+  margin: 0px 0px;
 }
 
 .pet-description strong,
@@ -493,6 +521,7 @@ input {
 
 .pet-contact .contact {
   margin-right: 15px;
+  margin-left: 15px;
 }
 
 .contact-info {
@@ -502,7 +531,7 @@ input {
 }
 
 .pet-contact .contact-number {
-  font-size: 24px; /* Match the size of the name */
+  font-size: 18px; /* Match the size of the name */
 }
 
 .whatsapp-button {
@@ -541,16 +570,17 @@ body {
 
 .filter-button {
     position: absolute;
-    top: 20px;
+    top: 15px;
     right: 20px;
-    background-color: #f8f9fa; /* Match your app's background color */
+    background-color: var(--background_color); /* Match your app's background color */
     border: none;
     cursor: pointer;
     font-size: 24px;
     color: #333; /* Dark grey color */
-    transition: color 0.3s ease, background-color 0.3s ease;
+    /* transition: color 0.3s ease, background-color 0.3s ease; */
     padding: 10px;
     border-radius: 5px;
+    z-index: 1000;
 }
 
 .filter-modal {
@@ -635,4 +665,9 @@ body {
 
 .leaflet-control-attribution {
   display: none !important;
+}
+
+.leaflet-control-zoom {
+  top: 80px;
+  left: 15px;
 }

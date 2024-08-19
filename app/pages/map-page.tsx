@@ -104,7 +104,7 @@ const MapPage: React.FC = () => {
 
     const handleMarkerClick = (id: string) => {
       navigate(`/profile-lost/${id}`);
-  };
+    };
 
     const MapEvents: React.FC = () => {
         const map = useMap();
@@ -147,6 +147,12 @@ const MapPage: React.FC = () => {
         );
     });
 
+    useEffect(() => {
+        if (map) {
+            map.setZoom(10); // Adjust the zoom level as needed
+        }
+    }, [map]);
+
     return (
         <div className='screen'>
             <div className='top'>
@@ -156,7 +162,7 @@ const MapPage: React.FC = () => {
                     <FilterButton filters={filters} setFilters={setFilters} />
                 </div>
             </div>
-            <div className="container background_color">
+            <div className="screen background_color">
                 <MapContainer center={[31.8, 34.7]} zoom={13} style={{ height: '100vh', width: '100%' }}>
                     <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

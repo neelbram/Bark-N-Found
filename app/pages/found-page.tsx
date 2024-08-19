@@ -125,7 +125,7 @@ function FoundPetsPage() {
                         <p>No lost pets found.</p>
                     )}
                 </div>
-                <BottomPanel currentPage="lost-page" />
+                <BottomPanel currentPage="found-page" />
             </div>
         </div>
     );
