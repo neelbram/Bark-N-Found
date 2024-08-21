@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Pet } from '../data/types';
 import { db, storage } from '../firebase-config.js';
 import { collection, addDoc } from 'firebase/firestore';
-import { doc, setDoc } from 'firebase/firestore';
-import { updatePetInDatabase } from '../data/firestore-service'; // Adjust the path as needed
+import { deleteDoc, doc, getDoc } from 'firebase/firestore';
+import { updatePetInDatabase, deletePetFromDatabase } from '../data/firestore-service'; // Adjust the path as needed
 
 
 interface PetProfileProps {
@@ -86,6 +86,33 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
         window.open(url, '_blank');
     };
 
+    const deletePetProfile = async () => {
+        if (window.confirm('Are you sure you want to delete this pet profile?')) {
+            try {
+                console.log(`Attempting to delete pet with ID: ${pet.id}`);
+                
+                // Ensure pet.id is valid
+                if (!pet.id) {
+                    console.error('Pet ID is missing or undefined.');
+                    alert('Failed to delete the pet profile: Invalid ID.');
+                    return;
+                }
+                
+                const petDocRef = doc(db, 'pets', pet.id);
+                
+                // Attempt to delete the document directly
+                await deletePetFromDatabase(pet.id);
+                alert('Pet profile deleted successfully.');
+    
+                // Optionally, redirect the user after deletion or update the UI
+            } catch (error) {
+                console.error('Error deleting pet profile:', error);
+                alert('Failed to delete the pet profile. Please try again.');
+            }
+        }
+    };
+    
+
     return (
         <div className="pet-profile">
             <div className="pet-profile-header">
@@ -111,6 +138,15 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
                                 <path fillRule="evenodd" clipRule="evenodd" d="M22.6789 1.8715C21.3525 0.545113 19.2019 0.545109 17.8755 1.8715L1.84709 17.9C1.37295 18.3741 1.04975 18.978 0.918253 19.6355L0.253604 22.9588C-0.0632703 24.5431 1.33361 25.9401 2.91799 25.6232L6.24122 24.9585C6.89874 24.827 7.50262 24.5038 7.97677 24.0297L24.0052 8.00118C25.3316 6.67479 25.3316 4.52429 24.0052 3.19789L22.6789 1.8715ZM19.4766 3.4726C19.9188 3.03047 20.6356 3.03047 21.0778 3.4726L22.4041 4.799C22.8463 5.24112 22.8463 5.95795 22.4041 6.40009L19.3795 9.42472L16.4521 6.49723L19.4766 3.4726ZM14.8509 8.09833L3.44818 19.5011C3.29013 19.6591 3.18241 19.8604 3.13857 20.0796L2.47392 23.4028L5.79716 22.7381C6.01633 22.6943 6.21763 22.5866 6.37567 22.4286L17.7784 11.0258L14.8509 8.09833Z" fill="#5D6354"/>
                             </svg>
                         )}
+                    </button>
+                    <button id='delete-button' onClick={deletePetProfile}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40px" height="30px" viewBox="0 0 24 24" fill="none">
+                            <path d="M20.5001 6H3.5" stroke="#5D6354" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M18.8332 8.5L18.3732 15.3991C18.1962 18.054 18.1077 19.3815 17.2427 20.1907C16.3777 21 15.0473 21 12.3865 21H11.6132C8.95235 21 7.62195 21 6.75694 20.1907C5.89194 19.3815 5.80344 18.054 5.62644 15.3991L5.1665 8.5" stroke="#5D6354" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M9.5 11L10 16" stroke="#5D6354" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M14.5 11L14 16" stroke="#5D6354" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M6.5 6C6.55588 6 6.58382 6 6.60915 5.99936C7.43259 5.97849 8.15902 5.45491 8.43922 4.68032C8.44784 4.65649 8.45667 4.62999 8.47434 4.57697L8.57143 4.28571C8.65431 4.03708 8.69575 3.91276 8.75071 3.8072C8.97001 3.38607 9.37574 3.09364 9.84461 3.01877C9.96213 3 10.0932 3 10.3553 3H13.6447C13.9068 3 14.0379 3 14.1554 3.01877C14.6243 3.09364 15.03 3.38607 15.2493 3.8072C15.3043 3.91276 15.3457 4.03708 15.4286 4.28571L15.5257 4.57697C15.5433 4.62992 15.5522 4.65651 15.5608 4.68032C15.841 5.45491 16.5674 5.97849 17.3909 5.99936C17.4162 6 17.4441 6 17.5 6" stroke="#5D6354" stroke-width="1.5"/>
+                        </svg>                    
                     </button>
                 </div>
                 <p className='pet-location'>
