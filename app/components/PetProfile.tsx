@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Pet } from '../data/types';
+import { db, storage } from '../firebase-config.js';
+import { collection, addDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
+import { updatePetInDatabase } from '../data/firestore-service'; // Adjust the path as needed
+
 
 interface PetProfileProps {
     pet: Pet;
@@ -9,12 +14,60 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
     const firstLetter = pet.contactName?.slice(0, 1) || '';
     const [location, setLocation] = useState<{ city: string; street: string }>({ city: '', street: '' });
     const [editMode, setEditMode] = useState(false);
+    const [breed, setBreed] = useState(pet.breed); // Add state for breed
+    const [sex, setSex] = useState(pet.sex); // Add state for sex
+    const [color, setColor] = useState(pet.color); // Add state for color
+    const [chipNumber, setChipNumber] = useState<number>(Number(pet.chipNumber));
+    const [size, setSize] = useState(pet.size); // Add state for size
+    const [lastUpdate, setLastUpdate] = useState<Date>(pet.lastUpdate ? new Date(pet.lastUpdate) : new Date());
+    const [hasChanges, setHasChanges] = useState(false); // Track if any changes were made
 
     // Function to toggle edit mode
-    const toggleEditMode = () => {
+    const toggleEditMode = async () => {
+        if (editMode) {  // We're exiting edit mode, so save changes
+            if (hasChanges) {
+            setLastUpdate(new Date())};
+            try {
+                console.log('Saving updated breed to database:', breed);
+                await updatePetInDatabase({ ...pet, breed, sex, color, chipNumber, size, lastUpdate });  // Update the breed in the database
+            } catch (error) {
+                console.error('Error updating pet:', error);
+            }
+        }
         setEditMode(!editMode);
+        setHasChanges(false); // Reset changes tracking
     };
-    
+
+    const handleBreedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setBreed(event.target.value);
+        setHasChanges(true); // Mark that changes were made
+    };
+
+    const handleSexChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSex(event.target.value === 'true'); // Convert string to boolean
+        setHasChanges(true); // Mark that changes were made
+    };
+
+    const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setColor(event.target.value);
+        setHasChanges(true); // Mark that changes were made
+    };
+    const handleChipNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setChipNumber(parseInt(event.target.value, 10));
+        setHasChanges(true); // Mark that changes were made
+    };
+
+    const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSize(event.target.value);
+        setHasChanges(true); // Mark that changes were made
+    };
+
+    const handleLastUpdate = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const dateValue = new Date(event.target.value);
+        setLastUpdate(dateValue);
+        setHasChanges(true); // Mark that changes were made
+    };
+
     useEffect(() => {
         const fetchLocation = async () => {
             const { lat, lng } = pet.position; // Assuming pet.position contains lat and lng
@@ -33,6 +86,8 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
         fetchLocation();
     }, [pet.position]);
 
+
+
     const openWhatsApp = (phoneNumber: string) => {
         // Check if the phone number starts with '0' and replace it with '+972'
         const formattedPhoneNumber = phoneNumber.startsWith('0')
@@ -41,7 +96,6 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
         const url = `https://wa.me/${formattedPhoneNumber}`;
         window.open(url, '_blank');
     };
-
 
     return (
         <div className="pet-profile">
@@ -59,9 +113,15 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
                         <span className='text-16 pet-type'>{pet.type}</span>
                     </p>
                     <button id='edit-button' onClick={toggleEditMode}>
-                        <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M22.6789 1.8715C21.3525 0.545113 19.2019 0.545109 17.8755 1.8715L1.84709 17.9C1.37295 18.3741 1.04975 18.978 0.918253 19.6355L0.253604 22.9588C-0.0632703 24.5431 1.33361 25.9401 2.91799 25.6232L6.24122 24.9585C6.89874 24.827 7.50262 24.5038 7.97677 24.0297L24.0052 8.00118C25.3316 6.67479 25.3316 4.52429 24.0052 3.19789L22.6789 1.8715ZM19.4766 3.4726C19.9188 3.03047 20.6356 3.03047 21.0778 3.4726L22.4041 4.799C22.8463 5.24112 22.8463 5.95795 22.4041 6.40009L19.3795 9.42472L16.4521 6.49723L19.4766 3.4726ZM14.8509 8.09833L3.44818 19.5011C3.29013 19.6591 3.18241 19.8604 3.13857 20.0796L2.47392 23.4028L5.79716 22.7381C6.01633 22.6943 6.21763 22.5866 6.37567 22.4286L17.7784 11.0258L14.8509 8.09833Z" fill="#5D6354"/>
-                        </svg>
+                        {editMode ? (
+                            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 20.5L3.5 15L4.91 13.59L9 17.67L20.09 6.59L21.5 8L9 20.5Z" fill="#5D6354"/>
+                            </svg>
+                        ) : (
+                            <svg width="25" height="26" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" clipRule="evenodd" d="M22.6789 1.8715C21.3525 0.545113 19.2019 0.545109 17.8755 1.8715L1.84709 17.9C1.37295 18.3741 1.04975 18.978 0.918253 19.6355L0.253604 22.9588C-0.0632703 24.5431 1.33361 25.9401 2.91799 25.6232L6.24122 24.9585C6.89874 24.827 7.50262 24.5038 7.97677 24.0297L24.0052 8.00118C25.3316 6.67479 25.3316 4.52429 24.0052 3.19789L22.6789 1.8715ZM19.4766 3.4726C19.9188 3.03047 20.6356 3.03047 21.0778 3.4726L22.4041 4.799C22.8463 5.24112 22.8463 5.95795 22.4041 6.40009L19.3795 9.42472L16.4521 6.49723L19.4766 3.4726ZM14.8509 8.09833L3.44818 19.5011C3.29013 19.6591 3.18241 19.8604 3.13857 20.0796L2.47392 23.4028L5.79716 22.7381C6.01633 22.6943 6.21763 22.5866 6.37567 22.4286L17.7784 11.0258L14.8509 8.09833Z" fill="#5D6354"/>
+                            </svg>
+                        )}
                     </button>
                 </div>
                 <p className='pet-location'>
@@ -73,58 +133,108 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
                 </p>
                 <div className="pet-description">
                     <div className='flex-line'>
-                        <div className='flex-item'>
-                            {/* Conditional rendering based on edit mode */}
+                        <div className='flex-item' id='breed-field'>
                             {editMode ? (
-                                <input type="text" className='flex-item-sub' defaultValue={pet.breed} />
+                                <input
+                                    type="text"
+                                    className='flex-item-sub'
+                                    value={breed}
+                                    onChange={handleBreedChange} // Track user input
+                                />
                             ) : (
-                                <p className='flex-item-sub'>{pet.breed}</p>
+                                <p className='flex-item-sub'>{breed}</p> // Display the updated breed
                             )}
                             <p className='flex-item-title'>Breed:</p>
                         </div>
-                        <div className='flex-item'>
-                            {/* Conditional rendering based on edit mode */}
+                        <div className='flex-item' id="sex-selection">
+                            {/* <p className="flex-item-title">Sex:</p> */}
                             {editMode ? (
-                                <input type="text" className='flex-item-sub' defaultValue={pet.sex} />
+                                <div>
+                                    <p className="flex-item-title">Sex:</p>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="sex"
+                                            value="true"
+                                            checked={sex === true}
+                                            onChange={handleSexChange}
+                                        />
+                                        Male
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="sex"
+                                            value="false"
+                                            checked={sex === false}
+                                            onChange={handleSexChange}
+                                        />
+                                        Female
+                                    </label>
+                                </div>
                             ) : (
-                                <p className='flex-item-sub'>{pet.sex}</p>
+                                <div>
+                                    <p className="flex-item-title">Sex:</p>
+                                    <p className="flex-item-sub">{sex ? 'Male' : 'Female'}</p>
+                                </div>
                             )}
-                            <p className='flex-item-title'>Sex:</p>
                         </div>
                     </div>
                     <div className='flex-line'>
-                        <div className='flex-item'>
-                            {/* Conditional rendering based on edit mode */}
+                        <div className='flex-item' id='color-field'>
                             {editMode ? (
-                                <input type="text" className='flex-item-sub' defaultValue={pet.color} />
+                                <input
+                                    type="text"
+                                    className='flex-item-sub'
+                                    value={color}
+                                    onChange={handleColorChange} // Track user input
+                                />
                             ) : (
-                                <p className='flex-item-sub'>{pet.color}</p>
+                                <p className='flex-item-sub'>{color}</p> // Display the updated breed
                             )}
                             <p className='flex-item-title'>Color:</p>
                         </div>
-                        <div className='flex-item'>
-                            {/* Conditional rendering based on edit mode */}
+                        <div className='flex-item' id='chip-number-field'>
                             {editMode ? (
-                                <input type="text" className='flex-item-sub' defaultValue={pet.chipNumber} />
+                                <input
+                                    type="text"
+                                    className='flex-item-sub'
+                                    value={chipNumber}
+                                    onChange={handleChipNumberChange} // Track user input
+                                />
                             ) : (
-                                <p className='flex-item-sub'>{pet.chipNumber}</p>
+                                <p className='flex-item-sub'>{chipNumber}</p> // Display the updated breed
                             )}
                             <p className='flex-item-title'>Chip Number:</p>
                         </div>
                     </div>
                     <div className='flex-line'>
-                        <div className='flex-item'>
-                            {/* Conditional rendering based on edit mode */}
+                        <div className='flex-item' id='size-field'>
                             {editMode ? (
-                                <input type="text" className='flex-item-sub' defaultValue={pet.size} />
+                                <input
+                                    type="text"
+                                    className='flex-item-sub'
+                                    value={size}
+                                    onChange={handleSizeChange} // Track user input
+                                />
                             ) : (
-                                <p className='flex-item-sub'>{pet.size}</p>
+                                <p className='flex-item-sub'>{size}</p> // Display the updated breed
                             )}
                             <p className='flex-item-title'>Size:</p>
                         </div>
-                        <div className='flex-item'>
-                            <p className='flex-item-title'>Collar:</p>
-                        </div>
+                        {/* <div className='flex-item' id='last-update-field'>
+                            {editMode ? (
+                                <input
+                                    type="date"
+                                    className='flex-item-sub'
+                                    value={lastUpdate ? lastUpdate.toISOString().substr(0, 10) : ''}
+                                    onChange={handleLastUpdate} // Track user input for date
+                                />
+                            ) : (
+                                <p className='flex-item-sub'>{lastUpdate ? lastUpdate.toDateString() : 'Not set'}</p> // Display the updated lastUpdate
+                            )}
+                            <p className='flex-item-title'>Last Update:</p>
+                        </div> */}
                     </div>
                 </div>
                 <div className="pet-additional-info">
