@@ -31,7 +31,7 @@ export interface Pet {
   color: string;
   contactName: string;
   contactPhone: string;
-  lastUpdate: Date;
+  lastUpdate: Date|null;
   extraDetails: string;
   name: string;
   petPictureUrl: string;
