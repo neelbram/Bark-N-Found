@@ -19,14 +19,11 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
     const [color, setColor] = useState(pet.color); // Add state for color
     const [chipNumber, setChipNumber] = useState<number>(Number(pet.chipNumber));
     const [size, setSize] = useState(pet.size); // Add state for size
-    const [lastUpdate, setLastUpdate] = useState<Date>(pet.lastUpdate ? new Date(pet.lastUpdate) : new Date());
-    const [hasChanges, setHasChanges] = useState(false); // Track if any changes were made
+    const [lastUpdate, setLastUpdate] = useState<Date | null>(pet.lastUpdate ? new Date(pet.lastUpdate) : new Date());
 
     // Function to toggle edit mode
     const toggleEditMode = async () => {
         if (editMode) {  // We're exiting edit mode, so save changes
-            if (hasChanges) {
-            setLastUpdate(new Date())};
             try {
                 console.log('Saving updated breed to database:', breed);
                 await updatePetInDatabase({ ...pet, breed, sex, color, chipNumber, size, lastUpdate });  // Update the breed in the database
@@ -35,39 +32,31 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
             }
         }
         setEditMode(!editMode);
-        setHasChanges(false); // Reset changes tracking
     };
 
     const handleBreedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setBreed(event.target.value);
-        setHasChanges(true); // Mark that changes were made
     };
 
     const handleSexChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSex(event.target.value === 'true'); // Convert string to boolean
-        setHasChanges(true); // Mark that changes were made
     };
 
     const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setColor(event.target.value);
-        setHasChanges(true); // Mark that changes were made
     };
     const handleChipNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChipNumber(parseInt(event.target.value, 10));
-        setHasChanges(true); // Mark that changes were made
     };
 
     const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSize(event.target.value);
-        setHasChanges(true); // Mark that changes were made
     };
 
     const handleLastUpdate = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const dateValue = new Date(event.target.value);
+        const dateValue = event.target.value ? new Date(event.target.value) : null;
         setLastUpdate(dateValue);
-        setHasChanges(true); // Mark that changes were made
     };
-
     useEffect(() => {
         const fetchLocation = async () => {
             const { lat, lng } = pet.position; // Assuming pet.position contains lat and lng
@@ -222,7 +211,7 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
                             )}
                             <p className='flex-item-title'>Size:</p>
                         </div>
-                        {/* <div className='flex-item' id='last-update-field'>
+                        <div className='flex-item' id='last-update-field'>
                             {editMode ? (
                                 <input
                                     type="date"
@@ -234,7 +223,7 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
                                 <p className='flex-item-sub'>{lastUpdate ? lastUpdate.toDateString() : 'Not set'}</p> // Display the updated lastUpdate
                             )}
                             <p className='flex-item-title'>Last Update:</p>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
                 <div className="pet-additional-info">
