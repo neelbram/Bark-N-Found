@@ -12,6 +12,7 @@ interface PetProfileProps {
 
 const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
     const firstLetter = pet.contactName?.slice(0, 1) || '';
+    const [name, setName] = useState<string>(pet.name || '');
     const [location, setLocation] = useState<{ city: string; street: string }>({ city: '', street: '' });
     const [editMode, setEditMode] = useState(false);
     const [breed, setBreed] = useState(pet.breed); // Add state for breed
@@ -32,6 +33,10 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
             }
         }
         setEditMode(!editMode);
+    };
+
+    const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setName(event.target.value);
     };
 
     const handleBreedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,10 +129,20 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
             </div>
             <div className="pet-profile-details">
                 <div className="pet-profile-info-header">
-                    <p>
-                        <span className='text-24 pet-name bold'>{pet.name}</span>
+                    <div className='pet-profile-name-and-type'>
+                    {editMode ? (
+                        <input
+                            type="text"
+                            className="text-24 pet-name bold"
+                            id = 'pet-name'
+                            value={name}
+                            onChange={handleNameChange} // Handle name change
+                        />
+                    ) : (
+                        <span className="text-24 pet-name bold">{name}</span> // Display name
+                    )}
                         <span className='text-16 pet-type'>{pet.type}</span>
-                    </p>
+                    </div>
                     <button id='edit-button' onClick={toggleEditMode}>
                         {editMode ? (
                             <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -247,7 +262,7 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
                             )}
                             <p className='flex-item-title'>Size:</p>
                         </div>
-                        <div className='flex-item' id='last-update-field'>
+                        {/* <div className='flex-item' id='last-update-field'>
                             {editMode ? (
                                 <input
                                     type="date"
@@ -259,7 +274,8 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
                                 <p className='flex-item-sub'>{lastUpdate ? lastUpdate.toDateString() : 'Not set'}</p> // Display the updated lastUpdate
                             )}
                             <p className='flex-item-title'>Last Update:</p>
-                        </div>
+                        </div> */}  
+                        {/* TODO need to find out where date is save from pet-details form and use it here */}
                     </div>
                 </div>
                 <div className="pet-additional-info">
