@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState, useContext } from 'react';
 import { MapContainer, TileLayer, Marker, useMapEvents, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -6,10 +8,10 @@ import L from 'leaflet';
 import BottomPanel from '../components/bottom-panel';
 import AddButton from '../components/add-button';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase-config.js';
+import { db } from '../firebase-config';
 import { LocationContext } from '../data/locationcontext';
 import FilterButton from '../components/filter-button'; // Ensure the import path is correct
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation'; // Use Next.js router
 
 interface Filters {
     kind: string;
@@ -65,7 +67,7 @@ const MapPage: React.FC = () => {
         size: ''
     });
 
-    const navigate = useNavigate();
+    const router = useRouter(); // Use Next.js router
 
     useEffect(() => {
         const fetchLocations = async () => {
@@ -103,7 +105,7 @@ const MapPage: React.FC = () => {
     }, []);
 
     const handleMarkerClick = (id: string) => {
-      navigate(`/profile-lost/${id}`);
+      router.push(`/profile-lost/${id}`); // Use router.push for navigation
     };
 
     const MapEvents: React.FC = () => {

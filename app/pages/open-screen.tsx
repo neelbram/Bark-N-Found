@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import TopBar from '../components/top-bar'; 
-import { useNavigate } from 'react-router-dom';
-
+import TopBar from '../components/top-bar';
+// import { useRouter } from 'next/navigation'; // Use next/navigation for router
+import Link from 'next/link';
 const LoginScreen: React.FC = () => {
-    const navigate = useNavigate();
+    // const router = useRouter();
 
     return (
         <div className='screen'>
@@ -15,8 +15,16 @@ const LoginScreen: React.FC = () => {
             <div className="container background_color">
                 <h1 className='center'>Explore the app</h1>
                 <h3 className='center text_center padding-bottom'>Heroes for fur heroes - Join the journey to reunite lost pets with their loving families</h3>
-                <button className="main_button center h3 padding-all" onClick={() => navigate('/signin')}>Sign In</button>
-                <button className="second_button center" onClick={() => navigate('/create-account')}>Create account</button>
+                <Link href="/signin">
+                    <button className="main_button center h3 padding-all">
+                    Sign In
+                    </button>
+                </Link>
+                <Link href="./create-account">
+                    <button className="second_button center">
+                    Create account
+                    </button>
+                </Link>
             </div>
         </div>
     );

@@ -1,14 +1,14 @@
+'use client';
+
 import React, { useEffect, useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation'; // Use Next.js navigation
 import TopBar from '../components/top-bar';
 import BottomPanel from '../components/bottom-panel';
 import { db } from '../firebase-config';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { LocationContext } from '../data/locationcontext';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import FilterButton from '../components/filter-button';
-import Image from 'next/image';
-
+import FilterButton from '../components/filter-button'; // Ensure the import path is correct
 
 interface Pet {
     id: string;
@@ -50,7 +50,7 @@ function formatDate(timestamp: { seconds: number }) {
     return "";
 }
 
-function LostPetsPage() {
+function FoundPetsPage() {
     const { userLocation } = useContext(LocationContext);
     const [lostPetsList, setLostPetsList] = useState<Pet[]>([]);
     const [filters, setFilters] = useState<Filters>({
@@ -59,12 +59,12 @@ function LostPetsPage() {
         color: '',
         size: ''
     });
-    const navigate = useNavigate();
+    const router = useRouter(); // Use Next.js router
 
     useEffect(() => {
         const getLostPetsList = async () => {
             try {
-                const lostPetsQuery = query(collection(db, 'profiles'), where('type', '==', 'Lost Pet'));
+                const lostPetsQuery = query(collection(db, 'profiles'), where('type', '==', 'Found Pet'));
                 const data = await getDocs(lostPetsQuery);
                 let lostPetsList = data.docs.map(doc => {
                     const petData = doc.data();
@@ -99,14 +99,14 @@ function LostPetsPage() {
     
     
     const handleCardClick = (id: string) => {
-        navigate(`/profile-lost/${id}`);
+        router.push(`/profile-lost/${id}`); // Use router.push for navigation
     };
 
     return (
         <div className='screen lost-pets-page'>
             <TopBar />
             <div className="header-container">
-                <h1 className='home-center lost-title'>Lost</h1>
+                <h1 className='home-center lost-title'>Found</h1>
                 <FilterButton filters={filters} setFilters={setFilters} />
             </div>
             <div className='home-container background_color'>
@@ -124,14 +124,13 @@ function LostPetsPage() {
                             </button>
                         ))
                     ) : (
-                        <p>No lost pets found.</p>
+                        <p>No found pets available.</p>
                     )}
                 </div>
-                
+                <BottomPanel currentPage="found-page" />
             </div>
-            <BottomPanel currentPage="lost-page" />
         </div>
     );
 }
 
-export default LostPetsPage;
+export default FoundPetsPage;

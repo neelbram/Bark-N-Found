@@ -1,13 +1,14 @@
-import TopBar from '../components/top-bar'; 
-import React, { useState } from 'react';
-import bcrypt from 'bcryptjs'; // Import bcryptjs in your React component
-import { useNavigate } from 'react-router-dom';
+'use client';
 
+import React, { useState } from 'react';
+import TopBar from '../components/top-bar';
+import bcrypt from 'bcryptjs'; // Import bcryptjs in your React component
+import Link from 'next/link';  // Import Link from Next.js
+import Image from 'next/image'; // Use Next.js Image component
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const navigate = useNavigate();
 
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
@@ -41,20 +42,22 @@ const Login: React.FC = () => {
         } else {
             console.log('No stored credentials found.');
         }
-        navigate('/map-page')
-
-        
     };
 
     return (
         <div className='screen'>
             <div className='top'>
-                {/* Assuming TopBar is another component */}
                 <TopBar />
             </div>
             <div className="container background_color">
                 <h1 className='center'>Login</h1>
-                <img src="/images/curly_dog.png" alt="Curly Dog" id="dogImage" className="center" />
+                <Image
+                    src="/images/curly_dog.png"
+                    alt="Curly Dog"
+                    width={300} // Specify width
+                    height={200} // Specify height
+                    className="center"
+                />
                 <div>
                     <label htmlFor="emailInput">Email address</label>
                     <input
@@ -77,9 +80,11 @@ const Login: React.FC = () => {
                         onChange={handlePasswordChange}
                     />
                 </div>
-                <button className="main_button center h3 padding-all" onClick={handleLogin}>
-                    Login
-                </button>
+                <Link href="/map-page">
+                    <button className="main_button center h3 padding-all" onClick={handleLogin}>
+                        Login
+                    </button>
+                </Link>
             </div>
         </div>
     );
