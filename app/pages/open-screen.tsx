@@ -3,43 +3,9 @@
 import React from 'react';
 import TopBar from '../components/top-bar'; 
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-
 
 const LoginScreen: React.FC = () => {
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const handleSignIn = () => {
-            navigate('/signin');
-        };
-
-        const handleCreateAccount = () => {
-            navigate('/create-account'); 
-        };
-
-        // Code that interacts with document should be inside useEffect
-        const signInButton = document.querySelector(".main_button");
-        const createAccountButton = document.querySelector(".second_button");
-
-        if (signInButton) {
-            signInButton.addEventListener('click', handleSignIn);
-        }
-
-        if (createAccountButton) {
-            createAccountButton.addEventListener('click', handleCreateAccount);
-        }
-
-        // Cleanup event listeners
-        return () => {
-            if (signInButton) {
-                signInButton.removeEventListener('click', handleSignIn);
-            }
-            if (createAccountButton) {
-                createAccountButton.removeEventListener('click', handleCreateAccount);
-            }
-        };
-    }, [navigate]); // Include navigate in the dependency array if needed
 
     return (
         <div className='screen'>
@@ -55,6 +21,5 @@ const LoginScreen: React.FC = () => {
         </div>
     );
 };
-
 
 export default LoginScreen;

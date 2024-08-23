@@ -7,7 +7,7 @@ import BottomPanel from '../components/bottom-panel';
 import AddButton from '../components/add-button';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase-config.js';
-import { LocationContext } from '../pages/LocationContext';
+import { LocationContext } from '../data/locationcontext';
 import FilterButton from '../components/filter-button'; // Ensure the import path is correct
 import { useNavigate } from 'react-router-dom';
 

@@ -81,18 +81,23 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
     }, [pet.position]);
 
 
-
+    
     const openWhatsApp = (phoneNumber: string) => {
-        // Check if the phone number starts with '0' and replace it with '+972'
-        const formattedPhoneNumber = phoneNumber.startsWith('0')
-            ? '+972' + phoneNumber.substring(1)
-            : phoneNumber;
-        const url = `https://wa.me/${formattedPhoneNumber}`;
-        window.open(url, '_blank');
+        if (typeof window !== "undefined") {
+            // Check if the phone number starts with '0' and replace it with '+972'
+            const formattedPhoneNumber = phoneNumber.startsWith('0')
+                ? '+972' + phoneNumber.substring(1)
+                : phoneNumber;
+            const url = `https://wa.me/${formattedPhoneNumber}`;
+            window.open(url, '_blank');
+        } else {
+            console.error("Window is not defined. Cannot open WhatsApp.");
+        }
     };
+    
 
     const deletePetProfile = async () => {
-        if (window.confirm('Are you sure you want to delete this pet profile?')) {
+        if (typeof window !== "undefined" && window.confirm('Are you sure you want to delete this pet profile?')) {
             try {
                 console.log(`Attempting to delete pet with ID: ${pet.id}`);
                 
@@ -114,6 +119,8 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
                 console.error('Error deleting pet profile:', error);
                 alert('Failed to delete the pet profile. Please try again.');
             }
+        } else {
+            console.error("Window is not defined or confirmation was not given. Cannot delete pet profile.");
         }
     };
     

@@ -4,7 +4,7 @@ import TopBar from '../components/top-bar';
 import BottomPanel from '../components/bottom-panel';
 import { db } from '../firebase-config';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { LocationContext } from '../pages/LocationContext';
+import { LocationContext } from '../data/locationcontext';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import FilterButton from '../components/filter-button';
 import Image from 'next/image';
