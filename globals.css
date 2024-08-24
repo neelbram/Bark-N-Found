@@ -863,6 +863,7 @@ height: 45px;
 }
 
 .popup{
+    position: fixed;
     background-color: #7c7e6b; /* Adjust this to match your color */
     padding: 20px;
     border-radius: 20px;
@@ -876,11 +877,20 @@ height: 45px;
     color: #EEE5DF; /* Text color */
 }
 
-#back-to-map{
-
-}
-
 #back-to-map :hover{
     background-color: #485349; /* Button hover color */
     cursor: pointer;
+}
+.button-group {
+    display: flex; /* Aligns children (buttons) horizontally */
+    justify-content: center; /* Centers the buttons within the container */
+    gap: 10px; /* Adds space between buttons */
+  }
+  
+
+.delete-button,
+.cancel-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
