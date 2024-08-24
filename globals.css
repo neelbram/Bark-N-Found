@@ -908,3 +908,7 @@ body {
   #i-found-my-pet{
     width: 380px;
   }
+
+  #google-sign-in{
+    margin-left: -5px;
+  }

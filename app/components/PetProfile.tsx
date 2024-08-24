@@ -181,7 +181,7 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
                         </button>
                         {showConfirmDialog && (
                             <div className="popup">
-                                <p>Are you sure you want to delete this pet's profile?</p>
+                                <p>Are you sure you want to delete this profile?</p>
                                 <div className="button-group">
                                     <button onClick={handleConfirmDelete}>
                                         <svg width="143" height="40" viewBox="0 0 143 40" fill="none" xmlns="http://www.w3.org/2000/svg">
