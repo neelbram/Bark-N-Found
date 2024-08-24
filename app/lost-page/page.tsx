@@ -113,8 +113,7 @@ function LostPetsPage() {
                     {lostPetsList.length > 0 ? (
                         lostPetsList.map((pet) => (
                             <Link key={pet.id} href={`./profile-lost/${pet.id}`}>
-                                <button className='home-card'>
-                                    {/* <Image src={pet.petPictureUrl} alt={pet.name} width={100} height={100} /> Adjust size as needed */}
+                                <button key={pet.id} className='home-card'>
                                     <img src={pet.petPictureUrl} alt={pet.name}/>
                                     <div className='card-content'>
                                         <div className='pet-details'>
