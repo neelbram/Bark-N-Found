@@ -257,7 +257,7 @@ button, a.button {
 .home-section {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 40px;
   width: 100%;
   justify-content: justify;
   padding-bottom: 120px;
@@ -315,13 +315,13 @@ button, a.button {
 /* Ensure responsiveness */
 @media (max-width: 768px) {
   .home-card {
-    width: auto;  /* Full-width card for small screens */
-    height: auto; /* Allow auto height for flexibility on smaller screens */
+    width: auto;  
+    height: auto; 
   }
 
   .home-card img {
     height: 200px; /* Adjust for smaller screens */
-    width: 160px;
+    width: 150px;
     object-fit: contain;
   }
 
