@@ -12,6 +12,8 @@ import { db } from '../firebase-config';
 import { LocationContext } from '../data/locationcontext';
 import FilterButton from '../components/filter-button'; // Ensure the import path is correct
 import { useRouter } from 'next/navigation'; // Use Next.js router
+import Link from 'next/link';
+
 
 interface Filters {
     kind: string;
