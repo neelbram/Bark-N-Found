@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useContext } from 'react';
-import { MapContainer, TileLayer, Marker, useMapEvents, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMapEvents, useMap , MarkerProps, Popup} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import TopBar from '../components/top-bar';
 import L from 'leaflet';
@@ -11,8 +11,8 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase-config';
 import { LocationContext } from '../data/locationcontext';
 import FilterButton from '../components/filter-button'; // Ensure the import path is correct
-import { useRouter } from 'next/navigation'; // Use Next.js router
 import Link from 'next/link';
+
 
 
 interface Filters {
@@ -21,7 +21,44 @@ interface Filters {
     color: string;
     size: string;
 }
+interface ClickableMarkerProps extends MarkerProps {
+    href: string;
+}
 
+const ClickableMarker: React.FC<{ position: [number, number], href: string, icon: L.Icon }> = ({ position, href, icon }) => {
+    const map = useMap();
+    const [pixelPosition, setPixelPosition] = useState<[number, number] | null>(null);
+
+    useEffect(() => {
+        if (map) {
+            // Convert geographical coordinates to pixel coordinates
+            const point = map.latLngToContainerPoint(L.latLng(position));
+            setPixelPosition([point.x, point.y]);
+        }
+    }, [map, position]);
+
+    return (
+        <>
+            <Marker position={position} icon={icon} />
+            {pixelPosition && (
+                <Link href={href}>
+                    <div
+                        style={{
+                            position: 'absolute',
+                            top: `${pixelPosition[1]}px`,
+                            left: `${pixelPosition[0]}px`,
+                            width: '25px',  // Match marker size
+                            height: '41px', // Match marker size
+                            cursor: 'pointer',
+                            zIndex: 1000,   // Ensure it's clickable over the map
+                            backgroundColor: 'transparent', // Ensure it's invisible
+                        }}
+                    ></div>
+                </Link>
+            )}
+        </>
+    );
+};
 const DefaultIcon = L.icon({
     iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
     shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png'
@@ -69,7 +106,7 @@ const MapPage: React.FC = () => {
         size: ''
     });
 
-    const router = useRouter(); // Use Next.js router
+
 
     useEffect(() => {
         const fetchLocations = async () => {
@@ -106,9 +143,7 @@ const MapPage: React.FC = () => {
         fetchLocations();
     }, []);
 
-    const handleMarkerClick = (id: string) => {
-      router.push(`/profile-lost/${id}`); // Use router.push for navigation
-    };
+
 
     const MapEvents: React.FC = () => {
         const map = useMap();
@@ -173,15 +208,19 @@ const MapPage: React.FC = () => {
                         attribution='&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
                     />
                     {filteredLocations.length > 0 ? (
-                        filteredLocations.map((location, index) => (
+                        filteredLocations.map((location) => (
                             <Marker
-                                key={index}
+                                key={location.id}
                                 position={[location.lat, location.lng]}
                                 icon={getMarkerIcon(location.type)}
-                                eventHandlers={{
-                                    click: () => handleMarkerClick(location.id), // Navigate to profile on marker click
-                                }}
-                            />
+                            >
+                                <Popup>
+                                    {/* Link to navigate to the profile-lost page */}
+                                    <Link href={`/profile-lost/${location.id}`}>
+                                        <a>View Profile</a> {/* Ensure the link wraps an anchor tag */}
+                                    </Link>
+                                </Popup>
+                            </Marker>
                         ))
                     ) : (
                         <p>No locations found</p>
