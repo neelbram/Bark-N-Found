@@ -1,19 +1,25 @@
 'use client';
 
 import React, { useEffect, useState, useContext } from 'react';
-import { MapContainer, TileLayer, Marker, useMapEvents, useMap , MarkerProps, Popup} from 'react-leaflet';
+import dynamic from 'next/dynamic';
 import 'leaflet/dist/leaflet.css';
 import TopBar from '../components/top-bar';
-import L from 'leaflet';
 import BottomPanel from '../components/bottom-panel';
 import AddButton from '../components/add-button';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase-config';
 import { LocationContext } from '../data/locationcontext';
-import FilterButton from '../components/filter-button'; // Ensure the import path is correct
+import FilterButton from '../components/filter-button';
 import Link from 'next/link';
+import L, { LocationEvent, ErrorEvent } from 'leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from 'react-leaflet';
 
-
+// No need to dynamically import hooks
+// Dynamically import Map components to disable SSR
+const MapContainerDynamic = dynamic(() => import('react-leaflet').then((mod) => mod.MapContainer), { ssr: false });
+const TileLayerDynamic = dynamic(() => import('react-leaflet').then((mod) => mod.TileLayer), { ssr: false });
+const MarkerDynamic = dynamic(() => import('react-leaflet').then((mod) => mod.Marker), { ssr: false });
+const PopupDynamic = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), { ssr: false });
 
 interface Filters {
     kind: string;
@@ -21,74 +27,47 @@ interface Filters {
     color: string;
     size: string;
 }
-interface ClickableMarkerProps extends MarkerProps {
-    href: string;
+
+// Ensure DefaultIcon setup only happens in the browser
+if (typeof window !== 'undefined') {
+    const DefaultIcon = L.icon({
+        iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png'
+    });
+
+    L.Marker.prototype.options.icon = DefaultIcon;
 }
-
-const ClickableMarker: React.FC<{ position: [number, number], href: string, icon: L.Icon }> = ({ position, href, icon }) => {
-    const map = useMap();
-    const [pixelPosition, setPixelPosition] = useState<[number, number] | null>(null);
-
-    useEffect(() => {
-        if (map) {
-            // Convert geographical coordinates to pixel coordinates
-            const point = map.latLngToContainerPoint(L.latLng(position));
-            setPixelPosition([point.x, point.y]);
-        }
-    }, [map, position]);
-
-    return (
-        <>
-            <Marker position={position} icon={icon} />
-            {pixelPosition && (
-                <Link href={href}>
-                    <div
-                        style={{
-                            position: 'absolute',
-                            top: `${pixelPosition[1]}px`,
-                            left: `${pixelPosition[0]}px`,
-                            width: '25px',  // Match marker size
-                            height: '41px', // Match marker size
-                            cursor: 'pointer',
-                            zIndex: 1000,   // Ensure it's clickable over the map
-                            backgroundColor: 'transparent', // Ensure it's invisible
-                        }}
-                    ></div>
-                </Link>
-            )}
-        </>
-    );
-};
-const DefaultIcon = L.icon({
-    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
-    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png'
-});
-
-L.Marker.prototype.options.icon = DefaultIcon;
 
 const LocationMarker: React.FC = () => {
     const { setUserLocation, setRadius } = useContext(LocationContext);
+
     const map = useMapEvents({
-        locationfound(e) {
+        locationfound(e: LocationEvent) {
             const radius = e.accuracy / 2;
             setUserLocation({ lat: e.latlng.lat, lng: e.latlng.lng });
             setRadius(radius);
-            L.marker(e.latlng)
-                .addTo(map)
-                .on('dblclick', () => {
-                    alert(e.latlng);
-                })
-                .bindPopup(`You are within ${radius} meters from this point`)
-                .openPopup();
-            L.circle(e.latlng, { radius }).addTo(map);
+
+            if (typeof window !== 'undefined') {
+                L.marker(e.latlng)
+                    .addTo(map)  // This now correctly refers to the map object
+                    .on('dblclick', () => {
+                        alert(e.latlng);
+                    })
+                    .bindPopup(`You are within ${radius} meters from this point`)
+                    .openPopup();
+                L.circle(e.latlng, { radius }).addTo(map);
+            }
         },
-        locationerror(e) {
+        locationerror(e: ErrorEvent) {
             alert(e.message);
         }
     });
 
     useEffect(() => {
-        map.locate({ setView: true, maxZoom: 16 });
+        // Check if map is initialized and call locate
+        if (map && typeof map.locate === 'function') {
+            map.locate({ setView: true, maxZoom: 16 });
+        }
     }, [map]);
 
     return null;
@@ -105,8 +84,6 @@ const MapPage: React.FC = () => {
         color: '',
         size: ''
     });
-
-
 
     useEffect(() => {
         const fetchLocations = async () => {
@@ -143,11 +120,11 @@ const MapPage: React.FC = () => {
         fetchLocations();
     }, []);
 
-
-
     const MapEvents: React.FC = () => {
         const map = useMap();
-        setMap(map);
+        useEffect(() => {
+            setMap(map);
+        }, [map]);
         return null;
     };
 
@@ -172,7 +149,10 @@ const MapPage: React.FC = () => {
                     shadowSize: [41, 41]
                 });
             default:
-                return DefaultIcon;
+                return L.icon({
+                    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+                    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png'
+                });
         }
     };
 
@@ -202,32 +182,32 @@ const MapPage: React.FC = () => {
                 </div>
             </div>
             <div className="screen background_color">
-                <MapContainer center={[31.8, 34.7]} zoom={13} style={{ height: '100vh', width: '100%' }}>
-                    <TileLayer
+                <MapContainerDynamic center={[31.8, 34.7]} zoom={13} style={{ height: '100vh', width: '100%' }}>
+                    <TileLayerDynamic
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         attribution='&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
                     />
                     {filteredLocations.length > 0 ? (
                         filteredLocations.map((location) => (
-                            <Marker
+                            <MarkerDynamic
                                 key={location.id}
                                 position={[location.lat, location.lng]}
                                 icon={getMarkerIcon(location.type)}
                             >
-                                <Popup>
+                                <PopupDynamic>
                                     {/* Link to navigate to the profile-lost page */}
                                     <Link href={`/profile-lost/${location.id}`}>
-                                        <a>View Profile</a> {/* Ensure the link wraps an anchor tag */}
+                                        View Profile
                                     </Link>
-                                </Popup>
-                            </Marker>
+                                </PopupDynamic>
+                            </MarkerDynamic>
                         ))
                     ) : (
                         <p>No locations found</p>
                     )}
                     <LocationMarker />
                     <MapEvents />
-                </MapContainer>
+                </MapContainerDynamic>
                 <AddButton map={map} setAddingMarker={setAddingMarker} />
             </div>
         </div>
