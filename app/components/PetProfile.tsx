@@ -106,7 +106,7 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
     const handleDeleteClick = () => {
         setShowConfirmDialog(true); // Show confirmation dialog
       };
-    // Function to handle delete
+
     const handleConfirmDelete = async () => {
         try {
             const petDoc = doc(db, 'profiles', pet.id); 
@@ -124,8 +124,8 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
 
       const handleFoundPet = async () => {
         try {
-            // const petDoc = doc(db, 'profiles', pet.id); 
-            // await deleteDoc(petDoc);
+            const petDoc = doc(db, 'profiles', pet.id); 
+            await deleteDoc(petDoc);
             setShowFoundPetPopup(true);
             console.log(showFoundPetPopup);
         } catch (error) {
