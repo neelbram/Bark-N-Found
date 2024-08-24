@@ -861,3 +861,26 @@ path.leaflet-interactive {
     width: 45px; /* Increase icon size */
 height: 45px;
 }
+
+.popup{
+    background-color: #7c7e6b; /* Adjust this to match your color */
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 300px; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the box */
+    position: absolute;
+}
+
+.popup p{
+    color: #EEE5DF; /* Text color */
+}
+
+#back-to-map{
+
+}
+
+#back-to-map :hover{
+    background-color: #485349; /* Button hover color */
+    cursor: pointer;
+}
