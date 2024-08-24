@@ -10,7 +10,7 @@ const DynamicSigninPage = dynamic(() => import('./signin/page'), { ssr: false })
 const DynamicMapPage = dynamic(() => import('./map-page/page'), { ssr: false });
 const DynamicLostPage = dynamic(() => import('./lost-page/page'), { ssr: false });
 const DynamicFoundPage = dynamic(() => import('./found-page/page'), { ssr: false });
-const DynamicProfileLost = dynamic(() => import('./profile-lost/page'), { ssr: false });
+const DynamicProfileLost = dynamic(() => import('./profile-lost/[id]/page'), { ssr: false });
 
 export default function Page() {
   const pathname = usePathname(); // Get the current path using usePathname

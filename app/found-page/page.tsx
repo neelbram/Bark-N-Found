@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useContext } from 'react';
-import { useRouter } from 'next/navigation'; // Use Next.js navigation
+
 import TopBar from '../components/top-bar';
 import BottomPanel from '../components/bottom-panel';
 import { db } from '../firebase-config';
@@ -9,6 +9,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { LocationContext } from '../data/locationcontext';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import FilterButton from '../components/filter-button'; // Ensure the import path is correct
+import Link from 'next/link';
 
 interface Pet {
     id: string;
@@ -59,7 +60,7 @@ function FoundPetsPage() {
         color: '',
         size: ''
     });
-    const router = useRouter(); // Use Next.js router
+    // const router = useRouter(); // Use Next.js router
 
     useEffect(() => {
         const getLostPetsList = async () => {
@@ -97,10 +98,6 @@ function FoundPetsPage() {
         getLostPetsList();
     }, [userLocation, filters]);
     
-    
-    const handleCardClick = (id: string) => {
-        router.push(`/profile-lost/${id}`); // Use router.push for navigation
-    };
 
     return (
         <div className='screen lost-pets-page'>
@@ -113,15 +110,17 @@ function FoundPetsPage() {
                 <div className='home-section'>
                     {lostPetsList.length > 0 ? (
                         lostPetsList.map((pet) => (
-                            <button key={pet.id} className='home-card' onClick={() => handleCardClick(pet.id)}>
-                                <img src={pet.petPictureUrl} alt={pet.name} />
-                                <div className='card-content'>
-                                    <div className='pet-details'>
-                                        <p className='pet-name'>{pet.name}</p>
-                                        <p className='pet-date'>{formatDate(pet.date)}</p>
+                            <Link key={pet.id} href={`./profile-lost/${pet.id}`}>
+                                <button key={pet.id} className='home-card'>
+                                    <img src={pet.petPictureUrl} alt={pet.name} />
+                                    <div className='card-content'>
+                                        <div className='pet-details'>
+                                            <p className='pet-name'>{pet.name}</p>
+                                            <p className='pet-date'>{formatDate(pet.date)}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </button>
+                                </button>
+                            </Link>
                         ))
                     ) : (
                         <p>No found pets available.</p>

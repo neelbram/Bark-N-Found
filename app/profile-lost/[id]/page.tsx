@@ -2,11 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation'; // Use Next.js useParams
-import PetProfile from '../components/PetProfile';
-import BottomPanel from '../components/bottom-panel';
-import { db } from '../firebase-config';
+import PetProfile from '../../components/PetProfile';
+import BottomPanel from '../../components/bottom-panel';
+import { db } from '../../firebase-config';
 import { doc, getDoc, collection } from 'firebase/firestore';
-import { Pet as PetType } from '../data/types'; // Import PetType from types.ts
+import { Pet as PetType } from '../../data/types'; // Import PetType from types.ts
 
 const LostProfile = () => {
     const params = useParams();
