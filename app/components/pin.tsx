@@ -45,7 +45,7 @@ const Pin: React.FC<PinProps> = ({ initialPosition }) => {
   });
 
   const foundIcon = L.icon({
-    iconUrl: 'public\purple-marker-icon.png.png', // Replace with your found pin marker icon URL
+    iconUrl: 'public/purple-marker-icon.png.png', // Replace with your found pin marker icon URL
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],

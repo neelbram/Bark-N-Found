@@ -4,6 +4,11 @@
 /* these are some initial rules to standardize element display and behaviour */
 /* you can read more about why following the above link, or searching for */
 /* "css normalize" or "css reset" in your favorite search engine ;) */
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Prevents scroll bars from appearing */
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @font-face {
@@ -15,20 +20,19 @@
 }
 
 
-  
 /* Colors */
-  :root {
-    background-color: #EEE5DF;
-    --blue_primary: #4B4665;
-    --blue_light: #756F92;
-    --secondary:#5D6354;
-    --accent:  #B55700;
-    --text: #696480;
-    /* --link: #B55700; */
-    --primary-font: 'Poppins', sans-serif;
-  }
+:root {
+  background-color: #EEE5DF;
+  --blue_primary: #4B4665;
+  --blue_light: #756F92;
+  --secondary:#5D6354;
+  --accent:  #B55700;
+  --text: #696480;
+  /* --link: #B55700; */
+  --primary-font: 'Poppins', sans-serif;
+}
 
-.background_color{
+.background_color {
   background-color: #EEE5DF;
 }
 
@@ -36,47 +40,49 @@
   color: #4B4665;
 }
 
-.blue_light{
+.blue_light {
   color: #756F92;
 }
 
-.accent{
+.accent {
   color: #B55700;
 }
 
-.green_secondery{
+.green_secondery {
   color: #5D6354;
 }
 
-.text_color{
-  color: #696480
+.text_color {
+  color: #696480;
 }
 
-/* Div screen */
-.screen{
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center the content both horizontally and vertically */
   background-color: var(--background_color, #EEE5DF); /* Set your desired background color */
   min-height: 100vh; /* Ensure the background covers the whole viewport height */
-  display: flex;
-  justify-content: center; /* Center the content horizontally */
-  align-items: center; /* Center the content vertically */
+  width: 100%; /* Ensure the div spans the full width of the viewport */
+  height: 100%; /* Ensure the div spans the full height of the viewport */
+  box-sizing: border-box;
   font-family: var(--primary-font);
 }
 
 /* Texts */
 
 /* Headlines */
-h1{
-    color: var(--primary-color, #4B4665);
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 130%; /* 41.6px */
-    letter-spacing: -0.32px;
+h1 {
+  color: var(--primary-color, #4B4665);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 41.6px */
+  letter-spacing: -0.32px;
 }
 
-
 /* Subtitles */
-h2{
+h2 {
   color: var(--primary-color, #4B4665);
   font-family: var(--primary-font);
   font-size: 24px;
@@ -85,16 +91,14 @@ h2{
   line-height: normal;
 }
 
-h3{
-    color:#696480;
-    font-family: var(--primary-font);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 130%;
+h3 {
+  color: #696480;
+  font-family: var(--primary-font);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 130%;
 }
-
-
 
 /* Positions and grid */
 .center {
@@ -103,17 +107,24 @@ h3{
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1000px;
+  height: 100%;
   margin: 0 auto;
   width: 100%;
   padding: 0 1rem;
+  transform: scale(0.88); /* 0.95 scales the page to 95% of its original size */
+
+}
+.leaflet-container {
+  height: 100vh;
+  width: 100%;
 }
 
-.text_center{
+.text_center {
   text-align: center;
 }
 
-.padding-left{
+.padding-left {
   padding-left: 10px;
 }
 
@@ -127,18 +138,19 @@ h3{
 
 .top {
   position: fixed;
-  top: 10px;
-  left: 10px;
+  top: 0;
   width: 100%;
   z-index: 999; /* Ensure it appears above other content */
+  background-color: var(--background_color, #EEE5DF); /* Ensure it matches the page background */
+  padding-top: 10px; /* Add some padding to avoid content overlap */
 }
 
 /* Buttons */
-.main_button{
+.main_button {
   background: var(--secondary-color, #5D6354);
   display: flex;
-  width: 100%; 
-  max-width: 353px; 
+  width: 100%;
+  max-width: 353px;
   height: 56px;
   padding: 17px 152px;
   justify-content: center;
@@ -156,136 +168,99 @@ h3{
   line-height: 125%; /* 20px */
 }
 
-
 .second_button {
-    background-color: var(--background_color, #EEE5DF);
-    display: inline-block;
-    white-space: nowrap;
-    width: 100%; 
-    max-width: 353px; 
-    height: 56px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
-    border-radius: 10px;
-    border: 1px solid var(--secondary-color, #5D6354);
-    color: var(--secondary-color, #5D6354);
-    text-align: center;
-    font-family: var(--primary-font);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 125%; 
-  }
-  
-
-  input, textarea, select, button, a.button {
-    border: 1px solid var(--gray);
-  }
-  button, a.button {
-    font-size: 1.125rem;
-    background-color: var(--link);
-    color: var(--light);
-    margin: 1rem 0 0 0;
-    cursor: pointer;
-  }
-  .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-
-  #logo{
-    cursor: pointer;
-  }
-
-  #dogImage{
-    padding-left: 75px;
-  }
-  
-  .bottom-panel{
-    background-color: var(--background_color, #EEE5DF);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    height: 72px;
-    flex-shrink: 0;
-    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1); /* Example shadow */
-  }
-
-  .bottom-panel button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 30px;
-  }
-
-
-/* Adjust the margin-left for .lost-title and .found-title */
-.lost-title {
-  color: white; /* Text color */
-  padding: 10px 20px; /* Adjust padding for better appearance */
-  margin-left: 20px; /* Adjust as needed */
-  width: fit-content;
+  background-color: var(--background_color, #EEE5DF);
+  display: inline-block;
+  white-space: nowrap;
+  width: 100%;
+  max-width: 353px;
+  height: 56px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid var(--secondary-color, #5D6354);
+  color: var(--secondary-color, #5D6354);
+  text-align: center;
   font-family: var(--primary-font);
-  background-color: #5D6354; /* Background color for lost */
-  border-radius: 0 60px 40px 0; /* Straight end on the left, rounded end on the right */
-  display: inline-block; /* Ensure inline block to minimize space */
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 125%;
 }
 
-.found-title {
-  color: white; /* Text color */
-  padding: 10px 20px; /* Adjust padding for better appearance */
-  margin-left: 20px; /* Adjust as needed */
-  width: fit-content;
-  font-family: var(--primary-font);
-  background-color: #756F92; /* Background color for found */
-  border-radius: 0 60px 40px 0; /* Straight end on the left, rounded end on the right */
-  display: inline-block; /* Ensure inline block to minimize space */
+input, textarea, select, button, a.button {
+  border: 1px solid var(--gray);
+}
+
+button, a.button {
+  font-size: 1.125rem;
+  background-color: var(--link);
+  color: var(--light);
+  margin: 1rem 0 0 0;
+  cursor: pointer;
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 10px; /* Adjust as needed */
+}
+
+#dogImage {
+  padding-left: 75px;
+}
+
+.bottom-panel {
+  background-color: var(--background_color, #EEE5DF);
+  position: fixed; /* Changed from absolute to fixed */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  height: 72px;
+  flex-shrink: 0;
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1); /* Example shadow */
 }
 
 
-/* Ensure the Poppins font is applied */
-.home-container, .home-center, .home-card .pet-name, .home-card .pet-date, .map-title {
-  font-family: 'Poppins', sans-serif;
+.bottom-panel button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 30px;
 }
 
-/* Style for the home container */
+/* Home container for scrollable content */
 .home-container {
+  width: 100%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 16px;
-}
-
-/* Styling for the title */
-.home-center {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 16px;
-  text-align: center;
+  overflow-y: auto;
+  max-height: calc(100vh - 120px); 
+  padding-bottom: 120px; /* This adds space inside the container */
+  box-sizing: border-box; /* Ensures padding is included in the height calculation */
+  margin-bottom: 72px; /* This pushes the container above the bottom panel */
 }
 
 
-/* Styling for the scrollable containers */
-.home-scrollable-container {
-  width: 100%;
-  overflow-x: auto;
-  margin-bottom: 16px;
-}
-
-/* Styling for the scrollable bars */
-.home-scrollable-bar {
+/* Styling for the sections */
+.home-section {
   display: flex;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 40px;
+  width: 100%;
+  justify-content: justify;
+  padding-bottom: 120px;
 }
 
 /* Styling for the cards */
@@ -294,236 +269,494 @@ h3{
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 150px;
+  width: calc(80% - 10px);  /* Adjusted for a wider card */
+  height: 350px; /* Set a fixed height */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 8px;
 }
+
 
 .home-card img {
   width: 100%;
-  height: 150px;
-  object-fit: cover;
+  height: 250px;  /* Adjust the height as needed */
+  object-fit: cover;  /* Ensures the image covers the container while maintaining aspect ratio */
   border-radius: 12px;
 }
+
 
 .card-content {
-  padding: 8px;
+  padding: 8px 0;
   width: 100%;
 }
+
+.pet-details {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 8px;  /* Adjust if needed */
+}
+
 
 .pet-name {
-  font-size: 14px;
-  margin: 4px 0;
-  font-weight: normal;
-}
-
-.pet-date {
-  font-size: 12px;
-  color: #666;
-  font-weight: normal;
-}
-
-/* Yossi button styling */
-.yossi-button {
-  background-color: #f04;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 16px;
-}
-
-.yossi-button:hover {
-  background-color: #c03;
-}
-
-/* Ensure responsiveness */
-@media (max-width: 768px) {
-  .home-container {
-      padding: 8px;
-  }
-
-  .home-center {
-      font-size: 20px;
-  }
-
-  .home-card {
-      width: 120px;
-  }
-
-  .home-card img {
-      height: 120px;
-  }
-
-  .pet-name {
-      font-size: 12px;
-  }
-
-  .pet-date {
-      font-size: 10px;
-  }
-}
-
-
-/* Styles specific to LostPetsPage */
-
-.lost-pets-page .home-container,
-.lost-pets-page .home-center,
-.lost-pets-page .home-card .pet-name,
-.lost-pets-page .home-card .pet-date {
-  font-family: 'Poppins', sans-serif;
-}
-
-/* Style for the home container specific to LostPetsPage */
-.lost-pets-page .home-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px;
-  overflow-y: auto;  /* Enable vertical scrolling */
-  max-height: 100vh;  /* Ensure it covers the full height of the viewport */
-}
-
-/* Styling for the title specific to LostPetsPage */
-.lost-pets-page .home-center {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 16px;
-  text-align: center;
-}
-
-/* Styling for the sections specific to LostPetsPage */
-.lost-pets-page .home-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  width: 100%;
-}
-
-/* Styling for the cards specific to LostPetsPage */
-.lost-pets-page .home-card {
-  background-color: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: calc(33.333% - 10px); /* 3 cards per row with some spacing */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 8px;
-}
-
-.lost-pets-page .home-card img {
-  width: 100%;
-  height: 200px;  /* Increase image height */
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-.lost-pets-page .card-content {
-  display: flex;
-  justify-content: space-between;  /* Space out name and date */
-  width: 100%;
-  padding: 8px 0;
-}
-
-.lost-pets-page .pet-details {
-  display: flex;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.lost-pets-page .pet-name,
-.lost-pets-page .pet-date {
-  font-size: 14px;
+  font-size: 16px;  /* Ensure the same font size */
   margin: 0;
   font-weight: normal;
 }
 
-.lost-pets-page .pet-name {
-  margin-right: 8px;
+.pet-date {
+  font-size: 14px;  /* Ensure the same font size */
+  color: #666;
+  font-weight: normal;
 }
+
 
 /* Ensure responsiveness */
 @media (max-width: 768px) {
-  .lost-pets-page .home-container {
-      padding: 8px;
+  .home-card {
+    width: auto;  
+    height: auto; 
   }
 
-  .lost-pets-page .home-center {
-      font-size: 20px;
+  .home-card img {
+    height: 200px; /* Adjust for smaller screens */
+    width: 150px;
+    object-fit: contain;
   }
 
-  .lost-pets-page .home-card {
-      width: calc(50% - 10px); /* 2 cards per row for small screens */
+  .pet-name,
+  .pet-date {
+    font-size: 14px; /* Adjusted font size for smaller screens */
+    color: black;
   }
+}
 
-  .lost-pets-page .home-card img {
-      height: 150px;
-  }
 
-  .lost-pets-page .pet-name,
-  .lost-pets-page .pet-date {
-      font-size: 12px;
-  }
+/* Additional CSS for top bar and titles */
+.top {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999; /* Ensure it appears above other content */
+  background-color: var(--background_color, #EEE5DF); /* Ensure it matches the page background */
+  padding-top: 10px; /* Add some padding to avoid content overlap */
+}
+
+#top-bar {
+  display: absolute;
+  /* flex-direction: row; */
+  align-items: center;
+  padding: 10px 20px;
+  width: 100%;
+}
+
+#logo {
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+/* .flex-row {
+  display: flex;
+  flex-direction: row;
+} */
+
+.lost-title, .found-title {
+  background-color: var(--background_color, #EEE5DF); /* Ensure it matches the page background */
+  margin: 0; /* Reset margin */
+  padding: 10px 0; /* Add padding */
+  width: 100%; /* Full width */
+  text-align: center; /* Center the text */
 }
 
 .pet-profile {
-    font-family: Poppins;
-    color:#44493C;
-    padding-bottom: 50px;
+  font-family: Poppins;
+  color: #44493C;
+  padding-bottom: 50px;
 }
 
 .pet-profile-header {
-    text-align: center;
+  text-align: center;
 }
 
 .pet-profile-image img {
-    width: 100%;
-    border-radius: 10px;
+  width: 100%;
+  border-radius: 10px;
 }
 
 .pet-profile-details {
-    background-color: white;
-    border-radius: 50px;
-    margin-top: 16px;
-    padding: 24px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 50px;
+  margin-top: 16px;
+  padding: 24px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .pet-profile-details h3 {
-    margin: 0;
-    color: #333;
+  margin: 0;
+  color: #333;
 }
 
 .pet-type {
-    color: gray;
-    font-size: 14px;
+  color: gray;
+  font-size: 14px;
 }
 
 .pet-description p,
 .pet-location p,
 .pet-contact p,
 .pet-additional-info p {
-    margin: 5px 0;
+  margin: 0px 0px;
 }
 
 .pet-description strong,
 .pet-location strong,
 .pet-contact strong,
 .pet-additional-info strong {
-    color: #555;
+  color: #555;
 }
 
 .pet-profile-details p {
-    color: #333;
+  color: #333;
 }
 
-.text-32{
+.text-32 {
+  font-size: 32px;
+}
+
+.text-24 {
+  font-size: 24px;
+}
+
+.text-18 {
+  font-size: 18px;
+}
+
+.text-16 {
+  font-size: 16px;
+}
+
+.text-14 {
+  font-size: 14px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.pet-profile-image {
+  position: relative;
+  width: 100%; /* or a specific width */
+  padding-top: 56.25%; /* 16:9 aspect ratio (height / width * 100%) */
+}
+
+.pet-profile-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* or contain, depending on your needs */
+}
+
+.pet-name {
+  margin-right: 12px;
+}
+
+.pet-type, .pet-location-lost-at-title {
+  color: #70717B;
+}
+
+.pet-location-lost-at-title {
+  margin-left: 8px;
+  margin-right: 10px;
+}
+
+.pet-description {
+  background-color: #E5E5E5;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+.flex-line {
+  display: flex;
+}
+
+.flex-line:not(:last-child) {
+  margin-bottom: 18px;
+}
+
+.flex-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: flex-start; /* Align items to the start (left) */
+}
+
+.flex-item .flex-item-title {
+  font-size: 14px;
+  color: #756F92;
+  margin-bottom: 5px; /* Add margin for spacing between title and sub */
+  order: 1; /* Set order to display after .flex-item-sub */
+}
+
+.flex-item .flex-item-sub {
+  font-size: 16px;
+  margin: 0;
+  order: 2; /* Set order to display before .flex-item-title */
+}
+
+input {
+  font-size: 16px;
+  background: none;
+  border: 1px solid var(--gray);
+  font-family: var(--primary-font);
+  font-style: italic;
+  width: 55px
+}
+
+.pet-additional-info {
+  margin-bottom: 30px;
+}
+
+.pet-contact p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pet-contact .first-letter {
+  padding: 15px 20px;
+  border-radius: 50%;
+  background-color: #818974;
+}
+
+.pet-contact .contact {
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pet-contact .contact-number {
+  font-size: 18px; /* Match the size of the name */
+}
+
+.whatsapp-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-top: -5px; /* Move the button slightly up */
+}
+
+.whatsapp-button svg {
+  width: 45px; /* Increase icon size */
+  height: 45px;
+}
+
+.pet-profile-info-header {
+  flex: 1;
+  display: flex;
+  flex-direction: row; /* Stack items vertically */
+  align-items: flex-start;
+}
+
+#edit-button {
+  margin-left: 150px;
+}
+
+/* styles.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.filter-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background-color: var(--background_color); /* Match your app's background color */
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333; /* Dark grey color */
+    /* transition: color 0.3s ease, background-color 0.3s ease; */
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.filter-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #f8f9fa; /* Match your app's background color */
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif; /* Change font to Poppins */
+}
+
+.filter-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.filter-modal h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif; /* Change font to Poppins */
+}
+
+.filter-group {
+    margin-bottom: 15px;
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif; /* Change font to Poppins */
+}
+
+.filter-group select {
+    padding: 10px;
+    font-size: 14px; /* Reduce font size */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-family: 'Poppins', sans-serif; /* Change font to Poppins */
+}
+
+.filter-modal .apply-button {
+    padding: 10px;
+    background-color: #333; /* Dark grey background */
+    color: #fff; /* White text */
+    border: 2px solid #333; /* Dark grey frame */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif; /* Change font to Poppins */
+}
+
+.position-fixed {
+  position: fixed;
+  width: 100%;
+  z-index: 999; /* Ensure it appears above other content */
+  background-color: var(--background_color, #EEE5DF); /* Ensure it matches the page background */
+  top: 0;
+}
+
+.filter-button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px; /* Adjust padding as needed */
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+.leaflet-control-zoom{ 
+  top: 110px;
+  border: 0px;
+}
+
+
+path.leaflet-interactive {
+  display: none;
+}
+
+.pin-form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's above the map */
+  }
+  
+  .pin-form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    max-width: 500px;
+    width: 100%;
+  }
+  .pet-profile {
+    font-family: Poppins;
+    color:#44493C;
+    padding-bottom: 50px;
+}
+  .pet-profile-header {
+    text-align: center;
+} 
+  .pet-profile-image img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+  .pet-profile-details {
+    background-color: white;
+    border-radius: 50px;
+    margin-top: 16px;
+    padding: 24px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.pet-profile-details h3 {
+    margin: 0;
+    color: #333;
+}
+  .pet-type {
+    color: gray;
+    font-size: 14px;
+}
+  .pet-description p,
+  .pet-location p,
+  .pet-contact p,
+  .pet-additional-info p {
+      margin: 5px 0;
+  }
+
+  .pet-description strong,
+  .pet-location strong,
+  .pet-contact strong,
+  .pet-additional-info strong {
+      color: #555;
+  }
+
+  .pet-profile-details p {
+    color: #333;
+}
+  .text-32{
     font-size: 32px;
 }
 
@@ -538,22 +771,18 @@ h3{
 .text-16{
     font-size: 16px;
 }
-
-.text-14{
+  .text-14{
     font-size: 14px;
 }
-
-.bold{
+  .bold{
     font-weight: bold;
 }
-
-.pet-profile-image {
+  .pet-profile-image {
     position: relative;
     width: 100%; /* or a specific width */
     padding-top: 56.25%; /* 16:9 aspect ratio (height / width * 100%) */
 }
-
-.pet-profile-image img {
+  .pet-profile-image img {
     position: absolute;
     top: 0;
     left: 0;
@@ -561,94 +790,68 @@ h3{
     height: 100%;
     object-fit: cover; /* or contain, depending on your needs */
 }
-
-.pet-name{
+  .pet-name{
     margin-right: 12px;
 }
-
-.pet-type, .pet-location-lost-at-title{
+  .pet-type, .pet-location-lost-at-title{
     color: #70717B;
 }
-
-.pet-location-lost-at-title{
+  .pet-location-lost-at-title{
     margin-left:8px;
     margin-right: 10px;
 }
-
-.pet-description{
+  .pet-description{
     background-color: #E5E5E5;
     border-radius: 12px;
     padding: 18px;
     margin-bottom: 20px;
 }
-
-.flex-line{
+  .flex-line{
     display: flex;
 }
-
-.flex-line:not(:last-child){
+  .flex-line:not(:last-child){
     margin-bottom: 18px;
 }
-
-.flex-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: flex-start; /* Align items to the start (left) */
+  .flex-item{
+    flex:1;
+    width: 50%;
 }
-
-.flex-item .flex-item-title {
+  .flex-item .flex-item-title{
     font-size: 14px;
-    color: #756F92;
-    margin-bottom: 5px; /* Add margin for spacing between title and sub */
-    order: 1; /* Set order to display after .flex-item-sub */
+    color:#756F92;
+    margin:0;
 }
-
-.flex-item .flex-item-sub {
+  .flex-item .flex-item-sub{
     font-size: 16px;
-    margin: 0;
-    order: 2; /* Set order to display before .flex-item-title */
+    margin:0;
 }
-
-input{
-    font-size: 16px;
-    background: none;
-    border: 1px solid var(--gray);
-    font-family: var(--primary-font);
-    font-style: italic;
-    width: 55px
-}
-
-.pet-additional-info{
+  .pet-additional-info{
     margin-bottom: 30px;
 }
-.pet-contact p {
+  .pet-contact p {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-
-.pet-contact .first-letter {
+  .pet-contact .first-letter {
     padding: 15px 20px;
     border-radius: 50%;
     background-color: #818974;
 }
-
-.pet-contact .contact {
+  .pet-contact .contact {
     margin-right: 15px;
 }
-
-.contact-info {
+  .contact-info {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-
-.pet-contact .contact-number {
+  
+  .pet-contact .contact-number {
     font-size: 24px; /* Match the size of the name */
 }
 
-.whatsapp-button {
+  .whatsapp-button {
     background: none;
     border: none;
     padding: 0;
@@ -657,19 +860,58 @@ input{
     align-items: center;
     margin-top: -5px; /* Move the button slightly up */
 }
-
-.whatsapp-button svg {
+  .whatsapp-button svg {
     width: 45px; /* Increase icon size */
-    height: 45px;
+height: 45px;
 }
 
-.pet-profile-info-header{
-    flex: 1;
-    display: flex;
-    flex-direction: row; /* Stack items vertically */
-    align-items: flex-start;
+.popup{
+    position: fixed;
+    top: 50%; /* Centers it vertically */
+    left: 50%; /* Centers it horizontally */
+    transform: translate(-50%, -50%); /* Adjusts the position to ensure it's exactly centered */
+    background-color: #7c7e6b; /* Adjust this to match your color */
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    max-width: 300px; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the box */
+    z-index: 1000; /* Ensures the popup is above other elements */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+    width: 332px;
 }
 
-#edit-button {
-    margin-left: 150px;
+
+.popup p{
+    color: #EEE5DF; /* Text color */
 }
+
+#back-to-map :hover{
+    background-color: #485349; /* Button hover color */
+    cursor: pointer;
+}
+.button-group {
+    display: flex; /* Aligns children (buttons) horizontally */
+    justify-content: center; /* Centers the buttons within the container */
+    gap: 10px; /* Adds space between buttons */
+  }
+  
+
+.delete-button,
+.cancel-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+    overflow-y: auto; /* Allows vertical scrolling */
+  }
+
+  #i-found-my-pet{
+    width: 380px;
+  }
+
+  #google-sign-in{
+    margin-left: -5px;
+  }

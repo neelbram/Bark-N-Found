@@ -1,71 +1,36 @@
-'use client';
-
-import React from 'react';
-import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom';
+'use client'
 import dynamic from 'next/dynamic';
-import ReactDOM from 'react-dom';
+import { usePathname } from 'next/navigation'; // Use usePathname
+import Link from 'next/link';
 
+// Assuming these components require dynamic imports
 const DynamicLoginScreen = dynamic(() => import('./pages/open-screen'), { ssr: false });
-const DynamicCreateAccount = dynamic(() => import('./pages/create-account'), { ssr: false });
-const DynamicSigninPage = dynamic(() => import('./pages/signin'), { ssr: false });
-const DynamicAboutPage = dynamic(() => import('./pages/about-page'), { ssr: false });
-const DynamicMapPage = dynamic(() => import('./pages/map-page'), { ssr: false });
-const DynamicLostPage = dynamic(() => import('./pages/lost-page'), { ssr: false });
-const DynamicFoundPage = dynamic(() => import('./pages/found-page'), { ssr: false });
-const DynamicProfileLost = dynamic(() => import('./pages/profile-lost'), { ssr: false });
+const DynamicCreateAccount = dynamic(() => import('./create-account/page'), { ssr: false });
+const DynamicSigninPage = dynamic(() => import('./signin/page'), { ssr: false });
+const DynamicMapPage = dynamic(() => import('./map-page/page'), { ssr: false });
+const DynamicLostPage = dynamic(() => import('./lost-page/page'), { ssr: false });
+const DynamicFoundPage = dynamic(() => import('./found-page/page'), { ssr: false });
+const DynamicProfileLost = dynamic(() => import('./profile-lost/[id]/page'), { ssr: false });
 
+export default function Page() {
+  const pathname = usePathname(); // Get the current path using usePathname
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <DynamicLoginScreen />,
-  },
-  {
-    path: "/create-account",
-    element: <DynamicCreateAccount />,
-  },
-  {
-    path: "/signin",
-    element: <DynamicSigninPage />,
-  },
-  {
-    path: "/about-page",
-    element: <DynamicAboutPage />,
-  },
-  {
-    path: "/map-page",
-    element: <DynamicMapPage />,
-  },
-  {
-    path: "/lost-page",
-    element: <DynamicLostPage />,
-  },
-  {
-    path: "/found-page",
-    element: <DynamicFoundPage />,
-  },
-
-  {
-
-    path: "profile-lost/:id", 
-    element: <DynamicProfileLost />
+  switch (pathname) {
+    case '/':
+      return <DynamicLoginScreen />;
+    case '/create-account':
+      return <DynamicCreateAccount />;
+    case '/signin':
+      return <DynamicSigninPage />;
+    case '/map-page':
+      return <DynamicMapPage />;
+    case '/lost-page':
+      return <DynamicLostPage />;
+    case '/found-page':
+      return <DynamicFoundPage />;
+    case '/profile-lost/[id]':
+      return <DynamicProfileLost />;
+    default:
+      return <div>Page Not Found</div>;
   }
-]);
-
-const App = () => {
-  return (
-    <RouterProvider router={router} />
-  );
-};
-
-// const rootElement = document.getElementById('root');
-// if (rootElement) {
-//   const root = ReactDOM.createRoot(rootElement);
-//   root.render(<App />);
-// } else {
-//   console.error("Root element not found.");
-// }
-
-
-export default App;
-
+}

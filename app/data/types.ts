@@ -27,16 +27,16 @@ export interface Pet {
   id: string;
   animalKind: string;
   breed: string;
-  chipNumber: string;
+  chipNumber: number;
   color: string;
   contactName: string;
   contactPhone: string;
-  date: Date;
+  lastUpdate: Date|null;
   extraDetails: string;
   name: string;
   petPictureUrl: string;
   position: position;
-  sex: string;
+  sex: boolean; // true for Male, false for Female
   size: string;
   type: string;
 }
