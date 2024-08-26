@@ -136,14 +136,6 @@ h3 {
   padding-bottom: 20px;
 }
 
-.top {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999; /* Ensure it appears above other content */
-  background-color: var(--background_color, #EEE5DF); /* Ensure it matches the page background */
-  padding-top: 10px; /* Add some padding to avoid content overlap */
-}
 
 /* Buttons */
 .main_button {
@@ -246,7 +238,7 @@ button, a.button {
   align-items: center;
   padding: 16px;
   overflow-y: auto;
-  max-height: calc(100vh - 120px); 
+  max-height:calc(100vh - 250px); 
   padding-bottom: 120px; /* This adds space inside the container */
   box-sizing: border-box; /* Ensures padding is included in the height calculation */
   margin-bottom: 72px; /* This pushes the container above the bottom panel */
@@ -342,24 +334,34 @@ button, a.button {
   background-color: var(--background_color, #EEE5DF); /* Ensure it matches the page background */
   padding-top: 10px; /* Add some padding to avoid content overlap */
 }
+.top-bar-content {
+    display: flex;
+    align-items: center; /* Align items vertically centered */
+    justify-content: space-between; /* Adjust this to space out elements as needed */
+    margin-bottom: 10px;
+  }
+  
+ 
+  
 
-#top-bar {
-  display: absolute;
-  /* flex-direction: row; */
-  align-items: center;
-  padding: 10px 20px;
-  width: 100%;
+  #logo {
+    margin-right: 16px; /* Adjust spacing between logo and title */
+  }
+
+.home-center.lost-title {
+    flex-grow: 1; /* Makes the title take up remaining space */
+    text-align: center; /* Center text */
 }
 
-#logo {
-  padding-left: 10px;
-  padding-top: 5px;
-}
+.spacer {
+    flex-grow: 1; /* This will push content to the sides */
+  }
 
-/* .flex-row {
-  display: flex;
-  flex-direction: row;
-} */
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+  }
+
 
 .lost-title, .found-title, .map-title {
   background-color: var(--background_color, #EEE5DF); /* Ensure it matches the page background */
@@ -583,13 +585,13 @@ body {
 
 .filter-button {
     position: absolute;
-    top: 15px;
+    top: 8px;
     right: 20px;
     background-color: var(--background_color); /* Match your app's background color */
     border: none;
     cursor: pointer;
     font-size: 24px;
-    color: #333; /* Dark grey color */
+    color: var(--blue_primary); /* Dark grey color */
     /* transition: color 0.3s ease, background-color 0.3s ease; */
     padding: 10px;
     border-radius: 5px;

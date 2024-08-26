@@ -102,7 +102,7 @@ function LostPetsPage() {
 
     return (
         <div className='screen lost-pets-page'>
-            <div className="header-container" >
+            <div className="header-container top background_color" >
                 <TopBar title='Lost' filters={filters} setFilters={setFilters} />
             </div>
             <div className='home-container background_color'>

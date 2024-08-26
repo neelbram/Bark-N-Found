@@ -13,6 +13,7 @@ import { LocationContext } from '../data/locationcontext';
 import Link from 'next/link';
 import L, { LocationEvent, ErrorEvent } from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from 'react-leaflet';
+import FilterButton from './filter-button'; // Ensure the import path is correct
 
 // No need to dynamically import hooks
 // Dynamically import Map components to disable SSR
@@ -175,8 +176,8 @@ const MapPage: React.FC = () => {
     return (
         <div className='screen'>
             <div className='top background_color'>
-                <div className="header-container" style={{textAlign :'center'}}>
-                    <TopBar title="Pin Your Pet" filters={filters} setFilters={setFilters} />
+                <div className="header-container" >
+                    <TopBar title=" " filters={filters} setFilters={setFilters} />
                 </div>
             </div>
             <div className="screen background_color">
