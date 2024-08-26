@@ -1,40 +1,19 @@
 import React, { useState } from 'react';
-import L from 'leaflet';
 
 
 const InfoButton: React.FC = () => {
   const [ShowInfo, setShowInfo] = useState(false);
 
-  // Create custom icons for lost and found pets
-  const lostPetIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-  });
-
-  const foundPetIcon = new L.Icon({
-    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-  });
-
   const handleInfoOpen = () => {
-        setShowInfo(true);
+    setShowInfo(true);
   };
-
 
   const handleInfoClose = () => {
     setShowInfo(false);
   };
 
   return (
-    <>
+    <div>
       <button 
         onClick={handleInfoOpen}
         style={{
@@ -102,7 +81,7 @@ const InfoButton: React.FC = () => {
             </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
