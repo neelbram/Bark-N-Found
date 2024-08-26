@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import TopBar from './top-bar';
 import BottomPanel from './bottom-panel';
 import AddButton from './add-button';
+import InfoButton from './map-info-button';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase-config';
 import { LocationContext } from '../data/locationcontext';
@@ -174,15 +175,15 @@ const MapPage: React.FC = () => {
 
     return (
         <div className='screen'>
-            <div className='top'>
-                <BottomPanel currentPage={currentPage} />
-                <div className="header-container">
+            <div className='top background_color'>
+                <div className="header-container" style={{textAlign :'center'}}>
                     <TopBar />
+                    <h1 className='map-title' >Pin Your Pet</h1>
                     <FilterButton filters={filters} setFilters={setFilters} />
                 </div>
             </div>
             <div className="screen background_color">
-                <MapContainerDynamic center={[31.8, 34.7]} zoom={13} style={{ height: '100vh', width: '100%' }}>
+                <MapContainerDynamic center={[31.8, 34.7]} zoom={13} style={{ height: '100vh', width: '100%', marginTop: "10px" }}>
                     <TileLayerDynamic
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         attribution='&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
@@ -209,7 +210,9 @@ const MapPage: React.FC = () => {
                     <MapEvents />
                 </MapContainerDynamic>
                 <AddButton map={map} setAddingMarker={setAddingMarker} />
+                <InfoButton/>
             </div>
+            <BottomPanel currentPage={currentPage} />
         </div>
     );
 };

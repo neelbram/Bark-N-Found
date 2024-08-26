@@ -361,7 +361,7 @@ button, a.button {
   flex-direction: row;
 } */
 
-.lost-title, .found-title {
+.lost-title, .found-title, .map-title {
   background-color: var(--background_color, #EEE5DF); /* Ensure it matches the page background */
   margin: 0; /* Reset margin */
   padding: 10px 0; /* Add padding */
