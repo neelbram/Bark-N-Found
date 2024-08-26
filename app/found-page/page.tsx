@@ -8,7 +8,6 @@ import { db } from '../firebase-config';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { LocationContext } from '../data/locationcontext';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import FilterButton from '../components/filter-button'; // Ensure the import path is correct
 import Link from 'next/link';
 
 interface Pet {
@@ -101,10 +100,8 @@ function FoundPetsPage() {
 
     return (
         <div className='screen lost-pets-page'>
-            <TopBar />
             <div className="header-container">
-                <h1 className='home-center lost-title'>Found</h1>
-                <FilterButton filters={filters} setFilters={setFilters} />
+                <TopBar title="Found" filters={filters} setFilters={setFilters} />
             </div>
             <div className='home-container background_color'>
                 <div className='home-section'>

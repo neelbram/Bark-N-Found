@@ -43,10 +43,9 @@ const CreateAccount: React.FC = () => {
     return (
         <div className='screen'>
             <div className='top'>
-                <TopBar />
+                <TopBar title="Create an account" />
             </div>
             <div className="container background_color">
-                <h1 className='center'>Create an account</h1>
                 <Image
                     src="/images/ginger_dog.png"  // Ensure the path is correct
                     alt="Ginger Dog"

@@ -10,7 +10,6 @@ import InfoButton from './map-info-button';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase-config';
 import { LocationContext } from '../data/locationcontext';
-import FilterButton from './filter-button';
 import Link from 'next/link';
 import L, { LocationEvent, ErrorEvent } from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from 'react-leaflet';
@@ -177,9 +176,7 @@ const MapPage: React.FC = () => {
         <div className='screen'>
             <div className='top background_color'>
                 <div className="header-container" style={{textAlign :'center'}}>
-                    <TopBar />
-                    <h1 className='map-title' >Pin Your Pet</h1>
-                    <FilterButton filters={filters} setFilters={setFilters} />
+                    <TopBar title="Pin Your Pet" filters={filters} setFilters={setFilters} />
                 </div>
             </div>
             <div className="screen background_color">

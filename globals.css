@@ -257,9 +257,9 @@ button, a.button {
 .home-section {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 15px;
   width: 100%;
-  justify-content: justify;
+  justify-content: center;
   padding-bottom: 120px;
 }
 
