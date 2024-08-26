@@ -47,10 +47,9 @@ const Login: React.FC = () => {
     return (
         <div className='screen'>
             <div className='top'>
-                <TopBar />
+                <TopBar title='Login'/>
             </div>
             <div className="container background_color">
-                <h1 className='center'>Login</h1>
                 <Image
                     src="/images/curly_dog.png"
                     alt="Curly Dog"

@@ -9,8 +9,7 @@ const About: React.FC = () => {
     return (
         <div className='screen'>
             <div className='top'>
-                {/* Assuming TopBar is another component */}
-                <TopBar />
+                <TopBar  title=""/>
             </div>
             <div className="background_color" style={{paddingRight: '24px', paddingLeft:'24px'}}>
                 <h1 className='center'>About Us</h1>

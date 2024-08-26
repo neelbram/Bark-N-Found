@@ -7,7 +7,6 @@ import { db } from '../firebase-config';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { LocationContext } from '../data/locationcontext';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import FilterButton from '../components/filter-button';
 import Link from 'next/link';
 import Image from 'next/image'; // Ensure to use Next.js's Image component
 
@@ -103,10 +102,8 @@ function LostPetsPage() {
 
     return (
         <div className='screen lost-pets-page'>
-            <TopBar />
-            <div className="header-container">
-                <h1 className='home-center lost-title'>Lost</h1>
-                <FilterButton filters={filters} setFilters={setFilters} />
+            <div className="header-container" >
+                <TopBar title='Lost' filters={filters} setFilters={setFilters} />
             </div>
             <div className='home-container background_color'>
                 <div className='home-section'>

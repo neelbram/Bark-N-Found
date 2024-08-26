@@ -31,10 +31,9 @@ const LoginScreen: React.FC = () => {
     return (
         <div className='screen'>
             <div className='top'>
-                <TopBar />
+                <TopBar title='Explore the app'/>
             </div>
             <div className="container background_color">
-                <h1 className='center'>Explore the app</h1>
                 <h3 className='center text_center padding-bottom'>Heroes for fur heroes - Join the journey to reunite lost pets with their loving families</h3>
                 <Link href="/signin">
                     <button className="main_button center h3 padding-all">
