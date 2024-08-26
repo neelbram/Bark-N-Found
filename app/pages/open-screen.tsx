@@ -21,7 +21,7 @@ const handleSignIn = () => {
         console.log('User signed in: ', user);
         
         // Redirect to map-page after successful sign-in
-        window.location.href = '/map-page';
+        window.location.href = '/about';
       })
       .catch((error) => {
         console.error('Error during sign-in: ', error);
