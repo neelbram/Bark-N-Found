@@ -15,15 +15,19 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
 const handleSignIn = () => {
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      const user = result.user;
-      console.log('User signed in: ', user);
-    })
-    .catch((error) => {
-      console.error('Error during sign-in: ', error);
-    });
-};
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        console.log('User signed in: ', user);
+        
+        // Redirect to map-page after successful sign-in
+        window.location.href = '/map-page';
+      })
+      .catch((error) => {
+        console.error('Error during sign-in: ', error);
+      });
+  };
+  
 
 const LoginScreen: React.FC = () => {
     // const router = useRouter();
@@ -46,7 +50,6 @@ const LoginScreen: React.FC = () => {
                     Create account
                     </button>
                 </Link>
-                <Link href="./map-page">
                 <button onClick={handleSignIn} id='google-sign-in'>
                     <svg width="353" height="56" viewBox="0 0 353 56" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="0.5" y="0.5" width="352" height="55" rx="9.5" stroke="#5D6354"/>
@@ -57,7 +60,6 @@ const LoginScreen: React.FC = () => {
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M51.5 19.3693C53.482 19.3693 55.2616 20.0505 56.6607 21.3882L60.5327 17.5161C58.1948 15.3377 55.1389 14 51.5 14C46.2227 14 41.6573 17.0252 39.4359 21.4373L43.9461 24.935C45.0077 21.7441 47.9839 19.3693 51.5 19.3693Z" fill="#EA4335"/>
                     </svg>
                 </button>
-                </Link>
             </div>
         </div>
     );
