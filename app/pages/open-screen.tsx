@@ -31,8 +31,9 @@ const LoginScreen: React.FC = () => {
     return (
         <div className='screen'>
             <div className='top'>
-                <TopBar title='Explore the app'/>
+                <TopBar title=''/>
             </div>
+                <h1>Explore the app</h1>
             <div className="container background_color">
                 <h3 className='center text_center padding-bottom'>Heroes for fur heroes - Join the journey to reunite lost pets with their loving families</h3>
                 <Link href="/signin">

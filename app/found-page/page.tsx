@@ -59,7 +59,6 @@ function FoundPetsPage() {
         color: '',
         size: ''
     });
-    // const router = useRouter(); // Use Next.js router
 
     useEffect(() => {
         const getLostPetsList = async () => {
@@ -100,7 +99,7 @@ function FoundPetsPage() {
 
     return (
         <div className='screen lost-pets-page'>
-            <div className="header-container">
+            <div className="header-container top background_color">
                 <TopBar title="Found" filters={filters} setFilters={setFilters} />
             </div>
             <div className='home-container background_color'>
