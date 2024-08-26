@@ -7,6 +7,7 @@ import Link from 'next/link';
 const DynamicLoginScreen = dynamic(() => import('./pages/open-screen'), { ssr: false });
 const DynamicCreateAccount = dynamic(() => import('./create-account/page'), { ssr: false });
 const DynamicSigninPage = dynamic(() => import('./signin/page'), { ssr: false });
+const DynamicAboutPage = dynamic(() => import('./about/page'), { ssr: false });
 const DynamicMapPage = dynamic(() => import('./map-page/page'), { ssr: false });
 const DynamicLostPage = dynamic(() => import('./lost-page/page'), { ssr: false });
 const DynamicFoundPage = dynamic(() => import('./found-page/page'), { ssr: false });
@@ -22,6 +23,8 @@ export default function Page() {
       return <DynamicCreateAccount />;
     case '/signin':
       return <DynamicSigninPage />;
+    case '/about':
+      return <DynamicAboutPage />;
     case '/map-page':
       return <DynamicMapPage />;
     case '/lost-page':
