@@ -16,7 +16,7 @@ const About: React.FC = () => {
                 <h1 className='center'>About Us</h1>
                     <div style={{fontSize: '22px', textAlign: 'center'}}>
                         <p> Lost your beloved pet? Found a pet wondering alone?</p>
-                        <p> You're in the right place!</p>
+                        <p> You are in the right place!</p>
                     </div>
                     <div style={{marginTop:'35px'}}>
                         <p> Bark and Found is the best way to return a pet to its rightfull owners, we allow friends and neighbors to post about lost pets for its owners to see it!</p>

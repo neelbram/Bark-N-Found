@@ -182,7 +182,7 @@ const AddButton: React.FC<AddButtonProps> = ({ map, setAddingMarker }) => {
         onClick={handleClick}
         style={{
           position: 'absolute',
-          bottom: '90px',
+          bottom: '100px',
           right: '15px',
           zIndex: 1000,
           padding: '12px',

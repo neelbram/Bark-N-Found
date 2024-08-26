@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 
 const InfoButton: React.FC = () => {
@@ -18,7 +19,7 @@ const InfoButton: React.FC = () => {
         onClick={handleInfoOpen}
         style={{
           position: 'absolute',
-          bottom: '90px',
+          bottom: '100px',
           left: '15px',
           zIndex: 1000,
           padding: '12px',
@@ -70,11 +71,11 @@ const InfoButton: React.FC = () => {
               </div>
               <p>For adding a new pet, click the + button and then click your desired location on the map</p>
               <div style={{display:'flex'}}>
-                <img width='20' height='30' style={{marginTop:'10px', marginBottom:'16px', marginRight:'10px'}} src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png'/>
+                <Image alt='green pin' width='20' height='30' style={{marginTop:'10px', marginBottom:'16px', marginRight:'10px'}} src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png'/>
                 <p>The green icon is for found pets</p>
               </div>
               <div style={{display:'flex'}}>
-                <img width='20' height='30' style={{marginTop:'10px', marginBottom:'16px', marginRight:'10px'}} src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png'/>
+                <Image alt='red pin' width='20' height='30' style={{marginTop:'10px', marginBottom:'16px', marginRight:'10px'}} src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png'/>
                 <p>The red icon is for lost pets</p>
               </div>
               <p>We wish you good luck in your findings</p>
