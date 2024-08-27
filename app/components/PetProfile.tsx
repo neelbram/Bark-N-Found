@@ -19,7 +19,7 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
     const [name, setName] = useState<string>(pet.name || '');
     const [location, setLocation] = useState<{ city: string; street: string }>({ city: '', street: '' });
     const [editMode, setEditMode] = useState(false);
-    const [breed, setBreed] = useState(pet.breed); // Add state for breed
+    // const [breed, setBreed] = useState(pet.breed); // Add state for breed
     const [sex, setSex] = useState(pet.sex); // Add state for sex
     const [color, setColor] = useState(pet.color); // Add state for color
     const [chipNumber, setChipNumber] = useState<number>(Number(pet.chipNumber));
@@ -30,8 +30,8 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
     const toggleEditMode = async () => {
         if (editMode) {  // We're exiting edit mode, so save changes
             try {
-                console.log('Saving updated breed to database:', breed);
-                await updatePetInDatabase({ ...pet, breed, sex, color, chipNumber, size, lastUpdate });  // Update the breed in the database
+                // console.log('Saving updated breed to database:', breed);
+                // await updatePetInDatabase({ ...pet, breed, sex, color, chipNumber, size, lastUpdate });  // Update the breed in the database
             } catch (error) {
                 console.error('Error updating pet:', error);
             }
@@ -43,9 +43,9 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
         setName(event.target.value);
     };
 
-    const handleBreedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setBreed(event.target.value);
-    };
+    // const handleBreedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     setBreed(event.target.value);
+    // };
 
     const handleSexChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSex(event.target.value === 'true'); // Convert string to boolean
@@ -221,21 +221,20 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
                 </p>
                 <div className="pet-description">
                     <div className='flex-line'>
-                        <div className='flex-item' id='breed-field'>
+                        <div className='flex-item' id='color-field'>
                             {editMode ? (
                                 <input
                                     type="text"
                                     className='flex-item-sub'
-                                    value={breed}
-                                    onChange={handleBreedChange} // Track user input
+                                    value={color}
+                                    onChange={handleColorChange} // Track user input
                                 />
                             ) : (
-                                <p className='flex-item-sub'>{breed}</p> // Display the updated breed
+                                <p className='flex-item-sub'>{color}</p> // Display the updated breed
                             )}
-                            <p className='flex-item-title'>Breed:</p>
+                            <p className='flex-item-title'>Color:</p>
                         </div>
                         <div className='flex-item' id="sex-selection">
-                            {/* <p className="flex-item-title">Sex:</p> */}
                             {editMode ? (
                                 <div>
                                     <p className="flex-item-title">Sex:</p>
@@ -269,18 +268,18 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
                         </div>
                     </div>
                     <div className='flex-line'>
-                        <div className='flex-item' id='color-field'>
+                        <div className='flex-item' id='size-field'>
                             {editMode ? (
                                 <input
                                     type="text"
                                     className='flex-item-sub'
-                                    value={color}
-                                    onChange={handleColorChange} // Track user input
+                                    value={size}
+                                    onChange={handleSizeChange} // Track user input
                                 />
                             ) : (
-                                <p className='flex-item-sub'>{color}</p> // Display the updated breed
+                                <p className='flex-item-sub'>{size}</p> // Display the updated breed
                             )}
-                            <p className='flex-item-title'>Color:</p>
+                            <p className='flex-item-title'>Size:</p>
                         </div>
                         <div className='flex-item' id='chip-number-field'>
                             {editMode ? (
@@ -297,19 +296,6 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
                         </div>
                     </div>
                     <div className='flex-line'>
-                        <div className='flex-item' id='size-field'>
-                            {editMode ? (
-                                <input
-                                    type="text"
-                                    className='flex-item-sub'
-                                    value={size}
-                                    onChange={handleSizeChange} // Track user input
-                                />
-                            ) : (
-                                <p className='flex-item-sub'>{size}</p> // Display the updated breed
-                            )}
-                            <p className='flex-item-title'>Size:</p>
-                        </div>
                         {/* <div className='flex-item' id='last-update-field'>
                             {editMode ? (
                                 <input
