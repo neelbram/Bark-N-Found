@@ -31,7 +31,8 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
         if (editMode) {  // We're exiting edit mode, so save changes
             try {
                 // console.log('Saving updated breed to database:', breed);
-                // await updatePetInDatabase({ ...pet, breed, sex, color, chipNumber, size, lastUpdate });  // Update the breed in the database
+                await updatePetInDatabase({ ...pet, name, sex, color, chipNumber, size }); 
+                console.log('Updated');
             } catch (error) {
                 console.error('Error updating pet:', error);
             }
@@ -42,10 +43,6 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
     const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setName(event.target.value);
     };
-
-    // const handleBreedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     setBreed(event.target.value);
-    // };
 
     const handleSexChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSex(event.target.value === 'true'); // Convert string to boolean
@@ -138,7 +135,7 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
         <div className="pet-profile">
             <div className="pet-profile-header">
                 <p><span className="text-32 bold">{pet.type}</span> 
-                <span className='text-16'>Pet’s Profile</span></p>
+                <span className='text-16'>Profile</span></p>
             </div>
             <div className="pet-profile-image">
                 <img src={pet.petPictureUrl || 'default-image-url'} alt={pet.name} />
