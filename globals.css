@@ -99,6 +99,7 @@ h3 {
   font-style: normal;
   font-weight: 400;
   line-height: 130%;
+  width: 350px;
 }
 
 /* Positions and grid */
@@ -239,10 +240,10 @@ button, a.button {
   align-items: center;
   padding: 16px;
   overflow-y: auto;
-  max-height:calc(100vh - 250px); 
+  max-height:calc(100vh - 150px); 
   padding-bottom: 120px; /* This adds space inside the container */
   box-sizing: border-box; /* Ensures padding is included in the height calculation */
-  margin-bottom: 72px; /* This pushes the container above the bottom panel */
+  margin-bottom: 0px; /* This pushes the container above the bottom panel */
 }
 
 
@@ -368,7 +369,7 @@ button, a.button {
   background-color: var(--background_color, #EEE5DF); /* Ensure it matches the page background */
   margin: 0; /* Reset margin */
   padding: 10px 0; /* Add padding */
-  width: 100%; /* Full width */
+  width: 100px; /* Full width */
   text-align: center; /* Center the text */
 }
 
@@ -568,9 +569,19 @@ input {
 .pet-profile-info-header {
   flex: 1;
   display: flex;
-  flex-direction: row; /* Stack items vertically */
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.pet-profile-name-and-type{
+    display: flex;
+    flex-direction: column;
+}
+
+.right-buttons {
+    display: flex;
+    gap: 10px; /* Adjust the gap between buttons */
+  }
 
 
 #edit-button {
@@ -946,4 +957,22 @@ body {
 
   #click-continue{
     font-size: 18px;
+  }
+
+  #map-info{
+    outline: auto;
+    outline-color: #4B4665;
+  }
+  #info-container{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  #info-content{
+    font-size: 18px;
+    margin-top: 0px;
+  }
+
+  #map-info-header{
+    margin-left: 10px;
   }

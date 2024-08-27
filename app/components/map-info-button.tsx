@@ -51,7 +51,7 @@ const InfoButton: React.FC = () => {
           alignItems: 'center',
           zIndex: 2000
         }}>
-            <div className="background_color" style={{
+            <div className="background_color" id='map-info' style={{
               padding: '20px',
               borderRadius: '8px',
               boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
@@ -64,21 +64,23 @@ const InfoButton: React.FC = () => {
               margin: '0 auto',
             }}>
               <div style={{display:'flex', justifyContent:'space-between'}}>
-                <h2 style={{fontSize: '18px' }}>Map Info</h2>
+                <h2 id='map-info-header'>Map Info</h2>
                 <button onClick={handleInfoClose} style={{
                   textAlign: "right", marginTop:'0', marginBottom:'20px', fontFamily:'Poppins, sans-serif', color:'#696480'
                 }}>X</button>
               </div>
-              <p>For adding a new pet, click the + button and then click your desired location on the map</p>
+              <div id='info-container'>
+              <p id='info-content'>For adding a new pet, click the + button and then click your desired location on the map</p>
               <div style={{display:'flex'}}>
-                <svg width='20' height='50' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M384 192c0 87.4-117 243-168.3 307.2c-12.3 15.3-35.1 15.3-47.4 0C117 435 0 279.4 0 192C0 86 86 0 192 0S384 86 384 192z" fill='green'/></svg>
+                <svg width='20' height='50' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M384 192c0 87.4-117 243-168.3 307.2c-12.3 15.3-35.1 15.3-47.4 0C117 435 0 279.4 0 192C0 86 86 0 192 0S384 86 384 192z" fill='forestgreen'/></svg>
                 <p style={{marginLeft:'10px'}}>The green icon is for found pets</p>
               </div>
               <div style={{display:'flex'}}>
-              <svg width='20' height='50' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M384 192c0 87.4-117 243-168.3 307.2c-12.3 15.3-35.1 15.3-47.4 0C117 435 0 279.4 0 192C0 86 86 0 192 0S384 86 384 192z" fill='red'/></svg>
+              <svg width='20' height='50' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M384 192c0 87.4-117 243-168.3 307.2c-12.3 15.3-35.1 15.3-47.4 0C117 435 0 279.4 0 192C0 86 86 0 192 0S384 86 384 192z" fill='firebrick'/></svg>
                 <p style={{marginLeft:'10px'}}>The red icon is for lost pets</p>
               </div>
-              <p> Good luck finding your furry friend</p>
+              <p> Good luck finding your furry friend!</p>
+              </div>
             </div>
         </div>
       )}
