@@ -71,14 +71,14 @@ const InfoButton: React.FC = () => {
               </div>
               <p>For adding a new pet, click the + button and then click your desired location on the map</p>
               <div style={{display:'flex'}}>
-                <Image alt='green pin' width='20' height='30' style={{marginTop:'10px', marginBottom:'16px', marginRight:'10px'}} src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png'/>
-                <p>The green icon is for found pets</p>
+                <svg width='20' height='50' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M384 192c0 87.4-117 243-168.3 307.2c-12.3 15.3-35.1 15.3-47.4 0C117 435 0 279.4 0 192C0 86 86 0 192 0S384 86 384 192z" fill='green'/></svg>
+                <p style={{marginLeft:'10px'}}>The green icon is for found pets</p>
               </div>
               <div style={{display:'flex'}}>
-                <Image alt='red pin' width='20' height='30' style={{marginTop:'10px', marginBottom:'16px', marginRight:'10px'}} src='https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png'/>
-                <p>The red icon is for lost pets</p>
+              <svg width='20' height='50' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M384 192c0 87.4-117 243-168.3 307.2c-12.3 15.3-35.1 15.3-47.4 0C117 435 0 279.4 0 192C0 86 86 0 192 0S384 86 384 192z" fill='red'/></svg>
+                <p style={{marginLeft:'10px'}}>The red icon is for lost pets</p>
               </div>
-              <p>We wish you good luck in your findings</p>
+              <p> Good luck finding your furry friend</p>
             </div>
         </div>
       )}
