@@ -16,14 +16,14 @@ interface Pet {
     petPictureUrl: string;
     date: { seconds: number; nanoseconds: number };
     position: { lat: number; lng: number };
-    kind?: string;
+    animalKind?: string;
     sex?: string;
     color?: string;
     size?: string;
 }
 
 interface Filters {
-    kind: string;
+    animalKind: string;
     sex: string;
     color: string;
     size: string;
@@ -54,7 +54,7 @@ function FoundPetsPage() {
     const { userLocation } = useContext(LocationContext);
     const [lostPetsList, setLostPetsList] = useState<Pet[]>([]);
     const [filters, setFilters] = useState<Filters>({
-        kind: '',
+        animalKind: '',
         sex: '',
         color: '',
         size: ''
@@ -79,7 +79,7 @@ function FoundPetsPage() {
                 }
     
                 lostPetsList = lostPetsList.filter(pet => (
-                    (filters.kind ? pet.kind === filters.kind : true) &&
+                    (filters.animalKind ? pet.animalKind === filters.animalKind : true) &&
                     (filters.sex ? pet.sex === filters.sex : true) &&
                     (filters.color ? pet.color === filters.color : true) &&
                     (filters.size ? pet.size === filters.size : true)

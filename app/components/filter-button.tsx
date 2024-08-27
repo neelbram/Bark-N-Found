@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent } from 'react';
 import Modal from 'react-modal';
 
 interface Filters {
-    kind: string;
+    animalKind: string;
     sex: string;
     color: string;
     size: string;
@@ -36,7 +36,7 @@ const FilterButton: React.FC<FilterButtonProps> = ({ filters, setFilters }) => {
                 <h2>Filter Options</h2>
                 <div className="filter-group">
                     <label>Animal Kind</label>
-                    <select name="kind" value={filters.kind} onChange={handleFilterChange}>
+                    <select name="animalKind" value={filters.animalKind} onChange={handleFilterChange}>
                         <option value="">All Animals</option>
                         <option value="Dog">Dog</option>
                         <option value="Cat">Cat</option>
@@ -57,9 +57,11 @@ const FilterButton: React.FC<FilterButtonProps> = ({ filters, setFilters }) => {
                     <select name="color" value={filters.color} onChange={handleFilterChange}>
                         <option value="">All Colors</option>
                         <option value="Black">Black</option>
+                        <option value="Dark Brown">Dark Brown</option>
+                        <option value="Light Brown">Light Brown</option>
                         <option value="White">White</option>
-                        <option value="Brown">Brown</option>
-                        <option value="Other">Other</option>
+                        <option value="Ginger">Ginger</option>
+                        <option value="Mix">Mix</option>
                     </select>
                 </div>
                 <div className="filter-group">

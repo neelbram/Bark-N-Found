@@ -805,9 +805,28 @@ path.leaflet-interactive {
     height: 100%;
     object-fit: cover; /* or contain, depending on your needs */
 }
-  .pet-name{
-    margin-right: 12px;
+
+.pet-name {
+  font-family: var(--primary-font); /* Use the primary font defined in :root */
+  font-size: 16px;  /* Ensure the same font size */
+  margin: 0;
+  font-weight: normal;
 }
+
+.pet-date {
+  font-family: var(--primary-font); /* Use the primary font defined in :root */
+  font-size: 14px;  /* Ensure the same font size */
+  color: #666;
+  font-weight: normal;
+}
+
+.pet-date {
+  font-family: var(--primary-font); /* Use the primary font defined in :root */
+  font-size: 14px;  /* Ensure the same font size */
+  color: #666;
+  font-weight: normal;
+}
+
   .pet-type, .pet-location-lost-at-title{
     color: #70717B;
 }

@@ -8,7 +8,6 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { LocationContext } from '../data/locationcontext';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Link from 'next/link';
-import Image from 'next/image'; // Ensure to use Next.js's Image component
 
 interface Pet {
     id: string;
@@ -16,14 +15,14 @@ interface Pet {
     petPictureUrl: string;
     date: { seconds: number; nanoseconds: number };
     position: { lat: number; lng: number };
-    kind?: string;
-    sex?: string;
+    animalKind?: string;
+    sex?: string | null;
     color?: string;
     size?: string;
 }
 
 interface Filters {
-    kind: string;
+    animalKind: string;
     sex: string;
     color: string;
     size: string;
@@ -54,7 +53,7 @@ function LostPetsPage() {
     const { userLocation } = useContext(LocationContext);
     const [lostPetsList, setLostPetsList] = useState<Pet[]>([]);
     const [filters, setFilters] = useState<Filters>({
-        kind: '',
+        animalKind: '',
         sex: '',
         color: '',
         size: ''
@@ -78,12 +77,28 @@ function LostPetsPage() {
                     lostPetsList = lostPetsList.filter(pet => pet.position && getDistance(userLocation, pet.position) <= radius);
                 }
 
-                lostPetsList = lostPetsList.filter(pet => (
-                    (filters.kind ? pet.kind === filters.kind : true) &&
-                    (filters.sex ? pet.sex === filters.sex : true) &&
-                    (filters.color ? pet.color === filters.color : true) &&
-                    (filters.size ? pet.size === filters.size : true)
-                ));
+                // Updated filtering logic for sex
+                if (filters.sex) {
+                    lostPetsList = lostPetsList.filter(pet => {
+                        const petSex = typeof pet.sex === 'string' ? pet.sex.trim().toLowerCase() : ''; // Safely handle non-string values
+                        const filterSex = filters.sex.trim().toLowerCase();
+
+                        // Only filter pets that have a valid sex ("Male" or "Female")
+                        return (petSex === 'male' || petSex === 'female') && petSex === filterSex;
+                    });
+                }
+
+                // Apply the other filters
+                lostPetsList = lostPetsList.filter(pet => {
+                    const matchesKind = filters.animalKind ? pet.animalKind?.trim().toLowerCase() === filters.animalKind.trim().toLowerCase() : true;
+                    const matchesColor = filters.color ? pet.color === filters.color : true;
+                    const matchesSize = filters.size ? pet.size === filters.size : true;
+
+                    return matchesKind && matchesColor && matchesSize;
+                });
+
+                // Debugging: Log out the list after filtering
+                console.log("Lost Pets after filtering:", lostPetsList);
 
                 lostPetsList.sort((a, b) => (b.date.seconds || 0) - (a.date.seconds || 0));
 
@@ -95,10 +110,6 @@ function LostPetsPage() {
 
         getLostPetsList();
     }, [userLocation, filters]);
-
-    // const handleCardClick = (id: string) => {
-    //     router.push(`/profile-lost/${id}`); 
-    // };
 
     return (
         <div className='screen lost-pets-page'>

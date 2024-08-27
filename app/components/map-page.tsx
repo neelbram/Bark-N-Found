@@ -23,7 +23,7 @@ const MarkerDynamic = dynamic(() => import('react-leaflet').then((mod) => mod.Ma
 const PopupDynamic = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), { ssr: false });
 
 interface Filters {
-    kind: string;
+    animalKind: string;
     sex: string;
     color: string;
     size: string;
@@ -78,9 +78,9 @@ const MapPage: React.FC = () => {
     const [map, setMap] = useState<L.Map | null>(null);
     const [addingMarker, setAddingMarker] = useState(false);
     const [currentPage, setCurrentPage] = useState('map-page');
-    const [locations, setLocations] = useState<{ id: string, lat: number, lng: number, type: string, kind: string, sex: string, color: string, size: string }[]>([]);
+    const [locations, setLocations] = useState<{ id: string, lat: number, lng: number, type: string, animalKind: string, sex: string, color: string, size: string }[]>([]);
     const [filters, setFilters] = useState<Filters>({
-        kind: '',
+        animalKind: '',
         sex: '',
         color: '',
         size: ''
@@ -101,7 +101,7 @@ const MapPage: React.FC = () => {
                                 lat: data.position.lat, 
                                 lng: data.position.lng, 
                                 type: data.type,
-                                kind: data.kind || '',
+                                animalKind: data.animalKind || '',
                                 sex: data.sex || '',
                                 color: data.color || '',
                                 size: data.size || ''
@@ -111,7 +111,7 @@ const MapPage: React.FC = () => {
                         }
                         return null;
                     }).filter(location => location !== null);
-                    setLocations(locationsData as { id: string, lat: number, lng: number, type: string, kind: string, sex: string, color: string, size: string }[]);
+                    setLocations(locationsData as { id: string, lat: number, lng: number, type: string, animalKind: string, sex: string, color: string, size: string }[]);
                 }
             } catch (error) {
                 console.error('Error fetching locations:', error);
@@ -160,7 +160,7 @@ const MapPage: React.FC = () => {
     // Filter locations based on selected filters
     const filteredLocations = locations.filter(location => {
         return (
-            (filters.kind === '' || location.kind === filters.kind) &&
+            (filters.animalKind === '' || location.animalKind === filters.animalKind) &&
             (filters.sex === '' || location.sex === filters.sex) &&
             (filters.color === '' || location.color === filters.color) &&
             (filters.size === '' || location.size === filters.size)

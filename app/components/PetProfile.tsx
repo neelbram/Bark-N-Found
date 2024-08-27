@@ -20,7 +20,7 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
     const [location, setLocation] = useState<{ city: string; street: string }>({ city: '', street: '' });
     const [editMode, setEditMode] = useState(false);
     // const [breed, setBreed] = useState(pet.breed); // Add state for breed
-    const [sex, setSex] = useState(pet.sex); // Add state for sex
+    const [sex, setSex] = useState<string>(pet.sex || '');
     const [color, setColor] = useState(pet.color); // Add state for color
     const [chipNumber, setChipNumber] = useState<number>(Number(pet.chipNumber));
     const [size, setSize] = useState(pet.size); // Add state for size
@@ -45,7 +45,7 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
     };
 
     const handleSexChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSex(event.target.value === 'true'); // Convert string to boolean
+        setSex(event.target.value); //
     };
 
     const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -241,8 +241,8 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
                                         <input
                                             type="radio"
                                             name="sex"
-                                            value="true"
-                                            checked={sex === true}
+                                            value="Male"
+                                            checked={sex === 'Male'}
                                             onChange={handleSexChange}
                                         />
                                         Male
@@ -251,8 +251,8 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
                                         <input
                                             type="radio"
                                             name="sex"
-                                            value="false"
-                                            checked={sex === false}
+                                            value="Female"
+                                            checked={sex === 'Female'}
                                             onChange={handleSexChange}
                                         />
                                         Female
@@ -261,7 +261,7 @@ const PetProfile: React.FC<PetProfileProps> = ({ pet }) => {
                             ) : (
                                 <div>
                                     <p className="flex-item-title">Sex:</p>
-                                    <p className="flex-item-sub">{sex ? 'Male' : 'Female'}</p>
+                                    <p className="flex-item-sub">{sex}</p> {/* Display the correct sex */}
                                 </div>
                             )}
                         </div>

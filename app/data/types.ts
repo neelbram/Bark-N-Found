@@ -36,7 +36,7 @@ export interface Pet {
   name: string;
   petPictureUrl: string;
   position: position;
-  sex: boolean; // true for Male, false for Female
+  sex: string;
   size: string;
   type: string;
 }
