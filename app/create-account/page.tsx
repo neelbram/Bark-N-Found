@@ -126,7 +126,7 @@ const CreateAccount: React.FC = () => {
                         onChange={handlePasswordConfirm}
                     />
                 </div>
-                <Link href="/map-page">
+                <Link href="/about">
                     <button className="main_button center h3 padding-all" onClick={handleCreateAccount}>
                         Create account
                     </button>

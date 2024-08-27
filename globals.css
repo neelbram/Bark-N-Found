@@ -76,7 +76,7 @@ h1 {
     color: var(--primary-color, #4B4665);
     /* Title */
     font-family: Poppins;
-    font-size: 32px;
+    font-size: 38px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -936,4 +936,14 @@ body {
 
   #create-account-header{
     font-size: 38px;
+  }
+
+  #about-content{
+    color: #38220c;
+    margin:20px;
+    font-size: 24px;
+  }
+
+  #click-continue{
+    font-size: 18px;
   }
