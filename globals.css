@@ -952,6 +952,7 @@ body {
   #about-content{
     color: #38220c;
     margin:20px;
+    margin-bottom:0px;
     font-size: 24px;
   }
 
@@ -977,3 +978,13 @@ body {
     margin-left: 10px;
   }
 
+#about-container{
+    max-height:calc(100vh - 150px);    
+    margin-bottom: 30%;
+}
+
+#sad-dogs{
+    position: absolute;
+    bottom: 0px; /* Adjust distance from bottom as needed */
+    left: 0;
+}
