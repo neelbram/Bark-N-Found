@@ -60,7 +60,7 @@ export default function TopBar({ title, filters, setFilters }: TopBarProps) {
                 {filters && setFilters && <FilterButton filters={filters} setFilters={setFilters} />}
             </div>
             <div>
-                <h1 className='home-center lost-title'>{title}</h1>
+                <h1 className='home-center lost-title' style={title === "Found" ? { color: '#5D6354' } : {}}>{title}</h1>
             </div>
         <div className="spacer" />
         <div className="flex-end padding-top">

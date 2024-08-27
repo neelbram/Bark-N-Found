@@ -42,7 +42,7 @@ const LoginScreen: React.FC = () => {
                 <h3 className='center text_center padding-bottom'>Heroes for fur heroes - Join the journey to reunite lost pets with their loving families</h3>
                 <Link href="/signin">
                     <button className="main_button center h3 padding-all">
-                    Sign In
+                    Login
                     </button>
                 </Link>
                 <Link href="./create-account">
