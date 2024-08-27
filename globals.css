@@ -73,12 +73,13 @@ html, body {
 
 /* Headlines */
 h1 {
-  color: var(--primary-color, #4B4665);
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 130%; /* 41.6px */
-  letter-spacing: -0.32px;
+    color: var(--primary-color, #4B4665);
+    /* Title */
+    font-family: Poppins;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 /* Subtitles */
@@ -571,6 +572,7 @@ input {
   align-items: flex-start;
 }
 
+
 #edit-button {
   margin-left: 150px;
 }
@@ -916,4 +918,22 @@ body {
 
   #google-sign-in{
     margin-left: -5px;
+  }
+
+  #login-logo{
+    margin: 10px;
+    padding-bottom: 10px;
+  }
+
+  #login-header{
+    font-size: 38px;
+  }
+
+  #create-account-logo{
+    margin: 10px;
+    padding-bottom: 10px;
+  }
+
+  #create-account-header{
+    font-size: 38px;
   }
