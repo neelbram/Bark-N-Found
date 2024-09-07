@@ -901,12 +901,14 @@ height: 45px;
 
 .popup{
     position: fixed;
+    /* outline: auto;
+    outline-color: #4B4665; */
     top: 50%; /* Centers it vertically */
     left: 50%; /* Centers it horizontally */
     transform: translate(-50%, -50%); /* Adjusts the position to ensure it's exactly centered */
-    background-color: #7c7e6b; /* Adjust this to match your color */
+    background-color: #EEE5DF; 
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 10px;
     text-align: center;
     max-width: 300px; /* Adjust the width as needed */
     margin: 0 auto; /* Center the box */
@@ -915,6 +917,11 @@ height: 45px;
     width: 332px;
 }
 
+#popup-text{
+    color:#4B4665;
+    line-height: 30px;
+    font-size: 20px;
+}
 
 .popup p{
     color: #EEE5DF; /* Text color */
